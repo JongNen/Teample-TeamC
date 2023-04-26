@@ -9,25 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/mypage")
-public class MypageController extends HttpServlet{
-	
+@WebServlet("/user/myPage")
+public class MypageController extends HttpServlet {
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		HttpSession session = req.getSession();
-		boolean logon = (boolean)session.getAttribute("logon");
-		if(!logon) {
+		boolean logon = (boolean) session.getAttribute("logon");
+		if (!logon) {
 			resp.sendRedirect("/user/login");
 			return;
-		}else {
-			
+		} else {
+
 		}
-		
-		
-		
-		
-		req.getRequestDispatcher("/WEB-INF/views/mypage.jsp").forward(req, resp);
+
+		req.getRequestDispatcher("/WEB-INF/views/user/myPage.jsp").forward(req, resp);
 
 	}
 }

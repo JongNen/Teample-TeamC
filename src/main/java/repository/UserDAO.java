@@ -31,7 +31,7 @@ public class UserDAO extends DAO{
 	public static int updateUser(Map map) {
 		SqlSession session =  factory.openSession(true);
 		try {
-			return session.insert("Users.updateUser", map);
+			return session.update("Users.updateUser", map);
 		} finally {
 			session.close();
 		}
@@ -40,7 +40,7 @@ public class UserDAO extends DAO{
 	public static int delete(String id) {
 		SqlSession session =  factory.openSession(true);
 		try {
-			return session.insert("Users.deleteUser", id);
+			return session.delete("Users.deleteUser", id);
 		} finally {
 			session.close();
 		}

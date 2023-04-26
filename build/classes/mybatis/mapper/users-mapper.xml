@@ -18,6 +18,7 @@
 	<!-- 유저 정보 수정 -->
 	<update id="updateUser" parameterType="hashmap">
 		UPDATE USERS SET PASS = #{pass}, NAME = #{name} , AREA = #{area}
+		WHERE ID = #{id}
 	</update>
 	
 	<!-- 회원탈퇴 -->

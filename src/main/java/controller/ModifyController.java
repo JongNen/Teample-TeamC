@@ -9,31 +9,37 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import repository.UserDAO;
 
-@WebServlet("/mypage/modify")
+@WebServlet("/user/modify")
 public class ModifyController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		HttpSession session = req.getSession();
+		Boolean logon = (Boolean)session.getAttribute("logon");
+		if(logon == null || !logon) {
+			resp.sendRedirect("/user/login");
+			return;
+		}
+		
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
 		String name = req.getParameter("name");
 		String area = req.getParameter("area");
-		
 
-		Map map = new HashMap();
+		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("pass", pass);
 		map.put("name", name);
-		map.put("area", area)
+		map.put("area", area);
 
 		int r = UserDAO.updateUser(map);
 		
-		req.getRequestDispatcher("/WEB-INF/mypage.jsp").forward(req, resp);
-		
+		req.getRequestDispatcher("/WEB-INF/views/user/myPage.jsp").forward(req, resp);
 	}
 	
 }
