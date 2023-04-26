@@ -25,6 +25,12 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+	public String getLike_Area() {
+		return like_Area;
+	}
+	public void setLike_Area(String like_Area) {
+		this.like_Area = like_Area;
+	}
 	
 	
 	

@@ -16,7 +16,6 @@ public class JoinTaskController extends HttpServlet {
 
 		// 회원가입시 사용자 정보 처리
 		req.setCharacterEncoding("utf-8");
-
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
 		String name = req.getParameter("name");
