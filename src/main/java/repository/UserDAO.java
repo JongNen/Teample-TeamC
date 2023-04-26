@@ -1,4 +1,4 @@
-package repoistory;
+package repository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,11 +9,11 @@ import data.User;
 
 public class UserDAO extends DAO{
 
-	@SuppressWarnings("rawtypes")
+	
 	public static int create(Map map) {
 		SqlSession session =  factory.openSession(true);
 		try {
-			return session.insert("Users.create", map);
+			return session.insert("users.create", map);
 		} finally {
 			session.close();
 		}
@@ -31,7 +31,7 @@ public class UserDAO extends DAO{
 	public static int updateUser(Map map) {
 		SqlSession session =  factory.openSession(true);
 		try {
-			return session.update("Users.updateUser", map);
+			return session.update("users.updateUser", map);
 		} finally {
 			session.close();
 		}
@@ -40,7 +40,7 @@ public class UserDAO extends DAO{
 	public static int delete(String id) {
 		SqlSession session =  factory.openSession(true);
 		try {
-			return session.delete("Users.deleteUser", id);
+			return session.delete("users.deleteUser", id);
 		} finally {
 			session.close();
 		}

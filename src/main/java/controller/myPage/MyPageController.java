@@ -1,4 +1,4 @@
-package controller;
+package controller.myPage;
 
 import java.io.IOException;
 
@@ -9,16 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/index")
-public class IndexController extends HttpServlet{
+@WebServlet("/myPage")
+public class MyPageController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		
-		
-		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
-		
-		
+//
+//		HttpSession session = req.getSession();
+//		boolean logon = (boolean) session.getAttribute("logon");
+//		if (!logon) {
+//			resp.sendRedirect("/user/login");
+//			return;
+//		} else {
+//
+//		}
+
+		req.getRequestDispatcher("/WEB-INF/views/user/myPage.jsp").forward(req, resp);
+
 	}
 }
