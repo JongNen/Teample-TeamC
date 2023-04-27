@@ -14,7 +14,6 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import data.User;
 import repository.UserDAO;
-import service.CookieService;
 
 @WebServlet("/user/signIn-task")
 public class SignInTaskController extends HttpServlet {
