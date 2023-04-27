@@ -2,21 +2,36 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%-- 로그인페이지 --%>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <style>
+   * {
+  		font-family: 'Pretendard-Regular';
+  	}
+  </style>
+<title>브라우저 탭의 제목</title>
+<link rel="stylesheet" href="/resource/style.css">
 </head>
+
 <body>
-	<form action="/user/signIn-task" method="post">
-		<input type="text" name="id" placeholder="아이디" value="${idSave }" required/>
-		<input type="password" name="pass" placeholder="비밀번호"/>
-		<input type="checkbox" name="check" />	
-		<button type="submit">로그인</button>
-	</form>
-	<c:if test="${param.error eq '1' }">
-		<span style="color: red"><b>아이디 혹은 비밀번호가 일치하지 않습니다.</b></span>
-	</c:if>
+  <div style="text-align: center;" >
+  <img style="width: 600px; padding-top: 4em; padding-bottom:6em;" class="backimg-linear"src="/resource/image/CSlogo_outline.png"/>
+  </div>
+  	<form action="/user/signIn-task" method="post">
+      <div style="text-align : center;">
+  		<span style="text-align: right;"><small>자동로그인하기</small></span><input type="checkbox" name="check" />
+  	<div>
+  		<input  class ="loginId"type="text" name="id" placeholder="아이디" value="${idSave }" required/>
+  	</div>
+  		<input class="loginPass"type="password" name="pass" placeholder="비밀번호"/>
+  	<div style="margin-top: 0.7em;">
+  		<button class="but"type="submit">로그인</button>
+  	</div>
+  	<div>
+  		혹시 아이디가 없으신가요? <a href="">회원가입하러가기</a>
+  	</div>
+  </div>
+  	</form>
 </body>
 </html>
