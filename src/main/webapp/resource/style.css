@@ -1,1 +1,66 @@
 @charset "UTF-8";
+
+@font-face {
+    font-family: 'MBC1961GulimM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+	
+}
+
+a:hover{
+	color:	#05BFDB;
+
+}
+
+.backimg{
+	margin:0;
+  background: linear-gradient(
+  	to top,
+	rgba(255,255,255,0) 10%
+	rgba(255,255,255,0.5) 25%
+	rgba(255,255,255,0.7) 40%
+	rgba(255,255,255,1) 50%
+	rgba(255,255,255,1) 75%
+	rgba(255,255,255,1) 100%	
+	),
+	url("/image/backImage.jpg");
+  width: 100%;
+}
+
+
+
+.but{
+	font-family: 'Pretendard-Regular';
+	padding: 2px 3px;
+	background-color: black;
+	color: white;
+	margin :1px;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.blank{
+	font-family: 'Pretendard-Regular';
+	border: 0;
+	margin: 3px;
+	border-radius: 3px;
+}
+
+.root{
+	font-family: 'Pretendard-Regular';
+	text-align: center;
+	
+}

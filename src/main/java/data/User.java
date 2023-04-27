@@ -5,7 +5,7 @@ public class User {
 	String id;
 	String name;
 	String pass;
-	String like_Area;
+	String area;
 	
 	public String getId() {
 		return id;
@@ -25,12 +25,19 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public String getLike_Area() {
-		return like_Area;
+	public String getArea() {
+		return area;
 	}
-	public void setLike_Area(String like_Area) {
-		this.like_Area = like_Area;
+	public void setArea(String area) {
+		this.area = area;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", pass=" + pass + ", area=" + area + ", getId()=" + getId()
+				+ ", getName()=" + getName() + ", getPass()=" + getPass() + ", getArea()=" + getArea() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+	
 	
 	
 	
