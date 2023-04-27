@@ -2,6 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="messages">
+<mapper namespace="users">
+	<!-- 유저 생성 -->
+	<insert id="create" parameterType="hashmap">
+		INSERT INTO USERS(ID, NAME, PASS, AREA) VALUES(#{id}, #{name}, #{pass}, #{area})	
+	</insert>
+		
+	<select id="findById" resultType="data.User" parameterType="string">
+		SELECT USERS.*
+		FROM USERS 
+		WHERE ID = #{id}
+	</select>
+	
+	<!-- 유저 정보 수정 -->
+	<update id="updateUser" parameterType="hashmap">
+		UPDATE USERS SET PASS = #{pass}, NAME = #{name} , AREA = #{area} WHERE = #{id}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteUser" parameterType="string">
+		DELETE FROM USERS WHERE ID = #{id}
+	</delete>
 	
 </mapper>
