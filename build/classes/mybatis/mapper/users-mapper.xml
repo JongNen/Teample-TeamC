@@ -13,16 +13,19 @@
 		SELECT USERS.*
 		FROM USERS 
 		WHERE ID = #{id }
+
 	</select>
 	
 	<!-- 유저 정보 수정 -->
 	<update id="updateUser" parameterType="hashmap">
+
 		UPDATE USERS SET PASS = #{pass}, NAME = #{name} , AREA = #{area}
 		WHERE ID = #{id}
 	</update>
-	
+			
 	<!-- 회원탈퇴 -->
-	<delete id="deleteUser" parameterType="String">
+	<delete id="deleteUser" parameterType="string">
+
 		DELETE FROM USERS WHERE ID = #{id}
 	</delete>
 	

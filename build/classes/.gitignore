@@ -1,6 +1,7 @@
-/mybatis/
 /controller/
 /data/
-/util/
-/listener/
 /repository/
+/Listener/
+/mybatis/
+/service/
+
