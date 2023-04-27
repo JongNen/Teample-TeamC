@@ -2,9 +2,9 @@ package data.camping;
 
 public class Result {
 	
-	response response;
+	Response response;
 
-	public response getResponse() {
+	public Response getResponse() {
 		return response;
 	}
 	
