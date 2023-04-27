@@ -21,6 +21,8 @@
 		</environment>
 	</environments>
 	<mappers>
+		<mapper resource="mybatis/mapper/messages-mapper.xml"/>
+		<mapper resource="mybatis/mapper/posts-mapper.xml"/>
 		<mapper resource="mybatis/mapper/users-mapper.xml"/>
 	</mappers>
 </configuration>
