@@ -11,20 +11,27 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 import data.camping.Result;
+import data.camping.item;
 import data.camping.response;
 
 public class CampingAPI {
 	
-	public static response getItems() {
-		
+	public static Map<String, item> cache; 
+	static{
+		cache = new HashMap<>();
+	}
+	public synchronized static response getCamping(String upkind, String upr_cd, String pageNo,
+			String bgnde, String endde) {
+	
 		try {
 			String target ="https://apis.data.go.kr/B551011/GoCamping/basedList";
 			Map<String, String> params=new HashMap<>();
 			
-			params.put("servicekye","RPPbdyJrFWXPErbjkYj7c62Huc3q6%2BU1raX7vbIJSFWslNC%2BCLOI0ytzsVmrM7j169lh3yP5m1cYBeQVSD5ZLA%3D%3D" );
+			params.put("servicekye","bI%2BSi3PKj%2FCVQyxnzKyhn7%2BhaxEO6V5qaw1LzLm8fal6Nr3ACYr%2BfUtAxY3ep0JRvLC2IohFjTNknAczemfuFQ%3D%3D" );
 			params.put("MobileOS","ETC");
 			params.put("MobileApp", "aa");
 			params.put("_type", "json");
+			params.put("numOfRows", "5");
 			
 			String queryString=QueryStringBuilder.build(params);
 			URI uri=new URI(target+"?"+queryString);
@@ -37,12 +44,18 @@ public class CampingAPI {
 			
 			Result responseResult = gson.fromJson(response.body(), Result.class);
 			
+			for(item one : responseResult.getResponse().getBody().getItems().getItem() ) {
+				cache.put(one.getContentId(), one);			
+			}
 			
 			return responseResult.getResponse();
 			
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 }
+
+
+
