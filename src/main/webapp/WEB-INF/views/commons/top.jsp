@@ -23,16 +23,18 @@
 <div style="text-align: right; padding: 1em; margin-right: 22px;">
 <c:choose>
 	<c:when test="${sessionScope.logon }">
-		<select>
-			<option>마이페이지</option>
-			<option>로그아웃하기</option>
+		<div>
+			<b>${logonUser.id }님 환영합니다.</b>
+		</div>
+		<select id="select">
+			<option value="option1">마이페이지</option>
+			<option value="option2">로그아웃하기</option>
 		</select>
 	</c:when>
 	<c:otherwise>
-		<a href="">로그인하기</a>
+		<a href="/user/signIn">로그인하기</a>
 		/
-		<a href="">회원가입하기</a>
-		 
+		<a href="/user/signUp">회원가입하기</a>
 	</c:otherwise>
 
 </c:choose>
@@ -41,7 +43,15 @@
 <img style="width: 600px; padding-top: 4em;"src="/resource/image/CSlogo_outline.png"/>
 </div>
 	
+<script type="text/javascript">
+	document.querySelector("#select").addEventListener("change", function(){
+		//선택한 값을 사용했을때 작업 수행
+		
+		console.log("this.value");
+		
+	});
 
+</script>
 
 </body>
 </html>	
