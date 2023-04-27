@@ -1,6 +1,6 @@
 package data.camping;
 
-public class item {
+public class Item {
 	String contentId;
 	String facltNm;
 	String lineIntro;

@@ -9,14 +9,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import data.camping.Response;
+import util.CampingAPI;
+
 @WebServlet("/index")
 public class IndexController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+			
+			Response response = CampingAPI.getCamping();
 		
 		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
 		
 		

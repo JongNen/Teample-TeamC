@@ -11,29 +11,32 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 import data.camping.Result;
-import data.camping.item;
-import data.camping.response;
+import data.camping.Item;
+import data.camping.Response;
 
 public class CampingAPI {
 	
-	public static Map<String, item> cache; 
+	public static Map<String, Item> cache; 
 	static{
 		cache = new HashMap<>();
 	}
-	public synchronized static response getCamping(String upkind, String upr_cd, String pageNo,
-			String bgnde, String endde) {
+	public synchronized static Response getCamping() {
 	
 		try {
 			String target ="https://apis.data.go.kr/B551011/GoCamping/basedList";
 			Map<String, String> params=new HashMap<>();
 			
-			params.put("servicekye","bI%2BSi3PKj%2FCVQyxnzKyhn7%2BhaxEO6V5qaw1LzLm8fal6Nr3ACYr%2BfUtAxY3ep0JRvLC2IohFjTNknAczemfuFQ%3D%3D" );
+			params.put("serviceKey","bI%2BSi3PKj%2FCVQyxnzKyhn7%2BhaxEO6V5qaw1LzLm8fal6Nr3ACYr%2BfUtAxY3ep0JRvLC2IohFjTNknAczemfuFQ%3D%3D" );
 			params.put("MobileOS","ETC");
 			params.put("MobileApp", "aa");
 			params.put("_type", "json");
 			params.put("numOfRows", "5");
 			
-			String queryString=QueryStringBuilder.build(params);
+	
+			
+			
+			
+			String queryString = QueryStringBuilder.build(params);
 			URI uri=new URI(target+"?"+queryString);
 			
 			HttpClient client = HttpClient.newHttpClient();
@@ -44,7 +47,7 @@ public class CampingAPI {
 			
 			Result responseResult = gson.fromJson(response.body(), Result.class);
 			
-			for(item one : responseResult.getResponse().getBody().getItems().getItem() ) {
+			for(Item one : responseResult.getResponse().getBody().getItems().getItem() ) {
 				cache.put(one.getContentId(), one);			
 			}
 			

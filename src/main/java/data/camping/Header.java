@@ -1,6 +1,6 @@
 package data.camping;
 
-public class header {
+public class Header {
 	long resultCode;
 	String resultMsg;
 	
