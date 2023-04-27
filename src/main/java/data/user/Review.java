@@ -5,11 +5,12 @@ import java.sql.Date;
 public class Review {
 	
 	int postNum;
-	String writer;
+	String writerName;
 	String img;
 	Date writed;
 	String title;
 	String postBody;
+	String writerId;
 	
 	public int getPostNum() {
 		return postNum;
@@ -17,11 +18,11 @@ public class Review {
 	public void setPostNum(int postNum) {
 		this.postNum = postNum;
 	}
-	public String getWriter() {
-		return writer;
+	public String getWriterName() {
+		return writerName;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
 	public String getImg() {
 		return img;
@@ -47,9 +48,12 @@ public class Review {
 	public void setPostBody(String postBody) {
 		this.postBody = postBody;
 	}
-	
-	
-	
-	
-
+	public String getWriterId() {
+		return writerId;
+	}
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
+	}
 }
+	
+	

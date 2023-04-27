@@ -5,14 +5,16 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
 
-import data.camping.Result;
 import data.camping.Item;
 import data.camping.Response;
+import data.camping.Result;
 
 public class CampingAPI {
 	
@@ -46,10 +48,11 @@ public class CampingAPI {
 			Gson gson=new Gson();
 			
 			Result responseResult = gson.fromJson(response.body(), Result.class);
-			
-			for(Item one : responseResult.getResponse().getBody().getItems().getItem() ) {
-				cache.put(one.getContentId(), one);			
+			Item[] itemList = responseResult.getResponse().getBody().getItems().getItem();
+			for (Item one : itemList) {
+			    cache.put(one.getContentId(), one);
 			}
+
 			
 			return responseResult.getResponse();
 			
@@ -59,6 +62,3 @@ public class CampingAPI {
 		}
 	}
 }
-
-
-

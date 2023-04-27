@@ -30,10 +30,8 @@ public class UserDAO extends DAO{
 	
 	public static int updateUser(Map map) {
 		SqlSession session = factory.openSession(true);
-		try {
-			int re = session.update("users.updateUser", map);
-			
-			return re;
+		try {		
+			return session.update("users.updateUser", map);
 		} finally {
 			session.close();
 		}

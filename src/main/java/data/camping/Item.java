@@ -25,8 +25,6 @@ public class Item {
 	String animalCmgCl;
 	String tourEraCl;
 	String firstImageUrl;
-	
-	
 	public String getContentId() {
 		return contentId;
 	}
@@ -171,7 +169,6 @@ public class Item {
 	public void setFirstImageUrl(String firstImageUrl) {
 		this.firstImageUrl = firstImageUrl;
 	}
+	
+	
 }
-	
-	
-	

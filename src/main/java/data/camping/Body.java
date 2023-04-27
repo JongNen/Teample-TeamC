@@ -1,12 +1,12 @@
 package data.camping;
 
 public class Body {
-	Itmes items;
+	Items items;
 	long numOfRows;
 	int pageNo;
 	int totalCount;
 	
-	public Itmes getItems() {
+	public Items getItems() {
 		return items;
 	}
 	public long getNumOfRows() {

@@ -1,6 +1,6 @@
 package data.camping;
 
-public class Itmes {
+public class Items {
 	Item[] item;
 
 	public Item[] getItem() {
