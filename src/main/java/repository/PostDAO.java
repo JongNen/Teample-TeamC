@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import data.user.Review;
+import data.Review;
 
 public class PostDAO extends DAO{
 	

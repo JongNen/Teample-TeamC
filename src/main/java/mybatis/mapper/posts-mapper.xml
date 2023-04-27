@@ -3,40 +3,41 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<mapper namespace="messages">
 	<!-- 특정 게시글 불러오기 -->
-	<select id = "readByPost" resultType = "data.Review" parameterType="String">
+	<select id="readByPost" resultType="data.Review"
+		parameterType="String">
 		SELECT * FROM REVIEWS WHERE POSTNUM = #{postnum}
 	</select>
-
 	<!-- 특정 캠프장 찾는 용도 -->
-	<select id="findByCamp" resultType="data.Like" parameterType="String">
+	<select id="findByCamp" resultType="data.Like"
+		parameterType="String">
 		SELECT LIKES.*
-		FROM LIKES 
+		FROM LIKES
 		WHERE CAMPNAME = #{campname }
 	</select>
-	
 	<!-- 게시글 N개 보기 -->
-	<select id="findByPostAtoB" resultType="data.Review" parameterType="hashmap">
+	<select id="findByPostAtoB" resultType="data.Review"
+		parameterType="hashmap">
 		SELECT * FROM
 		(SELECT ROWNUM RN, t.* FROM
-			(SELECT * FROM REVIEWS ORDER BY WRITED DESC) t
-		) WHERE RN BETWEEN #{a} AND #{b}
+		(SELECT * FROM REVIEWS ORDER BY WRITED DESC) t
+		) WHERE RN BETWEEN #{a} AND
+		#{b}
 	</select>
-
-<mapper namespace="messages">
 	<insert id="write" parameterType="Hashmap">
-		INSERT INTO REVIEWS(POSTNUM, WRITER, IMG, TITLE, POSTBODY) 
-				VALUES(REVIEWS_SEQ.NEXTVAL, #{writer}, #{image} , #{title}, #{postBody})
+		INSERT INTO REVIEWS(POSTNUM,
+		WRITER, IMG, TITLE, POSTBODY)
+		VALUES(REVIEWS_SEQ.NEXTVAL, #{writer}, #{image} , #{title}, #{postBody})
 	</insert>
 	<update id="modify" parameterType="Hashmap">
 		UPDATE REVIEWS
-			SET	 TITLE = ${title}
-			 	 IMG = ${image}
-			 	 POSTBODY=${postBody} 		
+		SET TITLE = ${title}
+		IMG = ${image}
+		POSTBODY=${postBody}
 		WHERE WRITER=#{writer}
 	</update>
 	<delete id="delete">
 		DELETE WRITER WHERE ID={writer}
 	</delete>
-
 </mapper>

@@ -1,4 +1,4 @@
-package data.user;
+package data;
 
 import java.sql.Date;
 
