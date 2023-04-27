@@ -6,9 +6,7 @@
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
-	<typeAliases>
-		<typeAlias type="data.vo.Message" alias="message"/>
-	</typeAliases>
+	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -17,12 +15,12 @@
 					value="oracle.jdbc.driver.OracleDriver" />
 				<property name="url"
 					value="jdbc:oracle:thin:@3.34.136.30:1521:xe" />
-				<property name="username" value="C##TEAM_C" />
+				<property name="username" value="TEAM_C" />
 				<property name="password" value="1q2w3e4r" />
 			</dataSource>
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="mybatis/mapper/messages-mapper.xml"/>
+		<mapper resource="mybatis/mapper/users-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -19,6 +19,7 @@ public class ModifyController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		req.setCharacterEncoding("utf-8");
 //		HttpSession session = req.getSession();
 //		Boolean logon = (Boolean)session.getAttribute("logon");
 //		if(logon == null || !logon) {
@@ -37,7 +38,7 @@ public class ModifyController extends HttpServlet{
 		map.put("name", name);
 		map.put("area", area);
 
-		int r = UserDAO.updateUser(map);
+		UserDAO.updateUser(map);
 		
 		
 		req.getRequestDispatcher("/WEB-INF/views/user/myPage.jsp").forward(req, resp);

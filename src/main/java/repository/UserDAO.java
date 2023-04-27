@@ -5,13 +5,13 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import data.User;
+import data.user.User;
 
 public class UserDAO extends DAO{
 
 	
 	public static int create(Map map) {
-		SqlSession session =  factory.openSession(true);
+		SqlSession session = factory.openSession(true);
 		try {
 			return session.insert("users.create", map);
 		} finally {
@@ -20,7 +20,7 @@ public class UserDAO extends DAO{
 	}
 	
 	public static User findById(String id){
-		SqlSession session =  factory.openSession(true);
+		SqlSession session = factory.openSession(true);
 		try {
 			return session.selectOne("users.findById", id);
 		} finally {
@@ -29,16 +29,18 @@ public class UserDAO extends DAO{
 	}
 	
 	public static int updateUser(Map map) {
-		SqlSession session =  factory.openSession(true);
+		SqlSession session = factory.openSession(true);
 		try {
-			return session.update("users.updateUser", map);
+			int re = session.update("users.updateUser", map);
+			
+			return re;
 		} finally {
 			session.close();
 		}
 	}
 	
 	public static int delete(String id) {
-		SqlSession session =  factory.openSession(true);
+		SqlSession session = factory.openSession(true);
 		try {
 			return session.delete("users.deleteUser", id);
 		} finally {
