@@ -47,8 +47,14 @@
 	document.querySelector("#select").addEventListener("change", function(){
 		//선택한 값을 사용했을때 작업 수행
 		
-		console.log("this.value");
+		let selectValue = this.value;
 		
+		if(selectValue === "option1") {
+			window.location.href="/user/myPage";
+			
+		} else if(selectValue === "option2"){
+			window.location.href="/user/signOut";
+		}
 	});
 
 </script>
