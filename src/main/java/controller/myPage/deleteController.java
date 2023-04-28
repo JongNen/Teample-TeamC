@@ -20,7 +20,7 @@ public class deleteController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-//		HttpSession session = req.getSession();
+		HttpSession session = req.getSession();
 //		Boolean logon = (Boolean)session.getAttribute("logon");
 //		if(logon == null || !logon) {
 //			resp.sendRedirect("/user/login");
@@ -29,10 +29,12 @@ public class deleteController extends HttpServlet{
 		
 		String id = req.getParameter("id");
 		
-		int r = UserDAO.delete(id);
+		UserDAO.delete(id);
+		
+		session.invalidate();
 		
 		
-		req.getRequestDispatcher("/WEB-INF/views/user/myPage.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
 	}
 
 }

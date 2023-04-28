@@ -16,7 +16,7 @@ public class SignOutController extends HttpServlet{
 		// 로그아웃 기능
 		HttpSession session = req.getSession();
 		session.invalidate();
-		resp.sendRedirect("/");
+		resp.sendRedirect("/index");
 		return;
 	}
 }

@@ -2,6 +2,7 @@ package controller.myPage;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -9,8 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
+
+import data.Review;
+import repository.PostDAO;
 import repository.UserDAO;
 
 @WebServlet("/user/modify")
@@ -28,20 +32,25 @@ public class ModifyController extends HttpServlet{
 //		}
 		
 		String id = req.getParameter("id");
-		String pass = req.getParameter("pass");
+		String pass = BCrypt.hashpw(req.getParameter("pass"), BCrypt.gensalt());
 		String name = req.getParameter("name");
 		String area = req.getParameter("area");
+		
 
-		Map<String, Object> map = new HashMap<>();
-		map.put("id", id);
-		map.put("pass", pass);
-		map.put("name", name);
-		map.put("area", area);
+		Map<String, Object> update = new HashMap<>();
+		update.put("id", id);
+		update.put("pass", pass);
+		update.put("name", name);
+		update.put("area", area);
 
-		UserDAO.updateUser(map);
+		UserDAO.updateUser(update);
 		
 		
-		req.getRequestDispatcher("/WEB-INF/views/user/myPage.jsp").forward(req, resp);
+	
+		
+		
+		
+		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
 			
 		
 		
