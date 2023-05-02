@@ -1,10 +1,13 @@
 package repository;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import data.Review;
+import data.User;
+
 
 public class PostDAO extends DAO{
 	
@@ -25,5 +28,15 @@ public class PostDAO extends DAO{
 			session.close();
 		}
 	}
+	
+	public static List<Review> readByMyPost(String name) {
+		SqlSession session = factory.openSession(true);
+		try {
+			return session.selectList("posts.readByMyPost", name);
+		} finally {
+			session.close();
+		}
+	}
+
 
 }

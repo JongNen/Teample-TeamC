@@ -46,7 +46,7 @@ public class SignUpTaskController extends HttpServlet {
 		// 회원가입시 제약조건이 맞지 않으면 에러 팝업 / 그게 아니면 가입 성공으로 메인페이지로
 		if (UserService.volume(id, pass, name)) {
 			int r = UserDAO.create(map);
-			resp.sendRedirect("/");
+			resp.sendRedirect("/index");
 			req.setAttribute("logon", true);
 			return;
 		} else {
