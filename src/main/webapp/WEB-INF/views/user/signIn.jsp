@@ -29,7 +29,7 @@
   		<button class="but"type="submit">로그인</button>
   	</div>
   	<div>
-  		혹시 아이디가 없으신가요? <a href="">회원가입하러가기</a>
+  		혹시 아이디가 없으신가요? <a href="/user/signUp">회원가입하러가기</a>
   	</div>
   </div>
   	</form>
