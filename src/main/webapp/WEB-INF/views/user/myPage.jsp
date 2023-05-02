@@ -31,14 +31,27 @@
 			<input type="area" placeholder="지역" name="area" class="join-input" />
 		</div>
 
+		<select id="do" data-name="도" data-gender="m">
+			<c:forTokens items="${campingList }" delims="," var="one">
+				<option>${one.doNm }</option>
+			</c:forTokens>
+			
+		</select> 
+		
+		<select class="sigungu" data-group="시군구">
+			<c:forTokens items="${campingList }" delims="," var="one">
+				<option>${one.sigunguNm }</option>
+			</c:forTokens>
+		</select>
+
 		<div style="margin: 0.4em">
 			<button type="submit" class="join-btn">정보수정</button>
 		</div>
 	</form>
 	<div>
-				<c:forEach items="${myPost}" var="post" >
-					<p>${post.title}</p>
-				</c:forEach>
+		<c:forEach items="${myPost}" var="post">
+			<p>${post.title}</p>
+		</c:forEach>
 	</div>
 
 
@@ -47,8 +60,32 @@
 
 
 
-
-
-
+<script>
+	
+	document.querySelector("#main").onchange = function(evt) {
+		console.log(this.dataset);
+		console.log(this.dataset.name);
+		
+		evt.target == this;	// 여기서는 evt.target 이나 this나 같을거임.
+		console.log(evt.target.value);
+		
+		document.querySelectorAll(".sub").forEach(function(one) {
+			if(one.dataset.group != evt.target.value) {
+				one.style.display="none";
+			}else {
+				one.style.display="";
+			}
+				
+		});
+		
+		
+	}
+	
+	/*
+		document.querySelectorAll(".sub").forEach( function(one) {
+			one.style.display = "none";	// ""로 설정하면 나옴.
+		});
+	*/
+	</script>
 </body>
 </html>
