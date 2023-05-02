@@ -39,7 +39,7 @@ public class SearchController extends HttpServlet {
 		String pageNo = p + "";
 
 		
-		Response response = CampingAPI.getCamping();
+		Response response = CampingAPI.getCamping(pageNo);
 		
 		// ========================================================		
 		
