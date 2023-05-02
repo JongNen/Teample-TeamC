@@ -19,11 +19,11 @@
 <div class="back" style="font-size: 20px;">
 	<form action="/search">
 		<p>지역별</p>
-		<p>테마별</p>
-	
-		<button type="submit">검색하기</button>
+		<p>테마별</p>		
+		<button class="searchbutton searchbutton-position" type="submit">검색하기</button>
 	</form>
 </div>
+<div class="belt">
 <table style="margin: auto; width: 1355px;">
 	<tbody>
 		<c:forEach items="${campingList}" var="obj" begin="1" end="5">
@@ -37,3 +37,4 @@
 		</c:forEach>
 	</tbody>
 </table>
+</div>

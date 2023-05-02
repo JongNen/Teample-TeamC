@@ -9,6 +9,7 @@
 </head>
 <body>
 
+<form action="/write-task" method="post">
 <div>
 글 제목<input type="text" name="title">
 </div>
@@ -16,11 +17,16 @@
 <p>
 글내용
 </p>
-<input type="text" style="width: 400px; height: 300px;" name="postBody">	
-</div>
-<div>
-<button type="submit">이미지 업로드하기</button>
+<%--캠프 컨텐트 아이디를 기준으로 글쓰기를 넘김 --%>
+<input type="hidden" name="target" value="${camp.contentId }"/>
+<textarea style="width: 400px; height: 300px;" name="postBody">	</textarea>
 <button type="submit">작성하기</button>
+</div>
+</form>
+<div>
+<form action ="/pload" method="post" enctype="multipart/form-data">
+<input type="file" name="IMG">
+</form>
 </div>
 
 </body>

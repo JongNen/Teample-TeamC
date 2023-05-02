@@ -27,13 +27,12 @@
 
 
 
-
 	<insert id="write" parameterType="Hashmap">
-		INSERT INTO REVIEWS(POSTNUM,
-		WRITER, IMG, TITLE, POSTBODY)
-		VALUES(REVIEWS_SEQ.NEXTVAL, #{writer},
-		#{image} , #{title}, #{postBody})
+		INSERT INTO REVIEWS(POSTNUM, WRITERNAME, IMG, TITLE, POSTBODY, WRITERID)
+		VALUES(POSTNUM_SEQ.NEXTVAL, #{writer},
+		#{image} , #{title}, #{postBody}, #{writerId} )
 	</insert>
+	
 	<update id="modify" parameterType="Hashmap">
 		UPDATE REVIEWS
 		SET TITLE =

@@ -91,7 +91,7 @@
 	<c:forEach var="p" begin="${start }" end="${last }">
 		<c:choose>
 			<c:when test="${p eq currentPage }">
-				<b style="color: red;">${p }</b>
+				<b style="color: #05BFDB;">${p }</b>
 			</c:when>
 			<c:otherwise>
 				<a href="/search?pageNo=${p }&doNm=${doNmStatus}&sigunguNm=${sigunguNmStatus}&lctCl=${lctClStatus}">${p }</a>
