@@ -63,4 +63,12 @@ public class CampingAPI {
 		}
 	}
 	
+	public static Item findByDesertionNo(String no) {
+		return cache.get(no);
+	}
+
+	
+	
+
+	
 }
