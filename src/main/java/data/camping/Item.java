@@ -1,30 +1,30 @@
 package data.camping;
 
 public class Item {
-	String contentId;
-	String facltNm;
-	String lineIntro;
-	String intro;
-	String induty;
-	String lctCl;
-	String doNm;
-	String sigunguNm;
-	String zipcode;
-	String addr1;
-	String addr2;
-	String mapX;
-	String mapY;
-	String direction;
-	String tel;
-	String homepage;
-	String tooltip;
-	String caravInnerFclty;
-	String operPdCl;
-	String operDeCl;
-	String sbrsEtc;
-	String animalCmgCl;
-	String tourEraCl;
-	String firstImageUrl;
+	String contentId; //컨텐츠 ID
+	String facltNm;   //야영장 명
+	String lineIntro; //한줄소개
+	String intro;     //소개
+	String induty;    //업종
+	String lctCl;     // 입자구분
+	String doNm;      //도
+	String sigunguNm; // 시, 군, 구
+	String zipcode;   //우편번호
+	String addr1;     //주소
+	String addr2;     //상세주소
+	String mapX;      //경도(x)
+	String mapY;      //위도(y)
+	String direction;  //오시는길 컨텐츠
+	String tel;        //전화번호
+	String homepage;   //홈페이지 주소
+	String tooltip;    // 툴팁
+	String caravInnerFclty;   // 카라반 내부시설
+	String operPdCl;		  //운영기간
+	String operDeCl;          //운영일
+	String sbrsEtc;           //부대시설 기타
+	String animalCmgCl;       //애완동물출입  
+	String tourEraCl;         //여행시기
+	String firstImageUrl;     //대표이미지
 	public String getContentId() {
 		return contentId;
 	}
@@ -169,6 +169,8 @@ public class Item {
 	public void setFirstImageUrl(String firstImageUrl) {
 		this.firstImageUrl = firstImageUrl;
 	}
+	
+	
 	
 	
 }

@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,16 +16,17 @@ import util.CampingAPI;
 public class SearchController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 
 		// 사용자가 검색한 것을 받아오고
 		String doNm = req.getParameter("doNm"); // 도
 		String sigunguNm = req.getParameter("sigunguNm"); // 시,군,구
 		String lctCl = req.getParameter("lctCl"); // 입자구분
 
-		System.out.println("doNm = " + doNm);
-		System.out.println("si = " + sigunguNm);
-		System.out.println("lct = " + lctCl);
-		
+		/*
+		 * System.out.println("doNm = " + doNm); System.out.println("si = " +
+		 * sigunguNm); System.out.println("lct = " + lctCl);
+		 */
 		int p;
 		
 		if (req.getParameter("pageNo") == null) {

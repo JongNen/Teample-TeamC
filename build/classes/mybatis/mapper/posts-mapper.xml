@@ -3,10 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="posts">	
+<mapper namespace="posts">
+
 	<!-- 특정 캠프장 찾는 용도 -->
-	<!-- <select id="findByCamp" resultType="data.Like" parameterType="String"> 
-		SELECT LIKES.* FROM LIKES WHERE CAMPNAME = #{campname } </select> -->
+	 <select id="findByCamp" resultType="data.Like" parameterType="String"> 
+		SELECT LIKES.* FROM LIKES WHERE CAMPNAME = #{campname }
+	</select> 
+	
+	
+	
 	<!-- 게시글 N개 보기 -->
 	<select id="findByPostAtoB" resultType="data.Review"
 		parameterType="hashmap">
@@ -19,11 +24,18 @@
 	</select>
 
 	<!-- 자기가 쓴 글 불러오기 -->
-	<select id="readByMyPost" resultType="data.Review">
-		SELECT *
-		FROM REVIEWS
-		WHERE WRITERNAME = #{name}
+	<select id="readByMyPost" resultType="data.Like">
+		SELECT LIKES.CAMPNAME
+		FROM LIKES
+		JOIN USERS ON LIKES.LIKER = USERS.NAME
+		WHERE USERS.NAME = #{name} AND STATUS = '1'
+		ORDER BY CAMPNAME
 	</select>
+	
+	<!-- 캠핑장 좋아요 -->
+	<insert id="likeCamp" parameterType="hashmap">
+		INSERT INTO LIKES VALUES(#{name}, #{campname}, #{status})	
+	</insert>
 
 
 
