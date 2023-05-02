@@ -27,7 +27,7 @@ public class MyPageController extends HttpServlet {
 	    }
 	    
 	    String name = req.getParameter("name");
-	    System.out.println(name);
+	   
 	    List<Review> myPost = PostDAO.readByMyPost(name);
 	    req.setAttribute("myPost", myPost);
 	   
