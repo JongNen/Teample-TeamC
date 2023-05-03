@@ -41,8 +41,7 @@
 		VALUES(POSTNUM_SEQ.NEXTVAL, #{writerName},
 		#{IMG} , #{title}, #{postBody}, #{writerId})
 	</insert>
-	
-	<!-- 후기 수정하기 -->
+
 	<update id="modify" parameterType="Hashmap">
 		UPDATE REVIEWS
 		SET TITLE =

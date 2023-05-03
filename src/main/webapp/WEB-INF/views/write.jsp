@@ -4,7 +4,6 @@
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
 
 
-
 <div style="padding: 4em; text-align: center;">
 	<form action="/write-task" method="post">
 		<div>
@@ -19,11 +18,4 @@
 	<div>
 		<button class="but" type="submit">이미지 업로드하기</button>
 	</div>
-</div>
 
-<c:if test="${writesuccess eq true }">
-	<script type="text/javascript">
-		alert('글이 등록되었습니다');
-	</script>
-
-</c:if>

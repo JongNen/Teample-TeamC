@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import data.User;
+
 import repository.PostDAO;
 //글쓰기 작업을 마무리해주는 컨트롤러
 @WebServlet("/write-task")
@@ -36,3 +37,4 @@ public class writeTaskController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/board.jsp").forward(req, resp);
 	}
 }
+
