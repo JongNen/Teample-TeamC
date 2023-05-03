@@ -14,7 +14,7 @@ import data.camping.Response;
 import util.CampingAPI;
 
 @WebServlet("/detail")
-public class DetailController extends HttpServlet{
+public class CampingDetailController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,9 +27,6 @@ public class DetailController extends HttpServlet{
 		req.setAttribute("camp", camp);
 		
 		
-		
-		
-		
-		req.getRequestDispatcher("/WEB-INF/views/detail.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/campingDetail.jsp").forward(req, resp);
 	}
 }
