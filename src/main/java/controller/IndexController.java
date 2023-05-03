@@ -16,7 +16,7 @@ public class IndexController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Response response = CampingAPI.getCamping("1");
+		Response response = CampingAPI.getCamping("");
 		
 		req.setAttribute("campingList", response.getBody().getItems().getItem());		
 		

@@ -29,6 +29,7 @@ public class PostDAO extends DAO{
 		}
 	}
 	
+	// 자기가 쓴 글
 	public static List<Review> readByMyPost(String name) {
 		SqlSession session = factory.openSession(true);
 		try {
@@ -37,6 +38,19 @@ public class PostDAO extends DAO{
 			session.close();
 		}
 	}
+	
+	// 좋아요
+		public static int likeCamp(Map map) {
+			SqlSession session = factory.openSession(true);
+			try {
+
+				return session.insert("posts.likeCamp", map);
+			} finally {
+				session.close();
+			}
+		}
+	
+	
 
 
 }

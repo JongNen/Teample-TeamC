@@ -28,13 +28,13 @@
 		SELECT LIKES.CAMPNAME
 		FROM LIKES
 		JOIN USERS ON LIKES.LIKER = USERS.NAME
-		WHERE USERS.NAME = #{name} AND STATUS = '1'
+		WHERE USERS.ID = #{id} 
 		ORDER BY CAMPNAME
 	</select>
 	
 	<!-- 캠핑장 좋아요 -->
 	<insert id="likeCamp" parameterType="hashmap">
-		INSERT INTO LIKES VALUES(#{name}, #{campname}, #{status})	
+		INSERT INTO LIKES(LIKER, CAMPNAME) VALUES(#{liker}, #{campname})	
 	</insert>
 
 

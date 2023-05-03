@@ -29,6 +29,7 @@ public class UserDAO extends DAO {
 		}
 	}
 
+// 사용자 정보 수정
 	public static int updateUser(Map map) {
 		SqlSession session = factory.openSession(true);
 		try {
