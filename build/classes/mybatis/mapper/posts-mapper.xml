@@ -34,15 +34,14 @@
 	<insert id="likeCamp" parameterType="hashmap">
 		INSERT INTO LIKES VALUES(#{name}, #{campname}, #{status})	
 	</insert>
-
+	
 	<!-- 후기 쓰기 -->
 	<insert id="write" parameterType="Hashmap">
 		INSERT INTO REVIEWS(POSTNUM, WRITERNAME, IMG, TITLE, POSTBODY, WRITERID)
 		VALUES(POSTNUM_SEQ.NEXTVAL, #{writerName},
 		#{IMG} , #{title}, #{postBody}, #{writerId})
 	</insert>
-	
-	
+
 	<update id="modify" parameterType="Hashmap">
 		UPDATE REVIEWS
 		SET TITLE =

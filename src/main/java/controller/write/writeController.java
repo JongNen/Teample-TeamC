@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import data.User;
 
-@WebServlet("/write")
+
 public class writeController extends HttpServlet {
 
 		@Override
