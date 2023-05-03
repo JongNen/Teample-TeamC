@@ -9,32 +9,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import data.User;
-
 import repository.PostDAO;
-//글쓰기 작업을 마무리해주는 컨트롤러
-@WebServlet("/write-task")
-public class writeTaskController extends HttpServlet {
+//글 삭제하는 컨트롤러
+@WebServlet("/delete")
+public class writeDeleteController extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.setCharacterEncoding("utf-8");
-		
 		User logonUser =(User)req.getSession().getAttribute("logonUser");
-		
-		String writerName=logonUser.getName();
 		String writerId=logonUser.getId();
-		String title=req.getParameter("title");
-		String postBody=req.getParameter("postBody");
-		String IMG="";
 		
-		int r=PostDAO.createReview(writerName,IMG, title, postBody, writerId);
+		int r=PostDAO.deleteReview(writerId);
 		
 		if(r==1) {
-			req.setAttribute("writesuccess", true);
+			req.setAttribute("deletesuccess", true);
 		}
 		
+		
 		req.getRequestDispatcher("/WEB-INF/views/board.jsp").forward(req, resp);
+	
 	}
-}
 
+}

@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>M.O.I.M</title>
-
+<title></title>
+<%-- 마이페이지 --%>
 </head>
 <body>
 	<div>ID = ${sessionScope.logonUser.id}</div>

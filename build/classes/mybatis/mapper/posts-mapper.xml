@@ -10,8 +10,6 @@
 		SELECT LIKES.* FROM LIKES WHERE CAMPNAME = #{campname }
 	</select> 
 	
-	
-	
 	<!-- 게시글 N개 보기 -->
 	<select id="findByPostAtoB" resultType="data.Review"
 		parameterType="hashmap">
@@ -22,9 +20,9 @@
 		) WHERE RN BETWEEN #{a} AND
 		#{b}
 	</select>
-
+	
 	<!-- 자기가 쓴 글 불러오기 -->
-	<select id="readByMyPost" resultType="data.Like">
+	<select id="readByMyPost" resultType="data.Like" parameterType="String">
 		SELECT LIKES.CAMPNAME
 		FROM LIKES
 		JOIN USERS ON LIKES.LIKER = USERS.NAME
@@ -37,23 +35,34 @@
 		INSERT INTO LIKES VALUES(#{name}, #{campname}, #{status})	
 	</insert>
 
-
-
+	<!-- 후기 쓰기 -->
 	<insert id="write" parameterType="Hashmap">
 		INSERT INTO REVIEWS(POSTNUM, WRITERNAME, IMG, TITLE, POSTBODY, WRITERID)
-		VALUES(POSTNUM_SEQ.NEXTVAL, #{writer},
-		#{image} , #{title}, #{postBody}, #{writerId} )
+		VALUES(POSTNUM_SEQ.NEXTVAL, #{writerName},
+		#{IMG} , #{title}, #{postBody}, #{writerId})
 	</insert>
+	
 	
 	<update id="modify" parameterType="Hashmap">
 		UPDATE REVIEWS
 		SET TITLE =
-		${title}
-		IMG = ${image}
-		POSTBODY=${postBody}
+		#{title}
+		IMG = #{image}
+		POSTBODY=#{postBody}
 		WHERE WRITER=#{writer}
 	</update>
-	<delete id="delete">
-		DELETE WRITER WHERE ID={writer}
+	
+	<!-- 후기 삭제하기 -->
+	<delete id="delete" parameterType="String">
+		DELETE FROM REVIEWS WHERE WRITERID=#{writerId}
 	</delete>
+	
+	<!-- 후기 불러오기 -->
+	<select id="allPosts" resultType="data.Review">
+		SELECT * FROM REVIEWS ORDER BY WRITED DESC
+	</select>
+	<!-- 특정 후기 확인하기 -->
+	<select id="findBypostNum" resultType="data.Review">
+		SELECT * FROM REVIEWS WHERE POSTNUM=#{postNum}
+	</select>
 </mapper>
