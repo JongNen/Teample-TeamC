@@ -68,7 +68,9 @@ public class SearchController extends HttpServlet {
 			req.setAttribute("existNext", existNext);
 			
 		} else {
-			
+			if(sigunguNm.equals("전체")) {
+				sigunguNm = "";
+			}
 			List<Item> li = CampingAPI.search(doNm, sigunguNm, lctCl);
 			
 			List<Item> response = CampingAPI.searchPaging(li, pageNo);

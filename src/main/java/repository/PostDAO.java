@@ -39,18 +39,6 @@ public class PostDAO extends DAO {
 		}
 	}
 
-	// 좋아요 추가
-	public static int likeCamp(Map map) {
-		SqlSession session = factory.openSession(true);
-		try {
-
-			return session.insert("posts.likeCamp", map);
-		} finally {
-			session.close();
-		}
-	}
-
-
 	public static List<Review> allPosts(Map map) {
 		SqlSession session = factory.openSession(true);
 		try {
@@ -112,18 +100,28 @@ public class PostDAO extends DAO {
 		}
 	}
 
-	// 좋아요 삭제
-	public static int unlikeCamp(Map map) {
+	// 좋아요 추가
+	public static int likeCamp(Map map) {
 		SqlSession session = factory.openSession(true);
 		try {
 
-			return session.insert("posts.unlikeCamp", map);
+			return session.insert("posts.likeCamp", map);
 		} finally {
 			session.close();
 		}
 	}
 
-	
+	// 좋아요 삭제
+	public static int unlikeCamp(Map map) {
+		SqlSession session = factory.openSession(true);
+		try {
+
+			return session.delete("posts.unlikeCamp", map);
+		} finally {
+			session.close();
+		}
+	}
+
 	// 게시글 페이징 처리시
 //	public static List<Review> getFindPostAtoB(int a, int b) {
 //		Map map = new HashMap<>();
@@ -136,10 +134,10 @@ public class PostDAO extends DAO {
 //			session.close();
 //		}
 //	}
-	
-	//특정 게시글 볼때
+
+	// 특정 게시글 볼때
 	public static Review findByPost(String postNum) {
-		SqlSession session=factory.openSession();
+		SqlSession session = factory.openSession();
 		try {
 			return session.selectOne("posts.findBypostNum", postNum);
 
@@ -153,4 +151,3 @@ public class PostDAO extends DAO {
 //		
 //		
 //	}
-	

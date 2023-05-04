@@ -20,11 +20,9 @@ public class CampingDetailController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		String contentId = req.getParameter("contentId");
-		System.out.println("test = " + contentId);
+		
 		Item camp = CampingAPI.findByItem(contentId);
-	
-		
-		
+
 		req.setAttribute("camp", camp);
 		
 		

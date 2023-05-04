@@ -52,7 +52,7 @@
 	<div>
 		<c:forEach items="${myPost}" var="post">
 		
-			<p onclick="location.href='/detail?contentId=${list.contentId}'">${post.campname}</p>
+			<p onclick="location.href='/detail?contentId=${post.campid}'">${post.campname}</p>
 		</c:forEach>
 	</div>
 

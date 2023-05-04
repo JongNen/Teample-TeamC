@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,8 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import data.User;
 import data.camping.Item;
+import data.camping.Response;
 import util.CampingAPI;
 
 @WebServlet("/index")
@@ -18,9 +22,44 @@ public class IndexController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		List<Item> response = CampingAPI.campingList("1");
+		HttpSession session = req.getSession(); // 현재 HttpSession 객체 가져오기
+		User logonUser = (User) session.getAttribute("logonUser"); // 세션 속성 가져오기
 
-		req.setAttribute("campingList", response);
+		List<Item> response = CampingAPI.campingList();
+
+		List<Item> recommends = new ArrayList<>();
+
+		int count = 0;
+
+		if (req.getSession().getAttribute("logonUser") == null || logonUser.getArea() == null) {
+			// 로그인 상태가 아니면..
+			while (count < 5) {
+				count++;
+				Item item = response.get((int) (Math.random() * response.size()));
+
+				recommends.add(item);
+			}
+
+		} else {
+			// 반복문을 돌면서 하나씩 체크
+			for (Item item : response) {
+				if (item.getSigunguNm().length() >= 2 && item.getAddr1().length() >= 2
+						&& item.getDoNm().length() >= 2) {
+					if (logonUser.getArea().matches(item.getSigunguNm().substring(0, 2)) || logonUser.getArea().matches(item.getDoNm().substring(0, 2))) {
+
+						count++;
+						recommends.add(item);
+
+					}
+				}
+				if (count == 5) {
+					count = 0;
+					break;
+				}
+			}
+		}
+
+		req.setAttribute("campingList", recommends);
 
 		// 도- 광역시 검색 세팅
 		String[] doAndMctNm = { "광주시", "대구시", "대전시", "부산시", "서울시", "세종시", "인천시", "울산시", "제주도", "강원도", "경기도", "경상북도",

@@ -3,7 +3,8 @@ package data;
 public class Like {
 	String liker;
 	String campname;
-	int status;
+	String campid;
+	
 	public String getLiker() {
 		return liker;
 	}
@@ -16,11 +17,11 @@ public class Like {
 	public void setCampname(String campname) {
 		this.campname = campname;
 	}
-	public int getStatus() {
-		return status;
+	public String getCampid() {
+		return campid;
 	}
-	public void setStatus(int status) {
-		this.status = status;
+	public void setCampid(String campid) {
+		this.campid = campid;
 	}
 	
 	

@@ -26,9 +26,9 @@ public class MyPageController extends HttpServlet {
 	        return;
 	    }
 	    
-	    String name = req.getParameter("name");
+	    String id = req.getParameter("id");
 	   
-	    List<Review> myPost = PostDAO.readByMyPost(name);
+	    List<Review> myPost = PostDAO.readByMyPost(id);
 	    req.setAttribute("myPost", myPost);
 	   
 	    req.getRequestDispatcher("/WEB-INF/views/user/myPage.jsp").forward(req, resp);

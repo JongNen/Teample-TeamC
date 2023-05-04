@@ -53,7 +53,7 @@
 		if(selectValue === "option1") {
 						
 		} else if(selectValue === "option2"){
-			window.location.href="/user/myPage?name=${logonUser.name}";
+			window.location.href="/user/myPage?id=${logonUser.id}";
 		}else if(selectValue === "option3"){
 			window.location.href="/user/signOut";
 		}
