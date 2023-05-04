@@ -10,29 +10,149 @@
 			<div>
 				지역별 
 				<%--도 영역 --%>
-				<select name="doNm">
-					 <option value="" ${param.doNm eq '' ? 'selected' : ''}>전체</option>
-			 	<%-- <option value="서울시" ${param.doNm eq '서울시' ? 'selected' : '' }>서울특별시</option>
-					  <option value="인천시" ${param.doNm eq '인천시' ? 'selected' : '' }>인천광역시</option>
-					  <option value="대전시" ${param.doNm eq '대전시' ? 'selected' : '' }>대전광역시</option>
-					  <option value="강원도" ${param.doNm eq '강원도' ? 'selected' : '' }>강원도</option>
-					  <option value="전라남도" ${param.doNm eq '전라남도' ? 'selected' : '' }>전라남도</option> --%>
-					<c:forEach items="${datas }" var="obj">
-						<option value="${obj.doNm }" ${'param.obj' eq obj.doNm ? 'selected' : '' }>${obj.doNm }</option>
-					</c:forEach> 
-				</select> 
-				<select name="sigunguNm">
-					<option value="" ${param.sigunguNm eq '' ? 'selected' :  ''}>전체</option>
-					<c:forEach items="${datas }" var="searchSigunguNm">
-						<option value="${searchSigunguNm.sigunguNm }" ${searchSigunguNm.sigunguNm eq parmam.sigunguNm ? 'selected' : ''}>${searchSigunguNm.sigunguNm }</option>
+				<select name="doNm" id="do" >
+					<option value=""${param.doNm eq '' ? 'selected' :  ''}>전국</option>
+					<c:forEach items="${doList}" var="obj">
+						<option value="${obj}" ${obj eq param.doNm ? 'selected' : '' }>${obj}</option>
 					</c:forEach>
-				</select>
+				</select> 
+				 <%--도영역 끝 --%>
+				 <%--시,군,구 영역 --%>
+					<select name="sigunguNm" data-group="" class="city">
+						<option value="" ${param.sigunguNm eq '' ? 'selected' :  ''}>시/군/구</option>
+					</select>
+					<%--서울 --%>
+					<select name="sigunguNm" data-group="서울시" class="city">
+						<c:forEach items="${seoul }" var="seoul">
+							<option value="${seoul}" ${seoul eq parmam.sigunguNm ? 'selected' : ''}>${seoul }</option>
+						</c:forEach>
+					</select>
+					<%--서울 끝--%>
+					
+					<%--부산 --%>
+					<select name="sigunguNm" data-group="부산시" class="city">
+						<c:forEach items="${busan }" var="busan">
+							<option value="${busan}" ${busan eq parmam.sigunguNm ? 'selected' : ''}>${busan }</option>
+						</c:forEach>
+					</select>	
+					<%--부산 끝--%>
+					
+					<%--대구 --%>
+					<select  name="sigunguNm" data-group="대구시" class="city">
+						<c:forEach items="${daegu }" var="daegu">
+							<option value="${daegu}" ${daegu eq parmam.sigunguNm ? 'selected' : ''}>${daegu }</option>
+						</c:forEach>
+					</select>
+					<%--대구 끝--%>
+					
+					<%--인천 --%>
+					<select name="sigunguNm" data-group="인천시" class="city">
+						<c:forEach items="${incheon }" var="incheon">
+							<option value="${incheon}" ${incheon eq parmam.sigunguNm ? 'selected' : ''}>${incheon }</option>
+						</c:forEach>
+					</select>
+					<%--인천 끝--%>
+					
+					<%--광주 --%>
+					<select name="sigunguNm" data-group="광주시" class="city">
+					<c:forEach items="${gwangju }" var="gwangju">
+						<option value="${gwangju}" ${gwangju eq parmam.sigunguNm ? 'selected' : ''}>${gwangju }</option>
+					</c:forEach>
+					</select>
+					<%--광주 끝--%>
+					
+					<%--대전 --%>
+					<select name="sigunguNm" data-group="대전시" class="city">
+					<c:forEach items="${daejeon }" var="daejeon">
+						<option value="${daejeon}" ${daejeon eq parmam.sigunguNm ? 'selected' : ''}>${daejeon }</option>
+					</c:forEach>
+					</select>
+					<%--대전 끝--%>
+					<%--울산 --%>
+					<select name="sigunguNm" data-group="울산시" class="city">
+						<c:forEach items="${ulsan }" var="ulsan">
+							<option value="${ulsan}" ${ulsan eq parmam.sigunguNm ? 'selected' : ''}>${ulsan }</option>
+						</c:forEach>
+					</select>
+					<%--울산 끝--%>
+					<%--세종 --%>
+					<select name="sigunguNm" data-group="세종시" class="city">
+					<c:forEach items="${sejong }" var="sejong">
+						<option value="${sejong}" ${sejong eq parmam.sigunguNm ? 'selected' : ''}>${sejong }</option>
+					</c:forEach>
+					</select>
+					<%--세종 끝 --%>
+					<%--경기도 --%>
+					<select name="sigunguNm" data-group="경기도" class="city"> 
+						<c:forEach items="${gyeonggi }" var="gyeonggi">
+							<option value="${gyeonggi}" ${gyeonggi eq parmam.sigunguNm ? 'selected' : ''}>${gyeonggi }</option>
+						</c:forEach>
+					</select>
+					<%--경기도 끝--%>
+					<%--제주 --%>
+					<select name="sigunguNm" data-group="제주도" class="city">
+						<c:forEach items="${jeju }" var="jeju">
+							<option value="${jeju}" ${jeju eq parmam.sigunguNm ? 'selected' : ''}>${jeju }</option>
+						</c:forEach>
+					</select>
+					<%--제주 끝--%>
+					<%--강원도 --%>
+					<select name="sigunguNm" data-group="강원도" class="city">
+						<c:forEach items="${gangwon }" var="gangwon">
+							<option value="${gangwon}" ${gangwon eq parmam.sigunguNm ? 'selected' : ''}>${gangwon }</option>
+						</c:forEach>
+					</select>
+					<%--강원도 끝--%>
+					<%--충청복도 --%>
+					<select  name="sigunguNm" data-group="충청북도" class="city">
+						<c:forEach items="${chungbuk }" var="chungbuk">
+							<option value="${chungbuk}" ${chungbuk eq parmam.sigunguNm ? 'selected' : ''}>${chungbuk }</option>
+						</c:forEach>
+					</select>
+					<%--충청복도 끝--%>
+					<%--충청남도 --%>
+					<select name="sigunguNm" data-group="충청남도" class="city">
+						<c:forEach items="${chungnam }" var="chungnam">
+							<option value="${chungnam}" ${chungnam eq parmam.sigunguNm ? 'selected' : ''}>${chungnam }</option>
+						</c:forEach>
+					</select>
+					<%--충청남도 끝--%>
+					<%--전라북도 --%>
+					<select name="sigunguNm" data-group="전라북도" class="city">
+						<c:forEach items="${jeonbuk }" var="jeonbuk">
+							<option value="${jeonbuk}" ${jeonbuk eq parmam.sigunguNm ? 'selected' : ''}>${jeonbuk }</option>
+						</c:forEach>
+					</select>
+					<%--전라북도 끝--%>
+					<%--전라남도 --%>
+					<select name="sigunguNm" data-group="전라남도" class="city">
+						<c:forEach items="${jeonnam }" var="jeonnam">
+							<option value="${jeonnam}" ${jeonnam eq parmam.sigunguNm ? 'selected' : ''}>${jeonnam }</option>
+						</c:forEach>
+					</select>
+					<%--전라남도 끝--%>
+					<%--경상북도 --%>
+					<select  name="sigunguNm" data-group="경상북도" class="city">
+						<c:forEach items="${gyeongbuk }" var="gyeongbuk">
+							<option value="${gyeongbuk}" ${gyeongbuk eq parmam.sigunguNm ? 'selected' : ''}>${gyeongbuk }</option>
+						</c:forEach>
+					</select>	
+					<%--경상북도 끝--%>
+					<%--경상남도 --%>
+					<select name="sigunguNm" data-group="경상남도" class="city">
+						<c:forEach items="${gyeongnam }" var="gyeongnam">
+							<option value="${gyeongnam}" ${gyeongnam eq parmam.sigunguNm ? 'selected' : ''}>${gyeongnam }</option>
+						</c:forEach>
+					</select>	
+					<%--경상남도 끝--%>
+				<%--시,군,구 영역 끝 --%>
 			</div>
+				
 			<div>
 				테마별 <select name="lctCl">
-					<option value="" ${param.lctCl eq '' ? 'selected' :  ''}>전체테마</option>
-					 <c:forEach items="${datas }" var="obj">
-						<option value="${obj.lctCl }" ${param.lctCl eq obj.lctCl ? 'selected' : ''}>${obj.lctCl}</option>
+					<option value="" ${param.lctCl eq '' ? 'selected' :  ''}>테마별</option>
+					 <c:forEach items="${themaList }" var="thema">
+						<option value="${thema }" ${thema eq param.lctCl ? 'selected' : ''}>${thema}</option>
 					</c:forEach>
 				</select>
 				<button type="submit">검색하기</button>
@@ -104,3 +224,37 @@
 		<a href="/search?pageNo=${last+1 }&doNm=${doNmStatus}&sigunguNm=${sigunguNmStatus}&lctCl=${lctClStatus}">&gt;</a>
 	</c:if>
 </div>
+
+<script>
+//do 영역의 select 태그에 onchange 이벤트 추가
+document.querySelector("#do").onchange = function(evt) {
+  // 선택한 도시값 가져오기
+  const selectedCity = evt.target.value;
+  
+  // 시, 군, 구 영역의 select 태그들을 찾아서 처리
+  document.querySelectorAll(".city").forEach(function(one) {
+    if (one.dataset.group != selectedCity) {
+      one.name = "";
+      one.style.display = "none";
+    } else {
+      one.name = "sigunguNm";
+      one.style.display = "";
+    }
+  });
+};
+//do 영역의 select 태그에 change 이벤트 발생시키기
+document.querySelector("#do").dispatchEvent(new Event("change"));
+
+// 시, 군, 구 영역의 select 태그에 값 넣어주기
+document.querySelectorAll(".city").forEach(function(one) {
+  if (one.dataset.group === document.querySelector("#do").value) {
+    one.name = "sigunguNm";
+    one.value = "${param.sigunguNm}";
+  } else {
+    one.style.display = "none";
+  }
+});
+
+
+
+</script>

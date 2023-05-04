@@ -3,8 +3,8 @@ package data.camping;
 public class Item {
 	String contentId;
 	String facltNm;
-	String lineIntro;
-	String intro;
+	String lineIntro; //한줄소개
+	String intro;  //소개
 	String induty;
 	String lctCl;
 	String doNm;
@@ -18,12 +18,22 @@ public class Item {
 	String tel;
 	String homepage;
 	String tooltip;
-	String caravInnerFclty;
-	String operPdCl;
-	String operDeCl;
-	String sbrsEtc;
-	String animalCmgCl;
-	String tourEraCl;
+	String caravInnerFclty; //카라반-내부시설
+	String operPdCl;  //운영기간
+	String operDeCl;  //운영일
+	String sbrsEtc;   //부대시설 기타
+	String sbrsCl; //
+	
+	
+	
+	public String getSbrsCl() {
+		return sbrsCl;
+	}
+	public void setSbrsCl(String sbrsCl) {
+		this.sbrsCl = sbrsCl;
+	}
+	String animalCmgCl; // 애완동물출입
+	String tourEraCl; //여행시기
 	String firstImageUrl;
 	public String getContentId() {
 		return contentId;
