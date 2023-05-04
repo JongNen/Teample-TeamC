@@ -5,7 +5,8 @@
 
 <mapper namespace="posts">
 
-	<!-- 특정 캠프장 찾는 용도 -->
+	<!-- 특정 캠프장 찾는 용도 
+	-->
 	 <select id="findByCamp" resultType="data.Like" parameterType="String"> 
 		SELECT LIKES.* FROM LIKES WHERE CAMPNAME = #{campname }
 	</select> 

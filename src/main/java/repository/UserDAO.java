@@ -12,14 +12,13 @@ public class UserDAO extends DAO {
 	public static int create(Map map) {
 		SqlSession session = factory.openSession(true);
 		try {
-
 			return session.insert("users.create", map);
 		} finally {
 			session.close();
 		}
 	}
 
-//	로그인
+	//로그인
 	public static User findById(String id) {
 		SqlSession session = factory.openSession(true);
 		try {

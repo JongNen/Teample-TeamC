@@ -19,11 +19,12 @@
 		<div class="title">${post.title}</div>
 		<div style="text-align: right;"><i class="fa-solid fa-user" style="margin: 4px;"></i>${post.writerName } | 
 		<i class="fa-light fa-calendar-pen" style="margin: 4px;"></i>${post. writed}</div>
-		
-		<div style="padding-left:1em; padding-top: 6em;">${post.postBody }
+		<hr/>
+		<div style="padding-left:1em; padding-top: 1.7em;">${post.postBody }
 		</div>
 		<div  style="text-align: right; padding-top: 8em;" >
 			<form action="/board">
+
 				<button class="but">목록으로 돌아가기</button>
 			</form>
 		</div>
