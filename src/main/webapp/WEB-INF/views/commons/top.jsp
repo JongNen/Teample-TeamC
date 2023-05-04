@@ -44,7 +44,8 @@
 	</div>
 
 	<script type="text/javascript">
-	document.querySelector("#select").addEventListener("change", function(){
+	if(${sessionScope.logon eq ture}){
+		document.querySelector("#select").addEventListener("change", function(){
 		//선택한 값을 사용했을때 작업 수행
 		
 		let selectValue = this.value;
@@ -57,7 +58,7 @@
 			window.location.href="/user/signOut";
 		}
 	});
-
+	}
 </script>
 
 </body>

@@ -1,10 +1,12 @@
 package data.camping;
 
-public class Items {
-	Item[] item;
+import java.util.List;
 
-	public Item[] getItem() {
+public class Items {
+	List<Item> item;
+
+	public List<Item> getItem() {
 		return item;
 	}
-	
+
 }
