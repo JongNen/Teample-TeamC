@@ -20,13 +20,22 @@ public class LikeController extends HttpServlet {
 
 		String id = req.getParameter("id");
 		String campname = req.getParameter("campname");
+		System.out.println("idididid = " + id);
+		System.out.println("campname = " + campname );
 		
 
-		Map map = new HashMap();
+		Map<String, Object> map = new HashMap();
 		map.put("liker", id);
 		map.put("campname", campname);
 
-		PostDAO.likeCamp(map);
+		int result = PostDAO.likeCheck(map);
+		
+		if(result == 0) {
+			PostDAO.likeCamp(map);
+		}else {
+			PostDAO.unlikeCamp(map);
+		}
+		
 		
 		req.getRequestDispatcher("/WEB-INF/views/detail.jsp").forward(req, resp);
 	}

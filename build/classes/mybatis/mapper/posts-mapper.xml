@@ -6,12 +6,13 @@
 <mapper namespace="posts">
 
 	<!-- 특정 캠프장 찾는 용도 -->
-	 <select id="findByCamp" resultType="data.Like" parameterType="String"> 
+	<select id="findByCamp" resultType="data.Like"
+		parameterType="String">
 		SELECT LIKES.* FROM LIKES WHERE CAMPNAME = #{campname }
-	</select> 
-	
-	
-	
+	</select>
+
+
+
 	<!-- 게시글 N개 보기 -->
 	<select id="findByPostAtoB" resultType="data.Review"
 		parameterType="hashmap">
@@ -23,28 +24,44 @@
 		#{b}
 	</select>
 
-	<!-- 자기가 쓴 글 불러오기 -->
+	<!-- 자기가 좋아요 처리한 캠핑장 불러오기 -->
 	<select id="readByMyPost" resultType="data.Like">
 		SELECT LIKES.CAMPNAME
-		FROM LIKES
+		FROM
+		LIKES
 		JOIN USERS ON LIKES.LIKER = USERS.NAME
-		WHERE USERS.ID = #{id} 
+		WHERE USERS.ID = #{id}
 		ORDER BY CAMPNAME
 	</select>
-	
-	<!-- 캠핑장 좋아요 -->
+
+	<!-- 캠핑장 좋아요 추가 -->
 	<insert id="likeCamp" parameterType="hashmap">
-		INSERT INTO LIKES(LIKER, CAMPNAME) VALUES(#{liker}, #{campname})	
+		INSERT INTO LIKES(LIKER,
+		CAMPNAME) VALUES(#{liker}, #{campname})
 	</insert>
+
+	<!-- 캠핑장 좋아요 삭제 -->
+	<delete id="unlikeCamp" parameterType="hashmap">
+		DELETE FROM LIKES(LIKER,
+		CAMPNAME) VALUES(#{liker}, #{campname})
+	</delete>
+
+	<!-- 동일 캠핑장 좋아요 여부 검색 -->
+	<select id="likeCheck" parameterType="map" resultType="int">
+		select
+		count(*) from LIKES WHERE LIKER = #{liker} and CAMPNAME = #{campname}
+	</select>
 
 
 
 	<insert id="write" parameterType="Hashmap">
-		INSERT INTO REVIEWS(POSTNUM, WRITERNAME, IMG, TITLE, POSTBODY, WRITERID)
+		INSERT INTO REVIEWS(POSTNUM,
+		WRITERNAME, IMG, TITLE, POSTBODY, WRITERID)
 		VALUES(POSTNUM_SEQ.NEXTVAL, #{writer},
-		#{image} , #{title}, #{postBody}, #{writerId} )
+		#{image} , #{title},
+		#{postBody}, #{writerId} )
 	</insert>
-	
+
 	<update id="modify" parameterType="Hashmap">
 		UPDATE REVIEWS
 		SET TITLE =

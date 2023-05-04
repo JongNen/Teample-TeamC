@@ -50,7 +50,7 @@ th {
 		onerror="this.src='/resource/image/tent.png';"
 		style="max-width: 500px; height: 300px; float: left;" />
 	<c:if test="${sessionScope.logon}">
-		<button id="likeButton" onclick="toggleLike()">
+		<button id="likeButton" onclick="like()">
 			<i id="likeIcon" class="far fa-heart heart-icon"></i>
 		</button>
 	</c:if>
@@ -235,63 +235,22 @@ th {
 		marker.setMap(map);
 		
 		/* 좋아요 부분*/
-		 let liked = false;
-const likeIcon = document.getElementById("likeIcon");
-
-function toggleLike() {
-  if (liked) {
-    likeIcon.classList.remove("fas");
-    likeIcon.classList.add("far");
-    fetch('/unlike', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        id : sessionScope.logonUser.id, 
-        campname : camp.facltNm
-      }),
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  } else {
-    likeIcon.classList.remove("far");
-    likeIcon.classList.add("fas");
-    fetch('/like', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        id : sessionScope.logonUser.id, 
-        campname : camp.facltNm
-      }),
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  }
-  liked = !liked;
-}
+		$(function(){
+		// 추천버튼 클릭시(추천 추가 또는 추천 제거)
+		$("#like").click(function(){
+			$.ajax({
+				url: "/like",
+                type: "POST",
+                data: {
+                    id: ${sessionScope.logonUser.id},
+                    campname: ${camp.facltNm}
+                },
+                success: function () {
+			        recCount();
+                },
+			})
+		})
+	
 
 		
 		
