@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>M.O.I.M</title>
-
+<title></title>
+<%-- 마이페이지 --%>
 </head>
 <body>
 	<div>ID = ${sessionScope.logonUser.id}</div>
@@ -31,26 +31,27 @@
 			<input type="area" placeholder="지역" name="area" class="join-input" />
 		</div>
 
-		<select id="do" data-name="도" data-gender="m">
+		<%-- <select id="main" data-name="도" data-gender="m">
 			<c:forTokens items="${campingList }" delims="," var="one">
 				<option>${one.doNm }</option>
 			</c:forTokens>
 			
 		</select> 
 		
-		<select class="sigungu" data-group="시군구">
+		<select class="sub" data-group="시군구">
 			<c:forTokens items="${campingList }" delims="," var="one">
 				<option>${one.sigunguNm }</option>
 			</c:forTokens>
 		</select>
-
+ --%>
 		<div style="margin: 0.4em">
 			<button type="submit" class="join-btn">정보수정</button>
 		</div>
 	</form>
 	<div>
 		<c:forEach items="${myPost}" var="post">
-			<p>${post.title}</p>
+		
+			<p onclick="location.href='/detail?contentId=${list.contentId}'">${post.campname}</p>
 		</c:forEach>
 	</div>
 

@@ -173,17 +173,16 @@
 <%--컴팽장 리스트 영역 --%>
 <div style="display: flex; justify-content: center; padding: 8px;">
 
-	<table>
-		<c:forEach items="${datas }" var="list">
-			<tr>
-				<%--onclick="location.href='/detail?contentId=${contentId}'" --%>
+	<table >
+		<c:forEach items="${datas }" var="list" >
+			<tr onclick="location.href='/detail?contentId=${list.contentId}'">		
 
 				<c:choose>
 					<c:when test="${not empty list.firstImageUrl }">
-						<td><img src="${list.firstImageUrl }" style="height: 100px" /></td>
+						<td><img src="${list.firstImageUrl }" style="height: 100px; width:120px" onerror="this.src='/resource/image/tent.png';" /></td>
 					</c:when>
 					<c:otherwise>
-						<td><img src="/resource/image/tent.png" style="height: 100px; width: 120px" /></td>
+						<td><img src="/resource/image/tent.png" style="height: 100px; width: 120px"/></td>
 					</c:otherwise>
 				</c:choose>
 				<td>${list.facltNm.replace("(주)", " ")}</td>
@@ -211,7 +210,7 @@
 	<c:forEach var="p" begin="${start }" end="${last }">
 		<c:choose>
 			<c:when test="${p eq currentPage }">
-				<b style="color: red;">${p }</b>
+				<b style="color: #05BFDB;">${p }</b>
 			</c:when>
 			<c:otherwise>
 				<a href="/search?pageNo=${p }&doNm=${doNmStatus}&sigunguNm=${sigunguNmStatus}&lctCl=${lctClStatus}">${p }</a>

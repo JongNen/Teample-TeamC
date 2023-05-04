@@ -1,5 +1,6 @@
 package repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,83 @@ public class PostDAO extends DAO{
 			session.close();
 		}
 	}
-
+	
+	public static List<Review> allPosts(Map map){
+		SqlSession session =factory.openSession(true);
+		try {
+			return session.selectList("posts.allPosts",map);
+		}finally {
+			session.close();
+		}
+	}
+	//후기 작성
+	public static int createReview(String writerName, String IMG, String title, String postBody, String writerId) {
+		SqlSession session=factory.openSession(true);
+		Map<String, Object> obj=new HashMap<>();
+		
+		if(IMG==null) {
+			obj.put("IMG","");
+		}else {
+			obj.put("IMG", IMG);
+		}
+		obj.put("title", title);
+		obj.put("postBody", postBody);
+		obj.put("writerId", writerId);
+		obj.put("writerName", writerName);		
+		
+		int r=session.insert("posts.write",obj);
+		
+		session.close();
+		return r;
+	}
+	//후기 삭제
+	public static int deleteReview(String writerId) {
+		SqlSession session=factory.openSession(true);
+		try {
+			return session.delete("writerId", writerId);
+		}finally {
+			session.close();
+		}
+	}
+	
+	// 게시글 전부 다 불러올때
+	public static List<Review> FindPostAll() {
+		SqlSession session=factory.openSession();
+		try {
+			return session.selectList("posts.allPosts");
+		} finally {
+			session.close();
+		}
+	}
+	
+	// 게시글 페이징 처리시
+//	public static List<Review> getFindPostAtoB(int a, int b) {
+//		Map map = new HashMap<>();
+//		map.put("a", a);
+//		map.put("b", b);
+//		SqlSession session=factory.openSession();
+//		try {
+//			return session.selectList("posts.findByPostAtoB", map);
+//		} finally {
+//			session.close();
+//		}
+//	}
+	
+	//특정 게시글 볼때
+	public static Review findByPost(String postNum) {
+		SqlSession session=factory.openSession();
+		try {
+			return session.selectOne("posts.findBypostNum", postNum);
+		} finally {
+			session.close();
+		}
+	}
+	
+	
+	
+//	public static int updateReview(int postNum, String writerName, String IMG, String title, String postBody, String writerId) {
+//		
+//		
+//	}
 
 }

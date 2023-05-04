@@ -39,7 +39,6 @@ public class UserDAO extends DAO {
 	}
 
 //	사용자 정보 삭제
-
 	public static int delete(String id) {
 		SqlSession session = factory.openSession(true);
 		try {

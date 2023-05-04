@@ -54,7 +54,8 @@ public class CampingAPI {
 		return cache.subList(from, to);
 
 	}
-	/** Item에 있는 contentId를 찾는 메소드*/
+
+	/** Item에 있는 contentId를 찾는 메소드 */
 	public static Item findByItem(String contentId) {
 		Item found = null;
 		for (Item i : cache) {
@@ -65,20 +66,22 @@ public class CampingAPI {
 		}
 		return found;
 	}
-	/**세팅된 cache에서 도,시군구, 입지구분등 기본 검색에 관한 메서드 
-	 * 검색에서 공백이 아니거나 가져오는 변수가 같지 않으면 continue*/ 
-	public  static List<Item> search(String doNm, String sigungu, String lctCl) {
-		
+
+	/**
+	 * 세팅된 cache에서 도,시군구, 입지구분등 기본 검색에 관한 메서드 검색에서 공백이 아니거나 가져오는 변수가 같지 않으면 continue
+	 */
+	public static List<Item> search(String doNm, String sigungu, String lctCl) {
+
 		List<Item> found = new ArrayList<>();
-		
-		for(Item item : cache) {
-			if(!doNm.equals("") && !item.getDoNm().equals(doNm)) {
+
+		for (Item item : cache) {
+			if (!doNm.equals("") && !item.getDoNm().equals(doNm)) {
 				continue;
 			}
-			if(!sigungu.equals("") && !item.getSigunguNm().equals(sigungu)) {
+			if (!sigungu.equals("") && !item.getSigunguNm().equals(sigungu)) {
 				continue;
 			}
-			if(!lctCl.equals("") && !item.getLctCl().contains(lctCl)) {
+			if (!lctCl.equals("") && !item.getLctCl().contains(lctCl)) {
 				continue;
 			}
 			found.add(item);
@@ -86,19 +89,15 @@ public class CampingAPI {
 		}
 		return found;
 	}
-	
-	
-	/** 도, 시군구, 입지구분 등 검색할때 마다 한화면에 보여지는 개수 처리하는 메소드   */
-	
+
+	/** 도, 시군구, 입지구분 등 검색할때 마다 한화면에 보여지는 개수 처리하는 메소드 */
+
 	public static List<Item> searchPaging(List<Item> searchData, String pageNo) {
-		int page = pageNo == null ? 1: Integer.parseInt(pageNo);
+		int page = pageNo == null ? 1 : Integer.parseInt(pageNo);
 		int from = (page - 1) * 10; // 0;
 		int to = page == (searchData.size() / 10 + 1) ? from + (searchData.size() % 10) : page * 10;
-		
+
 		return searchData.subList(from, to);
 	}
-	
-	
-	
-	
+
 }
