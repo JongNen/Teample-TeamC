@@ -1,33 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ include file="/WEB-INF/views/commons/top.jsp"%>
 
-</head>
-<body>
 
-<form action="/write-task" method="post">
-<div>
-글 제목<input type="text" name="title">
-</div>
-<div>
-<p>
-글내용
-</p>
-<%--캠프 컨텐트 아이디를 기준으로 글쓰기를 넘김 --%>
-<input type="hidden" name="target" value="${camp.contentId }"/>
-<textarea style="width: 400px; height: 300px;" name="postBody">	</textarea>
-<button type="submit">작성하기</button>
-</div>
-</form>
-<div>
-<form action ="/pload" method="post" enctype="multipart/form-data">
-<input type="file" name="IMG">
-</form>
-</div>
+<div style="padding: 4em; text-align: center;">
+	<form action="/write-task" method="post">
+		<div>
+			<input class="title-blank" type="text" name="title" placeholder="제목">
+		</div>
+		<div style="padding: 1em;">
+			<input class="postBody-blank" type="text" placeholder="글 내용" 
+				style="width: 400px; height: 300px;" name="postBody">
+		</div>
+		<button class="but" type="submit">작성하기</button>
+	</form>
+	<div>
+		<button class="but" type="submit">이미지 업로드하기</button>
+	</div>
 
-</body>
-</html>

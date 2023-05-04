@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>M.O.I.M</title>
-
+<title></title>
+<%-- 마이페이지 --%>
 </head>
 <body>
 	<div>${sessionScope.logonUser.name}님 로그인중</div>

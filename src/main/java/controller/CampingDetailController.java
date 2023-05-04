@@ -14,22 +14,19 @@ import data.camping.Response;
 import util.CampingAPI;
 
 @WebServlet("/detail")
-public class DetailController extends HttpServlet{
+public class CampingDetailController extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		String contentId = req.getParameter("contentId");
-		Item camp = CampingAPI.findByDesertionNo(contentId);
+//		Item camp = CampingAPI.findByDesertionNo(contentId);
 	
 		
 		
-		req.setAttribute("camp", camp);
+//		req.setAttribute("camp", camp);
 		
 		
-		
-		
-		
-		req.getRequestDispatcher("/WEB-INF/views/detail.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/campingDetail.jsp").forward(req, resp);
 	}
 }
