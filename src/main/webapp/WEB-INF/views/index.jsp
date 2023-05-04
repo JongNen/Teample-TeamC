@@ -210,6 +210,7 @@
 										<br>
 
 										<p style="font-size: 12px;">${obj.lineIntro}</p></td>
+										
 								</tr>
 							</c:if>
 						</c:if>
@@ -236,16 +237,7 @@
 	</table>
 </div>
 
-<c:forEach items="${campingList}" var="obj" begin="1" end="5">
-	<tr class="camping-item">
-		<td style="width: 20%; max-width: 270px;"><img
-			style="border-radius: 50%; width: 180px; height: 180px; margin: 20px;"
-			src="${obj.firstImageUrl}" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
-			<br>
-			<p>${obj.lineIntro}</p></td>
-	</tr>
-</c:forEach>
-</tbody>
+
 
 <script>
 	//do 영역의 select 태그에 onchange 이벤트 추가

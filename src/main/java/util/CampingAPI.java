@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import data.camping.Body;
 import data.camping.Item;
 import data.camping.Result;
 
@@ -25,7 +26,6 @@ public class CampingAPI {
 			String target = "https://apis.data.go.kr/B551011/GoCamping/basedList";
 			String queryString = "serviceKey=bI%2BSi3PKj%2FCVQyxnzKyhn7%2BhaxEO6V5qaw1LzLm8fal6Nr3ACYr%2BfUtAxY3ep0JRvLC2IohFjTNknAczemfuFQ%3D%3D";
 			queryString += "&_type=json&MobileOS=ETC&MobileApp=aa&numOfRows=3436";
-
 
 			URI uri = new URI(target + "?" + queryString);
 			HttpClient client = HttpClient.newHttpClient();
@@ -55,6 +55,20 @@ public class CampingAPI {
 		return cache.subList(from, to);
 
 	}
+	
+	public synchronized static List<Item> campingList(String pageNo) {
+
+		int page = pageNo == null ? 1 : Integer.parseInt(pageNo);
+		int from = 0;
+		int to = 3436;
+
+		return cache.subList(from, to);
+
+	}
+	
+
+
+	
 
 	/** Item에 있는 contentId를 찾는 메소드 */
 	public static Item findByItem(String contentId) {

@@ -44,7 +44,7 @@
 	</div>
 
 	<script type="text/javascript">
-	if(${sessionScope.logon eq ture}){
+	if(${sessionScope.logon eq true}){
 		document.querySelector("#select").addEventListener("change", function(){
 		//선택한 값을 사용했을때 작업 수행
 		

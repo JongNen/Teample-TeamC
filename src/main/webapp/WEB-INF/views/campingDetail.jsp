@@ -204,6 +204,7 @@ th {
 					</c:when>
 			<c:otherwise>
 						지도를 불러옵니다.
+						
 					</c:otherwise>
 		</c:choose>
 	</div>
