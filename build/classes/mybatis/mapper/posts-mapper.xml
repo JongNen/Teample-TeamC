@@ -12,10 +12,6 @@
 	</select>
 
 
-
-
-
-
 	<!-- 게시글 N개 보기 -->
 	<select id="findByPostAtoB" resultType="data.Review"
 		parameterType="hashmap">
@@ -28,80 +24,76 @@
 	</select>
 
 
+
 	<!-- 자기가 좋아요 처리한 캠핑장 불러오기 -->
-	<select id="readByMyPost" resultType="data.Like">
+	<select id="readByMyPost" resultType="data.Like"
+		parameterType="hashmap">
+
+		SELECT
+		LIKES.*
+		FROM
+		LIKES
+		JOIN USERS ON LIKES.LIKER =
+		USERS.ID
+		WHERE
+		USERS.ID = #{id}
+		ORDER BY CAMPNAME
+	</select>
+
+	<!-- 캠핑장 좋아요 추가 -->
+	<insert id="likeCamp" parameterType="hashmap">
+		INSERT INTO LIKES(LIKER, CAMPNAME, CAMPID) VALUES(#{liker}, #{campname}, #{campid})
+	</insert>
+
+	<!-- 캠핑장 좋아요 삭제 -->
+	<delete id="unlikeCamp" parameterType="hashmap">
+		DELETE FROM LIKES WHERE LIKER = #{liker} AND CAMPNAME = #{campname} AND CAMPID = #{campid};
+	</delete>
+
+	<!-- 동일 캠핑장 좋아요 여부 검색 -->
+	<select id="likeCheck" parameterType="map" resultType="int">
+		select
+		count(*) from LIKES WHERE LIKER = #{liker} AND CAMPNAME = #{campname} AND CAMPID = #{campid}
 	</select>
 
 
-		<!-- 자기가 쓴 글 불러오기 -->
-		<select id="readByMyPost" resultType="data.Like"
-			parameterType="String">
-			>>>>>>> 047ffa544bcf660aa800b221f7271048b2e8df06
-			SELECT
-			LIKES.CAMPNAME
-			FROM
-			LIKES
-			JOIN USERS ON LIKES.LIKER = USERS.NAME
-			WHERE
-			USERS.ID = #{id}
-			ORDER BY CAMPNAME
-		</select>
-
-		<!-- 캠핑장 좋아요 추가 -->
-		<insert id="likeCamp" parameterType="hashmap">
-			INSERT INTO LIKES(LIKER,
-			CAMPNAME) VALUES(#{liker}, #{campname})
-		</insert>
-
-		<!-- 캠핑장 좋아요 삭제 -->
-		<delete id="unlikeCamp" parameterType="hashmap">
-			DELETE FROM LIKES(LIKER,
-			CAMPNAME) VALUES(#{liker}, #{campname})
-		</delete>
-
-		<!-- 동일 캠핑장 좋아요 여부 검색 -->
-		<select id="likeCheck" parameterType="map" resultType="int">
-			select
-			count(*) from LIKES WHERE LIKER = #{liker} and CAMPNAME = #{campname}
-		</select>
 
 
 
+	<!-- 후기 쓰기 -->
+	<insert id="write" parameterType="Hashmap">
+		INSERT INTO REVIEWS(POSTNUM,
+		WRITERNAME, IMG, TITLE, POSTBODY, WRITERID)
+		VALUES(POSTNUM_SEQ.NEXTVAL, #{writerName},
+		#{IMG} , #{title},
+		#{postBody}, #{writerId})
 
+	</insert>
 
-		<!-- 후기 쓰기 -->
-		<insert id="write" parameterType="Hashmap">
-			INSERT INTO REVIEWS(POSTNUM,
-			WRITERNAME, IMG, TITLE, POSTBODY, WRITERID)
-			VALUES(POSTNUM_SEQ.NEXTVAL, #{writerName},
-			#{IMG} , #{title},
-			#{postBody}, #{writerId})
+	<update id="modify" parameterType="Hashmap">
+		UPDATE REVIEWS
+		SET TITLE =
+		#{title}
+		IMG = #{image}
+		POSTBODY=#{postBody}
+		WHERE WRITER=#{writer}
+	</update>
 
-		</insert>
+	<!-- 후기 삭제하기 -->
+	<delete id="delete" parameterType="String">
+		DELETE FROM REVIEWS WHERE
+		WRITERID=#{writerId}
+	</delete>
 
-		<update id="modify" parameterType="Hashmap">
-			UPDATE REVIEWS
-			SET TITLE =
-			#{title}
-			IMG = #{image}
-			POSTBODY=#{postBody}
-			WHERE WRITER=#{writer}
-		</update>
-
-		<!-- 후기 삭제하기 -->
-		<delete id="delete" parameterType="String">
-			DELETE FROM REVIEWS WHERE
-			WRITERID=#{writerId}
-		</delete>
-
-		<!-- 후기 불러오기 -->
-		<select id="allPosts" resultType="data.Review">
-			SELECT * FROM REVIEWS ORDER
-			BY WRITED DESC
-		</select>
-		<!-- 특정 후기 확인하기 -->
-		<select id="findBypostNum" resultType="data.Review">
-			SELECT * FROM REVIEWS
-			WHERE POSTNUM=#{postNum}
-		</select>
+	<!-- 후기 불러오기 -->
+	<select id="allPosts" resultType="data.Review">
+		SELECT * FROM REVIEWS ORDER
+		BY
+		WRITED DESC
+	</select>
+	<!-- 특정 후기 확인하기 -->
+	<select id="findBypostNum" resultType="data.Review">
+		SELECT * FROM REVIEWS
+		WHERE POSTNUM=#{postNum}
+	</select>
 </mapper>

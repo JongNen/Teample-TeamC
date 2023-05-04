@@ -32,6 +32,7 @@ public class SignInTaskController extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("logon", true);
             session.setAttribute("logonUser", found);
+            
 
             // 로그인이 되면 쿠키생성
             if(check != null && check.equals("on")) {

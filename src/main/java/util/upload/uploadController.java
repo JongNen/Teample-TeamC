@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /*
  * package util.upload;
  * 
@@ -27,7 +27,6 @@
  * Part part = req.getPart("image"); String fileName =
  * part.getSubmittedFileName(); part.write(savePath + fileName); } }
  */
-=======
 //package util.upload;
 //
 //import java.io.File;
@@ -63,4 +62,4 @@
 //	        part.write(savePath + fileName);
 //	    }
 //	}
->>>>>>> 047ffa544bcf660aa800b221f7271048b2e8df06
+

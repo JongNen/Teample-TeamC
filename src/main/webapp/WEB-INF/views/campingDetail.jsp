@@ -39,6 +39,10 @@ th {
 .heart-icon.fas {
 	color: red;
 }
+
+.heart-icon.far {
+	color: black;
+}
 </style>
 <meta charset="UTF-8">
 <title>camping sketch</title>
@@ -204,6 +208,7 @@ th {
 					</c:when>
 			<c:otherwise>
 						지도를 불러옵니다.
+						
 					</c:otherwise>
 		</c:choose>
 	</div>
@@ -233,28 +238,30 @@ th {
 		});
 		
 		marker.setMap(map);
-		
-		/* 좋아요 부분*/
-		$(function(){
-		// 추천버튼 클릭시(추천 추가 또는 추천 제거)
-		$("#like").click(function(){
-			$.ajax({
-				url: "/like",
-                type: "POST",
-                data: {
-                    id: ${sessionScope.logonUser.id},
-                    campname: ${camp.facltNm}
-                },
-                success: function () {
-			        recCount();
-                },
-			})
-		})
-	
+		</script>
 
+		<script>
+		function like() {
+  			const likeButton = document.getElementById("likeButton");
+  			const likeIcon = document.getElementById("likeIcon");
 		
-		
-	</script>
+			const xhr = new XMLHttpRequest();
+			xhr.open("GET", "/api/like?campname=${camp.facltNm}&campid=${camp.contentId}", false);
+			xhr.send();
+			const txt = xhr.responseText;
+			const obj = JSON.parse(txt);
+			
+  		
+		  // isLiked 값에 따라 하트 색 변경
+		  if (obj.done === 'far') {
+		    likeIcon.classList.remove("fas");
+		    likeIcon.classList.add("far");
+		  } else {
+		    likeIcon.classList.remove("far");
+		    likeIcon.classList.add("fas");
+		  }
+		}
+		</script>
 	</c:if>
 </body>
 </html>
