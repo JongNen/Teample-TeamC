@@ -18,6 +18,7 @@
 <%--기본 검색 영역 --%>
 <div class="back" style="font-size: 20px;">
 	<form action="/search">
+
 		지역별
 		<%--도 영역 --%>
 		<select name="doNm" id="do">
@@ -184,50 +185,97 @@
 			<%--테마별 끝 --%>
 		</div>
 		<button type="submit">검색하기</button>
+
 	</form>
 </div>
 <div class="belt">
 	<table style="margin: auto; width: 1355px;">
 		<tbody>
-			<c:forEach items="${campingList}" var="obj" begin="1" end="5">
-				<tr class="camping-item">
-					<td style="width: 20%; max-width: 270px;"><img
-						style="border-radius: 50%; width: 180px; height: 180px; margin: 20px;"
-						src="${obj.firstImageUrl}" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
-						<br>
-						<p>${obj.lineIntro}</p></td>
-				</tr>
-			</c:forEach>
+
+			<c:choose>
+				<c:when test="${!empty sessionScope.logonUser.area}">
+					<c:set var="count" value="0" />
+					<p>관심지역인 ${sessionScope.logonUser.area} 지역 캠핑장은 어떠신가요?</p>
+					<c:forEach items="${campingList}" var="obj">
+						<c:if test="${count < 5}">
+							<c:if
+								test="${sessionScope.logonUser.area eq obj.sigunguNm.substring(0,2) || sessionScope.logonUser.area eq obj.doNm.substring(0,2)}">
+								<c:set var="count" value="${count+1 }" />
+								<tr class="camping-item"
+									onclick="location.href='/detail?contentId=${obj.contentId}'">
+									<td style="width: 20%; max-width: 270px;"><img
+										style="border-radius: 50%; width: 180px; height: 180px; margin: 20px;"
+										src="${obj.firstImageUrl}"
+										onerror="this.src='/resource/image/tent.png';" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
+										<br>
+
+										<p style="font-size: 12px;">${obj.lineIntro}</p></td>
+								</tr>
+							</c:if>
+						</c:if>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${campingList}" var="obj" begin="1" end="5">
+						<tr class="camping-item"
+							onclick="location.href='/detail?contentId=${obj.contentId}'">
+							<td style="width: 20%; max-width: 270px;"><img
+								style="border-radius: 50%; width: 180px; height: 180px; margin: 20px;"
+								src="${obj.firstImageUrl}"
+								onerror="this.src='/resource/image/tent.png';" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
+								<br>
+								<p style="font-size: 12px;">${obj.lineIntro}</p></td>
+
+						</tr>
+					</c:forEach>
+
+				</c:otherwise>
+			</c:choose>
+
 		</tbody>
 	</table>
-	<script>
-		//do 영역의 select 태그에 onchange 이벤트 추가
-		document.querySelector("#do").onchange = function(evt) {
-			// 선택한 도시값 가져오기
-			const selectedCity = evt.target.value;
+</div>
 
-			// 시, 군, 구 영역의 select 태그들을 찾아서 처리
-			document.querySelectorAll(".city").forEach(function(one) {
-				if (one.dataset.group != selectedCity) {
-					one.name = "";
-					one.style.display = "none";
-				} else {
-					one.name = "sigunguNm";
-					one.style.display = "";
-				}
-			});
-		};
-		//do 영역의 select 태그에 change 이벤트 발생시키기
-		document.querySelector("#do").dispatchEvent(new Event("change"));
+<c:forEach items="${campingList}" var="obj" begin="1" end="5">
+	<tr class="camping-item">
+		<td style="width: 20%; max-width: 270px;"><img
+			style="border-radius: 50%; width: 180px; height: 180px; margin: 20px;"
+			src="${obj.firstImageUrl}" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
+			<br>
+			<p>${obj.lineIntro}</p></td>
+	</tr>
+</c:forEach>
+</tbody>
 
-		// 시, 군, 구 영역의 select 태그에 값 넣어주기
+<script>
+	//do 영역의 select 태그에 onchange 이벤트 추가
+	document.querySelector("#do").onchange = function(evt) {
+		// 선택한 도시값 가져오기
+		const selectedCity = evt.target.value;
+
+		// 시, 군, 구 영역의 select 태그들을 찾아서 처리
 		document.querySelectorAll(".city").forEach(function(one) {
-			if (one.dataset.group === document.querySelector("#do").value) {
-				one.name = "sigunguNm";
-				one.value = "${param.sigunguNm}";
-			} else {
+			if (one.dataset.group != selectedCity) {
+				one.name = "";
 				one.style.display = "none";
+			} else {
+				one.name = "sigunguNm";
+				one.style.display = "";
 			}
 		});
-	</script>
-</div>
+	};
+	//do 영역의 select 태그에 change 이벤트 발생시키기
+	document.querySelector("#do").dispatchEvent(new Event("change"));
+
+	// 시, 군, 구 영역의 select 태그에 값 넣어주기
+	document.querySelectorAll(".city").forEach(function(one) {
+		if (one.dataset.group === document.querySelector("#do").value) {
+			one.name = "sigunguNm";
+			one.value = "${param.sigunguNm}";
+		} else {
+			one.style.display = "none";
+		}
+	});
+</script>
+
+

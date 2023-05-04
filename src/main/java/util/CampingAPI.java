@@ -26,6 +26,7 @@ public class CampingAPI {
 			String queryString = "serviceKey=bI%2BSi3PKj%2FCVQyxnzKyhn7%2BhaxEO6V5qaw1LzLm8fal6Nr3ACYr%2BfUtAxY3ep0JRvLC2IohFjTNknAczemfuFQ%3D%3D";
 			queryString += "&_type=json&MobileOS=ETC&MobileApp=aa&numOfRows=3436";
 
+
 			URI uri = new URI(target + "?" + queryString);
 			HttpClient client = HttpClient.newHttpClient();
 			HttpRequest request = HttpRequest.newBuilder(uri).GET().build();

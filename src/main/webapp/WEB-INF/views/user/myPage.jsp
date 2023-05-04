@@ -9,8 +9,9 @@
 <%-- 마이페이지 --%>
 </head>
 <body>
-	<div>ID = ${sessionScope.logonUser.id}</div>
-	<div>NAME = ${sessionScope.logonUser.name}</div>
+	<div>${sessionScope.logonUser.name}님 로그인중</div>
+	<div>@${sessionScope.logonUser.id}</div>
+	<div>관심지역 = ${sessionScope.logonUser.area }</div>
 	<a href="/user/delete?id=${sessionScope.logonUser.id}">회원탈퇴</a>
 
 
@@ -24,11 +25,11 @@
 		</div>
 
 		<div style="margin: 0.4em">
-			<input type="name" placeholder="닉네임" name="name" class="join-input" />
+			<input type="name" placeholder="닉네임" name="name" class="join-input"/>
 		</div>
 
 		<div style="margin: 0.4em">
-			<input type="area" placeholder="지역" name="area" class="join-input" />
+			<input type="area" placeholder="지역" name="area" class="join-input"/>
 		</div>
 
 		<%-- <select id="main" data-name="도" data-gender="m">
