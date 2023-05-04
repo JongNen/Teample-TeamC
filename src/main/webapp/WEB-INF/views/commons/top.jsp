@@ -14,24 +14,37 @@
 <meta charset="UTF-8">
 <title>캠핑스케치</title>
 <link rel="stylesheet" href="/resource/style.css">
+<link
+	href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
 </head>
 <body>
-
 	<div style="text-align: center;">
-		<div style="text-align: right; padding: 1em; margin-right: 22px;">
+		<div
+			style="display: flex; flex-direction: row; justify-content: flex-end; margin-right: 40px;">
 			<c:choose>
 				<c:when test="${sessionScope.logon }">
-					<div>
-						<b>${logonUser.id }님 환영합니다.</b>
+					<div id="status">
+						<span style="font-size: 16px;"><b>${logonUser.id }님
+								환영합니다</b></span><small style="font-size: 10px"> ▼</small>
+						<div class="menu" id="pop" style="display: none">
+							<div>
+								<a href="/user/myPage?name=${logonUser.name}"><i
+									class="fa-regular fa-square-user"></i>&nbsp;&nbsp;마이페이지</a>
+							</div>
+							<hr>
+							<div>
+								<a href="/user/signOut"><i
+									class="fa-solid fa-right-from-bracket"></i>&nbsp;로그아웃하기</a>
+							</div>
+						</div>
 					</div>
-					<select id="select">
-						<option value="option1">이동하기</option>
-						<option value="option2">마이페이지</option>
-						<option value="option3">로그아웃하기</option>
-					</select>
+
 				</c:when>
 				<c:otherwise>
-					<a href="/user/signIn">로그인하기 </a>/
+					<a href="/user/signIn">로그인하기 </a> / 
 		
 		<a href="/user/signUp"> 회원가입하기</a>
 				</c:otherwise>
@@ -39,26 +52,21 @@
 			</c:choose>
 
 		</div>
-		<img style="width: 600px; padding-top: 4em;"
+		<a href="/index"> <img style="width: 600px; padding-top: 4em;"
 			src="/resource/image/CSlogo_outline.png" />
+		</a>
 	</div>
 
 	<script type="text/javascript">
-	document.querySelector("#select").addEventListener("change", function(){
-		//선택한 값을 사용했을때 작업 수행
-		
-		let selectValue = this.value;
-		
-		if(selectValue === "option1") {
-						
-		} else if(selectValue === "option2"){
-			window.location.href="/user/myPage?name=${logonUser.name}";
-		}else if(selectValue === "option3"){
-			window.location.href="/user/signOut";
+		document.querySelector("#status").onmouseover = function() {
+			console.log("!!");
+			document.querySelector("#pop").style.display = "";
 		}
-	});
-
-</script>
+		document.querySelector("#status").onmouseout = function() {
+			console.log("!!");
+			document.querySelector("#pop").style.display = "none";
+		}
+	</script>
 
 </body>
 </html>

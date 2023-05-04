@@ -19,22 +19,22 @@
 <div class="back" style="font-size: 20px;">
 	<form action="/search">
 		<p>지역별</p>
-		<p>테마별</p>		
+		<p>테마별</p>
 		<button class="searchbutton searchbutton-position" type="submit">검색하기</button>
 	</form>
 </div>
 <div class="belt">
-<table style="margin: auto; width: 1355px;">
-	<tbody>
-		<c:forEach items="${campingList}" var="obj" begin="1" end="5">
-			<tr class="camping-item">
-				<td style="width: 20%; max-width: 270px;"><img
-					style="border-radius: 50%; width: 180px; height: 180px; margin: 20px;"
-					src="${obj.firstImageUrl}" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
-					<br>
-					<p>${obj.lineIntro}</p></td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
+	<table style="margin: auto; width: 1355px;">
+		<tbody>
+			<c:forEach items="${campingList}" var="obj" begin="1" end="5">
+				<tr class="camping-item">
+					<td style="width: 20%; max-width: 270px;"><img
+						style="border-radius: 50%; width: 180px; height: 180px; margin: 20px;"
+						src="${obj.firstImageUrl}" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
+						<br>
+						<p>${obj.lineIntro}</p></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </div>
