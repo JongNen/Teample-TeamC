@@ -5,20 +5,69 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
-
+	<%--상세검색 페이지  --%>
+<div class="ds-box hidden">
+	<div id="ds-overlay"></div>
+	<div id="ds-content">
+		<button class="close-box-btn">닫기</button>
+		<form action="/detailSearch" method="get">
+			<div>
+				지역별
+				<c:forEach items="${doList}" var="doItem">
+					<label for="do_${doItem}">
+					<input type="checkbox" id="do_${doItem}" name="doNm" value="${doItem}">
+						${doItem}</label>
+				</c:forEach>
+			</div>
+			<div>운영형태
+				<c:forEach items="${facList}" var="faItem">
+					<label for="fa_${faItem}">
+					<input type="checkbox" id="fa_${faItem}" name="facltDivNm" value="${faItem}">
+						${faItem}</label>
+				</c:forEach>
+			</div>
+			<div>입지구분
+				<c:forEach items="${themaList}" var="themaItem">
+					<label for="do_${themaItem}">
+					<input type="checkbox" id="the_${themaItem}" name="lctCl" value="${themaItem}">
+						${themaItem}</label>
+				</c:forEach>
+			</div>
+			<div>주요시설
+				<c:forEach items="${indutyList}" var="iduItem">
+					<label for="in_${iduItem}">
+					<input type="checkbox" id="in_${iduItem}" name="induty" value="${iduItem}">${iduItem}</label>
+				</c:forEach>
+			</div>
+			<div>부대시설
+				<c:forEach items="${sbrList}" var="sbItem">
+					<label for="sb_${sbItem}">
+					<input type="checkbox" id="sb_${sbItem}" name="sbrCl" value="${sbItem}">
+						${sbItem}</label>
+				</c:forEach>
+			</div>
+			<div>기타정보
+				<label for="trler"><input type="checkbox" id="trler" name="trlerAcmpnyAt">개인 트레일러 동반 가능</label>
+				<label for="animal"><input type="checkbox" id="animal" name="animalCmgCl" >애완동물출입 가능</label>
+			</div>
+			<div>
+				<button type="submit">검색</button>
+				<button type="reset">초기화</button>
+			</div>
+		</form>
+	</div>
+</div>
+<%--상세검색 페이지  --%>
 <%-- 메인페이지 --%>
 <div style="text-align: center;">
 	<img class="backimg-linear" src="/resource/image/backGround.jpg" />
 </div>
 <div class="indexbutton-position">
-	<form action="/search">
-		<button class="indedetail-button" type="submit">상세보기+</button>
-	</form>
+    <button class="indedetail-button" type="submit" id="ds-btn">상세보기+</button>
 </div>
 <%--기본 검색 영역 --%>
 <div class="back" style="font-size: 20px;">
-	<form action="/search">
-
+	<form action="/search" method="get">
 		지역별
 		<%--도 영역 --%>
 		<select name="doNm" id="do">
@@ -265,5 +314,23 @@
 		}
 	});
 </script>
+<script>
+	
+	const searchHidden = document.querySelector(".back")
+	const openBtn = document.querySelector(".indedetail-button");
+	const box = document.querySelector(".ds-box");
+	const overlay = box.querySelector("#ds-overlay");
+	const closeBtn = box.querySelector(".close-box-btn");
+	//버튼 클릭 팝업창 열리는 작업(검색창과 버튼이 팝업창이 뜨는 사라지게) 고 닫았을 때 (상세보기 버튼과 검색창 다시 복구)
+	const togglePopup = function() {
+		box.classList.toggle("hidden");
+		searchHidden.classList.toggle("hidden");
+		openBtn.classList.toggle("hidden");
+	}
 
+	overlay.addEventListener("click", togglePopup);
+	closeBtn.addEventListener("click", togglePopup);
+	openBtn.addEventListener("click", togglePopup);
+	openBtn.addEventListener("change", togglePopup);
+</script>
 

@@ -17,14 +17,11 @@ public class SearchController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 사용자가 검색한 것을 받아오고
-		String doNm = req.getParameter("doNm"); // 도
-		String sigunguNm = req.getParameter("sigunguNm"); // 시,군,구
-		String lctCl = req.getParameter("lctCl"); // 입자구분
-
-		/*
-		 * System.out.println("doNm = " + doNm); System.out.println("si = " +
-		 * sigunguNm); System.out.println("lct = " + lctCl);
-		 */
+		String doNm = req.getParameter("doNm") == null ? "" : req.getParameter("doNm"); // 도
+		String sigunguNm = req.getParameter("sigunguNm") == null ? "" : req.getParameter("sigunguNm"); // 시,군,구
+		String lctCl = req.getParameter("lctCl") == null ? "" :  req.getParameter("lctCl"); // 입자구분
+		
+	
 		int p;
 
 		if (req.getParameter("pageNo") == null) {
@@ -119,8 +116,7 @@ public class SearchController extends HttpServlet {
 		
 
 		// lctCl 검색 세팅
-		String[] thema = { "강", "계곡", "도심", "산", "섬", "숲", "해변" };
-
+		String[] thema = {"강", "계곡", "도심", "산", "섬", "숲", "해변" };
 		req.setAttribute("themaList", thema);
 
 		// sigungu 검색 세팅(각 광역시, 도에 있는 시, 군, 구를 세팅
