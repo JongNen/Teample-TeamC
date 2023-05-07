@@ -4,26 +4,23 @@
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
 
 <%-- 회원가입 페이지 --%>
-
-
-<div style="padding: 5em; text-align: center;">
-	
-	<form action="/user/signUp-task" method="post">
-	<span style="color: red">*전부 필수 입력항목 입니다</span>
-		<p>
-			<input class="signUp-balnk" type="text" name="id" placeholder="아이디(영문)" />
-		</p>
-		<p>
-			<input class="signUp-balnk" type="password" name="pass" placeholder="비밀번호(4자리 이상)" />
-		</p>
-		<p>
-			<input class="signUp-balnk" type="text" name="name" placeholder="이름(3자리 이상)" />
-		</p>
-		<p>
-			<input class="signUp-balnk" type="text" name="area" placeholder="관심지역" />
-		</p>
-		<div style="padding: 0.7em;">
-		<button class="sign-button" type="submit">가입하기</button>
+<div style="padding-top: 3em;">
+	<form style="display: flex; justify-content: center;"
+		action="/user/signUp-task" method="post">
+		<div
+			style="text-align: center; justify-content: center; display: flex; flex-direction: column; gap: 12px; width: 40rem;">
+			<div style="color: red">*전부 필수입력항목입니다.</div>
+			<input class="signup-blank" type="text" name="id"
+				placeholder="아이디(영문)" /> <input class="signup-blank"
+				type="password" name="pass" placeholder="비밀번호(4자리 이상)" /> <input
+				class="signup-blank" type="text" name="name"
+				placeholder="이름(3자리 이상)" /> <input class="signup-blank" type="text"
+				name="area" placeholder="관심지역" />
+			<div
+				style="display: flex; width: 100%; align-items: center; jusify-content: center;"
+				class="signup-bottom-position">
+				<button class="sign-button" type="submit">가입하기</button>
+			</div>
 		</div>
 	</form>
 </div>

@@ -32,11 +32,11 @@ public class boardController extends HttpServlet {
 		}
 		List<Review> reviewLi = PostDAO.allPosts();
 		
-		int totalPage = reviewLi.size() % 5 == 0 ? reviewLi.size() : reviewLi.size() / 5 + 1;
+		int totalPage = reviewLi.size() % 10 == 0 ? reviewLi.size() : reviewLi.size() / 10 + 1;
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("a", p * 5 - 4); // 1~10 1page 11 ~ 20 2page
-		map.put("b", p * 5);
+		map.put("a", p * 10 - 9); // 1~10 1page 11 ~ 20 2page
+		map.put("b", p * 10);
 		List<Review> list = PostDAO.findByPostAtoB(map);
 
 		req.setAttribute("list", list);
