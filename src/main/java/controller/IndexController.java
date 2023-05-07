@@ -28,7 +28,7 @@ public class IndexController extends HttpServlet {
 		List<Item> response = CampingAPI.campingList();
 
 		List<Item> recommends = new ArrayList<>();
-
+		
 		int count = 0;
 
 		if (req.getSession().getAttribute("logonUser") == null || logonUser.getArea() == null) {
@@ -42,19 +42,27 @@ public class IndexController extends HttpServlet {
 
 		} else {
 			// 반복문을 돌면서 하나씩 체크
+			
+
 			for (Item item : response) {
 				if (item.getSigunguNm().length() >= 2 && item.getAddr1().length() >= 2
 						&& item.getDoNm().length() >= 2) {
-					if (logonUser.getArea().matches(item.getSigunguNm().substring(0, 2)) || logonUser.getArea().matches(item.getDoNm().substring(0, 2))) {
+
+					if (logonUser.getArea().matches(item.getSigunguNm())) {
 
 						count++;
 						recommends.add(item);
 
+					} else if (logonUser.getArea().substring(0,2).matches(item.getDoNm().substring(0,2))) {
+
+						count++;
+						recommends.add(item);
 					}
-				}
-				if (count == 5) {
-					count = 0;
-					break;
+
+					if (count == 5) {
+						count = 0;
+						break;
+					}
 				}
 			}
 		}

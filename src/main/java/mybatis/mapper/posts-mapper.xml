@@ -5,10 +5,9 @@
 
 <mapper namespace="posts">
 
-	<!-- 특정 캠프장 찾는 용도 -->
-	<select id="findByCamp" resultType="data.Like"
-		parameterType="String">
-		SELECT LIKES.* FROM LIKES WHERE CAMPNAME = #{campname }
+	<!-- 캠핑장 불러오기 -->
+	<select id="findByCamp" resultType="data.Like" >
+		SELECT LIKES.* FROM LIKES WHERE CAMPID = #{campid}
 	</select>
 
 
@@ -42,19 +41,28 @@
 
 	<!-- 캠핑장 좋아요 추가 -->
 	<insert id="likeCamp" parameterType="hashmap">
-		INSERT INTO LIKES(LIKER, CAMPNAME, CAMPID) VALUES(#{liker}, #{campname}, #{campid})
+		INSERT INTO LIKES(LIKER,
+		CAMPNAME, CAMPID) VALUES(#{liker}, #{campname}, #{campid})
 	</insert>
 
 	<!-- 캠핑장 좋아요 삭제 -->
 	<delete id="unlikeCamp" parameterType="hashmap">
-		DELETE FROM LIKES WHERE LIKER = #{liker} AND CAMPNAME = #{campname} AND CAMPID = #{campid};
+		DELETE FROM LIKES WHERE
+		LIKER = #{liker} AND CAMPNAME = #{campname} AND CAMPID = #{campid}
 	</delete>
 
 	<!-- 동일 캠핑장 좋아요 여부 검색 -->
 	<select id="likeCheck" parameterType="map" resultType="int">
 		select
-		count(*) from LIKES WHERE LIKER = #{liker} AND CAMPNAME = #{campname} AND CAMPID = #{campid}
+		count(*) from LIKES WHERE LIKER = #{liker} AND CAMPNAME = #{campname}
+		AND CAMPID = #{campid}
 	</select>
+
+	<!-- 좋아요 된 캠핑장 전부 삭제 -->
+	<delete id="allDeleteCamp" parameterType="String">
+		DELETE FROM LIKES WHERE
+		LIKER = #{liker}
+	</delete>
 
 
 
@@ -80,7 +88,7 @@
 	</update>
 
 	<!-- 후기 삭제하기 -->
-	<delete id="delete" parameterType="String">
+	<delete id="deleteReview" parameterType="String">
 		DELETE FROM REVIEWS WHERE
 		WRITERID=#{writerId}
 	</delete>
