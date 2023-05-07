@@ -27,10 +27,6 @@ public class LikeController extends HttpServlet {
 		String liker = logonUser.getId();
 		String campname = req.getParameter("campname").replace("(주)", "");
 		String campid = req.getParameter("campid");
-		
-		
-		System.out.println("campid = " + campid);
-	
 
 		Map<String, Object> map = new HashMap();
 		map.put("liker", liker);
@@ -48,12 +44,10 @@ public class LikeController extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 
 		if (result == 0) {
-
-			out.println("{ \"done\" : far }");
+			out.println("{ \"done\" : \"far\" }");
 		} else {
-
-			out.println("{ \"done\" : fas }");
+			out.println("{ \"done\" : \"fas\" }");
 		}
-	}
 
+	}
 }
