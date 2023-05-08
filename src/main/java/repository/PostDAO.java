@@ -70,10 +70,11 @@ public class PostDAO extends DAO {
 	}
 
 	// 후기 삭제
-	public static int deleteReview(String writerId) {
+	public static int deleteReview(String id) {
 		SqlSession session = factory.openSession(true);
 		try {
-			return session.delete("writerId", writerId);
+
+			return session.delete("posts.deleteReview", id);
 		} finally {
 			session.close();
 		}
@@ -117,6 +118,28 @@ public class PostDAO extends DAO {
 		try {
 
 			return session.delete("posts.unlikeCamp", map);
+		} finally {
+			session.close();
+		}
+	}
+
+	// 좋아요된 캠핑장 전체 삭제
+	public static int allDeleteCamp(String id) {
+		SqlSession session = factory.openSession(true);
+		try {
+
+			return session.delete("posts.allDeleteCamp", id);
+		} finally {
+			session.close();
+		}
+	}
+
+	// 캠핑장 정보 불러오기
+	public static List<Like> findByCamp(String id) {
+		SqlSession session = factory.openSession(true);
+		try {
+
+			return session.selectList("posts.findByCamp", id);
 		} finally {
 			session.close();
 		}

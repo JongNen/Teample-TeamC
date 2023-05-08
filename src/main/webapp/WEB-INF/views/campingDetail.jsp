@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
 
 
@@ -10,7 +11,8 @@
 <html>
 <head>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
 <style>
 table {
 	border-collapse: collapse;
@@ -48,16 +50,18 @@ th {
 <title>camping sketch</title>
 </head>
 <body>
-
-
-	<img src="${camp.firstImageUrl }"
-		onerror="this.src='/resource/image/tent.png';"
-		style="max-width: 500px; height: 300px; float: left;" />
-	<c:if test="${sessionScope.logon}">
-		<button id="likeButton" onclick="like()">
-			<i id="likeIcon" class="far fa-heart heart-icon"></i>
+	<div style="position: relative; display: inline-block;">
+		<img src="${camp.firstImageUrl}"
+			onerror="this.src='/resource/image/tent.png';"
+			style="max-width: 500px; height: 300px; opacity: 0.9;" />
+		<button id="likeButton" onclick="like()"
+			style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none;">
+			<i id="likeIcon" class="far fa-heart heart-icon"
+				style="font-size: 24px;"></i>
 		</button>
-	</c:if>
+	</div>
+
+
 
 	<div style="display: flex; flex-direction: row-reverse;">
 
@@ -216,6 +220,7 @@ th {
 
 
 
+
 	<!-- 지도 관련 부분 -->
 	<c:if test="${!empty camp.addr1}">
 		<script type="text/javascript"
@@ -239,29 +244,58 @@ th {
 		
 		marker.setMap(map);
 		</script>
-
-		<script>
-		function like() {
-  			const likeButton = document.getElementById("likeButton");
-  			const likeIcon = document.getElementById("likeIcon");
-		
-			const xhr = new XMLHttpRequest();
-			xhr.open("GET", "/api/like?campname=${camp.facltNm}&campid=${camp.contentId}", false);
-			xhr.send();
-			const txt = xhr.responseText;
-			const obj = JSON.parse(txt);
-			
-  		
-		  // isLiked 값에 따라 하트 색 변경
-		  if (obj.done === 'far') {
-		    likeIcon.classList.remove("fas");
-		    likeIcon.classList.add("far");
-		  } else {
-		    likeIcon.classList.remove("far");
-		    likeIcon.classList.add("fas");
-		  }
-		}
-		</script>
 	</c:if>
+
+
+	<script>
+	// 좋아요 부분
+	
+	   const likes = ${likeCheckJson};
+	   const userId = "${sessionScope.logonUser.id}";
+	   let liked = false;
+	   for (let i = 0; i < likes.length; i++) {
+ 	   		if (likes[i].liker === userId) {
+   		 		liked = true;
+    			break;
+  			}
+		}
+	   
+		if (liked) {
+  			document.getElementById("likeIcon").classList.remove("far");
+  			document.getElementById("likeIcon").classList.add("fas");
+			}
+
+
+	
+	function like() {
+			const likeButton = document.getElementById("likeButton");
+			const likeIcon = document.getElementById("likeIcon");
+	
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", "/api/like?campname=${camp.facltNm}&campid=${camp.contentId}", false);
+		xhr.send();
+		const txt = xhr.responseText;
+		const obj = JSON.parse(txt);
+		
+		
+			
+		
+		
+	  // isLiked 값에 따라 하트 색 변경
+	  if (obj.done === 'fas') {
+	    likeIcon.classList.remove("fas");
+	    likeIcon.classList.add("far");
+	  } else {
+	    likeIcon.classList.remove("far");
+	    likeIcon.classList.add("fas");
+	  }
+	 
+	}
+	
+
+
+			
+		</script>
+
 </body>
 </html>
