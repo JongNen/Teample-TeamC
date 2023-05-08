@@ -20,12 +20,9 @@ public class PostDAO extends DAO {
 		}
 	}
 
-<<<<<<< HEAD
 	// 게시글 페이징처리해서 불러오기
 	public static List<Review> findByPostAtoB(Map map) {
-=======
-	public static Review findByPostAtoB(Map map) {
->>>>>>> origin
+
 		SqlSession session = factory.openSession(true);
 		try {
 			return session.selectList("posts.findByPostAtoB", map);
@@ -75,22 +72,28 @@ public class PostDAO extends DAO {
 	}
 
 	// 후기 삭제
-<<<<<<< HEAD
+
 	public static int deleteReview(int postNum) {
 		SqlSession session = factory.openSession(true);
 		try {
 			return session.delete("posts.delete", postNum);
-=======
-	public static int deleteReview(String id) {
-		SqlSession session = factory.openSession(true);
-		try {
 
-			return session.delete("posts.deleteReview", id);
->>>>>>> origin
 		} finally {
 			session.close();
 		}
 	}
+	
+	// 본인이 쓴 후기 전체 삭제
+
+		public static int deleteAllReview(String id) {
+			SqlSession session = factory.openSession(true);
+			try {
+				return session.delete("posts.delete", id);
+
+			} finally {
+				session.close();
+			}
+		}
 
 	// 게시글 전부 다 불러올때
 	public static List<Review> FindPostAll() {
@@ -180,7 +183,6 @@ public class PostDAO extends DAO {
 			session.close();
 		}
 	}
-<<<<<<< HEAD
 
 	// 후기 수정하기
 	public static int modifyReview(String title, String IMG, String postBody, int postNum) {
@@ -203,11 +205,3 @@ public class PostDAO extends DAO {
 	}
 
 }
-=======
-}
-
-//	public static int updateReview(int postNum, String writerName, String IMG, String title, String postBody, String writerId) {
-//		
-//		
-//	}
->>>>>>> origin
