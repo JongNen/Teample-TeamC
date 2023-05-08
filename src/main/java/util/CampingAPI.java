@@ -105,9 +105,7 @@ public class CampingAPI {
 		int to = page == (searchData.size() / 10 + 1) ? from + (searchData.size() % 10) : page * 10;
 		
 		
-		System.out.println("from = " + from);
-		System.out.println("to = " + to);
-		System.out.println("searchData =" +searchData.toString());
+		
 		return searchData.subList(from, to);
 	}
 	
