@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import data.Like;
 import data.Review;
 
 public class PostDAO extends DAO {
@@ -29,6 +30,7 @@ public class PostDAO extends DAO {
 		}
 	}
 
+	// 자기가 쓴 글
 	public static List<Review> readByMyPost(String name) {
 		SqlSession session = factory.openSession(true);
 		try {
@@ -38,11 +40,10 @@ public class PostDAO extends DAO {
 		}
 	}
 
-	// 모든 리뷰 보기
-	public static List<Review> allPosts() {
+	public static List<Review> allPosts(Map map) {
 		SqlSession session = factory.openSession(true);
 		try {
-			return session.selectList("posts.allPosts");
+			return session.selectList("posts.allPosts", map);
 		} finally {
 			session.close();
 		}
@@ -84,10 +85,66 @@ public class PostDAO extends DAO {
 		SqlSession session = factory.openSession();
 		try {
 			return session.selectList("posts.allPosts");
+
 		} finally {
 			session.close();
 		}
 	}
+
+	// 좋아요 여부 확인
+	public static int likeCheck(Map map) {
+		SqlSession session = factory.openSession(true);
+		try {
+			return session.selectOne("posts.likeCheck", map);
+		} finally {
+			session.close();
+		}
+	}
+
+	// 좋아요 추가
+	public static int likeCamp(Map map) {
+		SqlSession session = factory.openSession(true);
+		try {
+
+			return session.insert("posts.likeCamp", map);
+		} finally {
+			session.close();
+		}
+	}
+
+	// 좋아요 삭제
+	public static int unlikeCamp(Map map) {
+		SqlSession session = factory.openSession(true);
+		try {
+
+			return session.delete("posts.unlikeCamp", map);
+		} finally {
+			session.close();
+		}
+	}
+
+	// 좋아요된 캠핑장 전체 삭제
+	public static int allDeleteCamp(String id) {
+		SqlSession session = factory.openSession(true);
+		try {
+
+			return session.delete("posts.allDeleteCamp", id);
+		} finally {
+			session.close();
+		}
+	}
+
+	// 캠핑장 정보 불러오기
+	public static List<Like> findByCamp(String id) {
+		SqlSession session = factory.openSession(true);
+		try {
+
+			return session.selectList("posts.findByCamp", id);
+		} finally {
+			session.close();
+		}
+	}
+
 	// 게시글 페이징 처리시
 //	public static List<Review> getFindPostAtoB(int a, int b) {
 //		Map map = new HashMap<>();
@@ -106,6 +163,7 @@ public class PostDAO extends DAO {
 		SqlSession session = factory.openSession();
 		try {
 			return session.selectOne("posts.findBypostNum", postNum);
+
 		} finally {
 			session.close();
 		}

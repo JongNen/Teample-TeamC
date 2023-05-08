@@ -61,13 +61,22 @@
 	</section>
 
 	<script type="text/javascript">
-		document.querySelector("#status").onmouseover = function() {
-			document.querySelector("#pop").style.display = "flex";
+	if(${sessionScope.logon eq true}){
+		document.querySelector("#select").addEventListener("change", function(){
+		//선택한 값을 사용했을때 작업 수행
+		
+		let selectValue = this.value;
+		
+		if(selectValue === "option1") {
+						
+		} else if(selectValue === "option2"){
+			window.location.href="/user/myPage?id=${logonUser.id}";
+		}else if(selectValue === "option3"){
+			window.location.href="/user/signOut";
 		}
-		document.querySelector("#status").onmouseout = function() {
-			document.querySelector("#pop").style.display = "none";
-		}
-	</script>
+	});
+	}
+</script>
 
 </body>
 </html>
