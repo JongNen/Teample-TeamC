@@ -12,32 +12,7 @@
 <head>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
 <style>
-table {
-	border-collapse: collapse;
-	width: 40%;
-	float: right;
-}
-
-th, td {
-	padding: 8px;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
-}
-
-th {
-	background-color: #f2f2f2;
-}
-
-.container {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: flex-start;
-	align-items: center;
-	margin: 20px;
-}
-
 .heart-icon.fas {
 	color: red;
 }
@@ -56,157 +31,42 @@ th {
 	href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
 </head>
 <body>
-	<div style="position: relative; display: inline-block;">
-		<img src="${camp.firstImageUrl}"
-			onerror="this.src='/resource/image/tent.png';"
-			style="max-width: 500px; height: 300px; opacity: 0.9;" />
-		<button id="likeButton" onclick="like()"
-			style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none;">
-			<i id="likeIcon" class="far fa-heart heart-icon"
-				style="font-size: 24px;"></i>
-		</button>
-	</div>
-
-
-
-	<div style="display: flex; flex-direction: row-reverse;">
-
-
-		<table>
-
-			<tr>
-				<th>항목</th>
-				<th>내용</th>
-			</tr>
-			<tr>
-				<td>캠핑장 명</td>
+	<div class="detail-main">
+		<div class="detail-img">
+			<img src="${camp.firstImageUrl}"
+				onerror="this.src='/resource/image/tent.png';" />
+			<button id="likeButton" onclick="like()" class="like-button-position">
+				<i id="likeIcon" class="far fa-heart heart-icon like-button"></i>
+			</button>
+		</div>
+		<div class="camping-content">
+			<div class="camping-line"></div>
+			<div class="camping-name">
 				<c:choose>
 					<c:when test="${not empty camp.facltNm}">
-						<td>${camp.facltNm.replace("(주)", " ")}</td>
-					</c:when>
+							${camp.facltNm.replace("(주)", " ")}
+						</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
-					</c:otherwise>
-				</c:choose>
-			</tr>
-			<tr>
-				<td>주소</td>
-				<c:choose>
-					<c:when test="${not empty camp.addr1}">
-						<td>${camp.addr1}</td>
-					</c:when>
-					<c:otherwise>
-						<td>-
-						<td>
-					</c:otherwise>
-				</c:choose>
-			</tr>
-			<tr>
-				<td>연락처</td>
-				<c:choose>
-					<c:when test="${not empty camp.tel}">
-						<td>${camp.tel}</td>
-					</c:when>
-					<c:otherwise>
-						<td>-
-						<td>
-					</c:otherwise>
-				</c:choose>
 
-			</tr>
-			<tr>
-				<td>홈페이지 주소</td>
-				<c:choose>
-					<c:when test="${not empty camp.homepage}">
-						<td><a href="${camp.homepage}">${camp.homepage}</a></td>
-					</c:when>
-					<c:otherwise>
-						<td>-
-						<td>
 					</c:otherwise>
 				</c:choose>
-
-			</tr>
-			<tr>
-				<td>캠핑장 형태</td>
-				<c:choose>
-					<c:when test="${not empty camp.induty}">
-						<td>${camp.induty}</td>
-					</c:when>
-					<c:otherwise>
-						<td>-
-						<td>
-					</c:otherwise>
-				</c:choose>
-
-			</tr>
-			<tr>
-				<td>주변 환경</td>
-				<c:choose>
-					<c:when test="${not empty camp.lctCl}">
-						<td>${camp.lctCl}</td>
-					</c:when>
-					<c:otherwise>
-						<td>-
-						<td>
-					</c:otherwise>
-				</c:choose>
-
-			</tr>
-			<tr>
-				<td>운영기간</td>
-				<c:choose>
-					<c:when test="${not empty camp.operPdCl}">
-						<td>${camp.operPdCl}</td>
-					</c:when>
-					<c:otherwise>
-						<td>-
-						<td>
-					</c:otherwise>
-				</c:choose>
-
-			</tr>
-			<tr>
-				<td>운영일</td>
-				<c:choose>
-					<c:when test="${not empty camp.operDeCl}">
-						<td>${camp.operDeCl}</td>
-					</c:when>
-					<c:otherwise>
-						<td>-
-						<td>
-					</c:otherwise>
-				</c:choose>
-
-			</tr>
-			<tr>
-				<td>애완동물 출입</td>
-				<c:choose>
-					<c:when test="${not empty camp.animalCmgCl}">
-						<td>${camp.animalCmgCl}</td>
-					</c:when>
-					<c:otherwise>
-						<td>-
-						<td>
-					</c:otherwise>
-				</c:choose>
-
-			</tr>
-			<tr>
-				<td>캠핑장 소개</td>
-				<c:choose>
-					<c:when test="${not empty camp.lineIntro}">
-						<td>${camp.lineIntro}</td>
-					</c:when>
-					<c:otherwise>
-						<td>-
-						<td>
-					</c:otherwise>
-				</c:choose>
-
-			</tr>
-		</table>
+			</div>
+			<div class="camping-line">
+				<div class="onelog-introduce">
+					<c:choose>
+						<c:when test="${not empty camp.lineIntro}">
+								"${camp.lineIntro}"
+							</c:when>
+						<c:otherwise>
+							"멋진 캠핑장이에요!"
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+			<div>
+				<%@ include file="/WEB-INF/views/commons/icon.jsp"%>
+			</div>
+		</div>
 	</div>
 
 	<div id="map"
@@ -222,10 +82,6 @@ th {
 					</c:otherwise>
 		</c:choose>
 	</div>
-
-
-
-
 
 	<!-- 지도 관련 부분 -->
 	<c:if test="${!empty camp.addr1}">
@@ -271,8 +127,6 @@ th {
   			document.getElementById("likeIcon").classList.add("fas");
 			}
 
-
-	
 	function like() {
 			const likeButton = document.getElementById("likeButton");
 			const likeIcon = document.getElementById("likeIcon");
@@ -282,11 +136,7 @@ th {
 		xhr.send();
 		const txt = xhr.responseText;
 		const obj = JSON.parse(txt);
-		
-		
-			
-		
-		
+
 	  // isLiked 값에 따라 하트 색 변경
 	  if (obj.done === 'fas') {
 	    likeIcon.classList.remove("fas");
@@ -298,9 +148,6 @@ th {
 	 
 	}
 	
-
-			
-		</script>
-
+	</script>
 </body>
 </html>

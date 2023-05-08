@@ -18,6 +18,15 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'omyu_pretty';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
 	height: 100%;
 }
@@ -27,12 +36,99 @@ a {
 	color: black;
 }
 
+.back-img{
+	background-image: url("/resource/image/backGround.jpg");
+	background-size: cover;
+	display: flex;
+	justify-content:center;
+	height: 65rem;
+	padding-top:1em;
+}
+
+
+.search-box-position{
+	background-color: rgba(255, 241, 193,  0.9);
+	width: 30%;
+	height: 25%;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	padding-top: 10em;
+}
+
+.icon-size{
+	width: 15%;
+	border-radius: 9999px;
+}
+
+.detail-main {
+	display: flex;
+	padding-top: 4em;
+	gap: 8px;
+	justify-content: center;
+}
+
+.icon-position{
+	display: flex;
+	justify-content: center;
+}
+
+.icon-size-etc{
+	width: 11%;
+	border-radius: 9999px;
+}
+
+.detail-img {
+	display: flex;
+	flex: 0.4;
+	position: relative;
+	width: 100%;
+	padding-left: 5%;
+}
+
+.like-button {
+	font-size: 32px;
+}
+
+.like-button-position {
+	display: flex;
+	position: absolute;
+	background-color: transparent;
+	border: 2px;
+}
+
+.camping-content {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3em;
+	align-items: center;
+	flex:1;
+	padding-right: 5%;
+}
+
+.camping-line {
+	display: flex;
+}
+
+.camping-name {
+	font-family: 'MBC1961GulimM';
+	font-size: 30px;
+	font-weight: 600px;
+}
+
+.onelog-introduce {
+	font-size: 32px;
+	font-family: 'omyu_pretty';
+	color: #2D2727;
+}
+
 .signup-blank {
 	border: 2px solid #e5e7eb;
 	padding: 10px 12px;
 	border-radius: 4px;
 	outline: none;
 	transition: 0.4s ease;
+	align-items: center;
 }
 
 .signup-blank:focus {
@@ -179,6 +275,8 @@ a {
 .backimg-linear {
 	margin: 0;
 	width: 100%;
+	text-align: center;
+	position: relative;
 }
 
 .logo {

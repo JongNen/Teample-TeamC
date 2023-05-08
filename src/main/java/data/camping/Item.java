@@ -25,6 +25,16 @@ public class Item {
 	String animalCmgCl; // 애완동물출입
 	String tourEraCl; // 여행시기
 	String firstImageUrl; // 대표이미지
+	String sbrsCl; //부대시설
+	
+	
+	public String getSbrsCl() {
+		return sbrsCl;
+	}
+
+	public void setSbrsCl(String sbrsCl) {
+		this.sbrsCl = sbrsCl;
+	}
 
 	public String getContentId() {
 		return contentId;

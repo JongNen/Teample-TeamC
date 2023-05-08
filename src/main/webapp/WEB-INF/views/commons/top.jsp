@@ -24,7 +24,6 @@
 	<section style="text-align: center;">
 		<nav
 			style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 8px 16px; gap: 16px;">
-
 			<c:choose>
 				<c:when test="${sessionScope.logon }">
 					<div id="status" style="position: relative">
@@ -61,22 +60,13 @@
 	</section>
 
 	<script type="text/javascript">
-	if(${sessionScope.logon eq true}){
-		document.querySelector("#select").addEventListener("change", function(){
-		//선택한 값을 사용했을때 작업 수행
-		
-		let selectValue = this.value;
-		
-		if(selectValue === "option1") {
-						
-		} else if(selectValue === "option2"){
-			window.location.href="/user/myPage?id=${logonUser.id}";
-		}else if(selectValue === "option3"){
-			window.location.href="/user/signOut";
+		document.querySelector("#status").onclick = function() {
+			document.querySelector("#pop").style.display = "flex";
 		}
-	});
-	}
-</script>
+		document.querySelector("#status").onmouseout = function() {
+			document.querySelector("#pop").style.display = "";
+		}
+	</script>
 
 </body>
 </html>
