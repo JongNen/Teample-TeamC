@@ -149,6 +149,7 @@ public class IndexController extends HttpServlet {
 
 		String[] sbrList = { "전기", "무선인터넷", "장작판매", "온수", "트렘폴린", "물놀이장", "놀이터", 
 							"산책로", "운동장", " 운동시설", "마트-편의점" };
+
 		req.setAttribute("sbrList", sbrList);
 		
 		String[] indutyList = {"일반야영장", "자동차야영장", "카라반", "글램핑"};

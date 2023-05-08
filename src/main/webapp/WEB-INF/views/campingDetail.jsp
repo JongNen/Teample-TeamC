@@ -14,11 +14,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <style>
-table {
-	border-collapse: collapse;
-	width: 40%;
-	float: right;
-}
+
 
 th, td {
 	padding: 8px;
@@ -45,6 +41,22 @@ th {
 .heart-icon.far {
 	color: black;
 }
+
+.detail_btn button {
+	width: 30%;
+	height: 40px;
+	border: 1px solid #8e8e8e;
+	border-radius: 5px;
+}
+
+.detail_btn button:hover {
+	background: white;
+	cursor: pointer;
+}
+
+.table th {
+	width: 45%;
+}
 </style>
 <meta charset="UTF-8">
 <title></title>
@@ -60,20 +72,27 @@ th {
 		<img src="${camp.firstImageUrl}"
 			onerror="this.src='/resource/image/tent.png';"
 			style="max-width: 500px; height: 300px; opacity: 0.9;" />
-		<button id="likeButton" onclick="like()"
-			style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none;">
-			<i id="likeIcon" class="far fa-heart heart-icon"
-				style="font-size: 24px;"></i>
-		</button>
+		<c:if test="${sessionScope.logon}">
+			<button id="likeButton" onclick="like()"
+				style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none;">
+				<i id="likeIcon" class="far fa-heart heart-icon"
+					style="font-size: 40px;"></i>
+			</button>
+		</c:if>
+	</div>
+	<div
+		style="display: flex; justify-content: center; align-items: center;">
+		<div class="detail_btn"
+			style="display: flex; justify-content: space-around; width: 960px;">
+			<button onclick="toggleDetail()">상세정보</button>
+			<button onclick="toggleMap()">지도보기</button>
+			<button onclick="toggleReview()">후기</button>
+		</div>
 	</div>
 
-
-
-	<div style="display: flex; flex-direction: row-reverse;">
-
-
+	<div style="display:flex; justify-content: center; width: 960px; margin-top: 20px;">
+	<div class="table" id="campInfo" style="display: block; width: 100%; ">
 		<table>
-
 			<tr>
 				<th>항목</th>
 				<th>내용</th>
@@ -85,8 +104,7 @@ th {
 						<td>${camp.facltNm.replace("(주)", " ")}</td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
 			</tr>
@@ -97,8 +115,7 @@ th {
 						<td>${camp.addr1}</td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
 			</tr>
@@ -109,24 +126,20 @@ th {
 						<td>${camp.tel}</td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
-
 			</tr>
 			<tr>
 				<td>홈페이지 주소</td>
 				<c:choose>
 					<c:when test="${not empty camp.homepage}">
-						<td><a href="${camp.homepage}">${camp.homepage}</a></td>
+						<td><a href="${camp.homepage}" style="color: blue">${camp.homepage}</a></td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
-
 			</tr>
 			<tr>
 				<td>캠핑장 형태</td>
@@ -135,11 +148,9 @@ th {
 						<td>${camp.induty}</td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
-
 			</tr>
 			<tr>
 				<td>주변 환경</td>
@@ -148,11 +159,9 @@ th {
 						<td>${camp.lctCl}</td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
-
 			</tr>
 			<tr>
 				<td>운영기간</td>
@@ -161,11 +170,9 @@ th {
 						<td>${camp.operPdCl}</td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
-
 			</tr>
 			<tr>
 				<td>운영일</td>
@@ -174,11 +181,9 @@ th {
 						<td>${camp.operDeCl}</td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
-
 			</tr>
 			<tr>
 				<td>애완동물 출입</td>
@@ -187,11 +192,9 @@ th {
 						<td>${camp.animalCmgCl}</td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
-
 			</tr>
 			<tr>
 				<td>캠핑장 소개</td>
@@ -200,30 +203,42 @@ th {
 						<td>${camp.lineIntro}</td>
 					</c:when>
 					<c:otherwise>
-						<td>-
-						<td>
+						<td>-</td>
 					</c:otherwise>
 				</c:choose>
-
 			</tr>
 		</table>
 	</div>
+	</div>
 
 	<div id="map"
-		style="width: 100%; height: 270px; margin: auto; display: flex; justify-content: center; align-items: center; border: 1px solid #dddddd">
+		style="width: 100%; height: 400px; margin: auto; display: none; justify-content: center; align-items: center; border: 1px solid #dddddd">
 
 		<c:choose>
 			<c:when test="${empty camp.addr1 }">
-						지도정보를 확보 하지 못해 렌더링에 실패하였습니다.
-					</c:when>
+            지도정보를 확보 하지 못해 렌더링에 실패하였습니다.
+        </c:when>
 			<c:otherwise>
-						지도를 불러옵니다.
-						
-					</c:otherwise>
+			</c:otherwise>
 		</c:choose>
+	</div>
+	
+	<div id ="review">
+	
 	</div>
 
 
+
+	<script>
+		function toggleDetail() {
+		    var campInfo = document.getElementById("campInfo");
+		    var mapElement = document.getElementById("map");
+		    if (campInfo.style.display === "none") {
+		        campInfo.style.display = "block";
+		        mapElement.style.display="none";
+		    } 
+		}
+	</script>
 
 
 
@@ -232,30 +247,38 @@ th {
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdd7a2dbaa2570a180f3c39b9a412437"></script>
 		<script>
-				
-		let pos = new kakao.maps.LatLng(${camp.mapY}, ${camp.mapX}); //지도의 중심좌표.
-		
-		let container = document.querySelector('#map'); //지도를 담을 영역의 DOM 레퍼런스
-		let options = { //지도를 생성할 때 필요한 기본 옵션
-			center : pos, 
-			level : 4
-		//지도의 레벨(확대, 축소 정도)
-		};
-
-		let map = new kakao.maps.Map(document.querySelector('#map'), options); //지도 생성 및 객체 리턴
-		
-		let marker = new kakao.maps.Marker({
-		    position: pos
-		});
-		
-		marker.setMap(map);
-		</script>
+	let pos = new kakao.maps.LatLng(${camp.mapY}, ${camp.mapX});	
+	let container = document.querySelector('#map');
+	let options = {		
+		center : pos, 
+		level : 4
+	};
+	
+	let map = new kakao.maps.Map(document.querySelector('#map'), options);
+	let marker = new kakao.maps.Marker({
+		position: pos
+	});
+	marker.setMap(map);
+	
+	
+  
+	function toggleMap() {
+		  let mapElement = document.getElementById("map");
+		  var campInfo = document.getElementById("campInfo");
+		  if (mapElement.style.display === "none") {
+		    mapElement.style.display = "inline-block";
+		    map.relayout();
+		    map.setCenter(pos);
+		    marker.setMap(map);
+		    campInfo.style.display = "none";
+		  }
+		}
+	
+</script>
 	</c:if>
 
-
-	<script>
-	// 좋아요 부분
-	
+	<!-- 좋아요 부분 -->
+	<script>	
 	   const likes = ${likeCheckJson};
 	   const userId = "${sessionScope.logonUser.id}";
 	   let liked = false;
@@ -282,11 +305,7 @@ th {
 		xhr.send();
 		const txt = xhr.responseText;
 		const obj = JSON.parse(txt);
-		
-		
 			
-		
-		
 	  // isLiked 값에 따라 하트 색 변경
 	  if (obj.done === 'fas') {
 	    likeIcon.classList.remove("fas");
@@ -298,9 +317,9 @@ th {
 	 
 	}
 	
-
-			
 		</script>
+
+
 
 </body>
 </html>
