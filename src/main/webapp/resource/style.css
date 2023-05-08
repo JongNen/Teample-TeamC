@@ -1,248 +1,380 @@
-
 @charset "UTF-8";
 
 @font-face {
-    font-family: 'MBC1961GulimM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'MBC1961GulimM';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
+
 body {
 	height: 100%;
 }
 
-a{
+a {
 	text-decoration: none;
 	color: black;
 }
 
-a:hover{
-	color:#05BFDB;
+.signup-blank {
+	border: 2px solid #e5e7eb;
+	padding: 10px 12px;
+	border-radius: 4px;
+	outline: none;
+	transition: 0.4s ease;
 }
 
-hr{
-	
-	
+.signup-blank:focus {
+	border: 2px solid #9ca3af;
 }
 
-.backimg-linear{
-	margin:0;
+.signup-bottom-position {
+	text-align: center;
+}
+
+.bord-bottom-position {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	text-align: center;
+}
+
+.write-button-position {
+	text-align: right;
+	width: 85%;
+}
+
+.write-button {
+	padding: 8px;
+	background-color: #454545;
+	transition: 0.4s ease;
+	cursor: pointer;
+	font-size: 14px;
+	align-content: center;
+	border-radius: 4px;
+	border: 2px solid #454545;
+	color: white;
+}
+
+.write-button:hover {
+	background-color: white;
+	color: #454545;
+}
+
+.text-button {
+	padding: 8px;
+	border-radius: 4px;
+	transition: 0.4s ease;
+	cursor: pointer;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.text-button:hover {
+	background-color: #e5e7eb;
+}
+
+.board-title {
+	font-family: 'MBC1961GulimM';
+	text-align: center;
+	font-size: 30px;
+	padding: 1.4em;
+}
+
+.post-title {
+	display: flex;
+	width: 85%;
+	padding: 20px 0px;
+	border-bottom: 1px solid rgb(51, 51, 51);
+	border-top: 2px solid rgb(51, 51, 51);
+}
+
+.post-t1 {
+	flex-basis: 100px;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.post-t2 {
+	flex-grow: 1;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.post-t3 {
+	flex-basis: 120px;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.post-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.post-contentmain {
+	display: flex;
+	flex-direction: row;
+	border-bottom: 1px solid rgb(244, 244, 244);
+	width: 85%;
+}
+
+.post-content1 {
+	flex-basis: 100px;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	padding: 10px 0px;
+}
+
+.post-content2 {
+	flex-grow: 1;
+	display: flex;
+	text-align: left;
+	align-items: center;
+	padding-left: 2em;
+}
+
+.post-content3 {
+	text-align: center;
+	padding: 10px 0px;
+	flex-basis: 120px;
+}
+
+.menu {
+	position: absolute;
+	box-shadow: 0 2px 4px -2px rgb(0 0 0/ 0.1), 0 4px 6px -1px
+		rgb(0 0 0/ 0.1);
+	border-radius: 6px;
+	text-align: center;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	padding: 8px;
+	font-size: 14px;
+	gap: 8px;
+}
+
+.menu div {
+	min-width: max-content;
+	padding: 4px;
+}
+
+.backimg-linear {
+	margin: 0;
 	width: 100%;
 }
 
-.logo{
+.logo {
 	width: 600px;
 	padding-top: 4em;
 	padding-bottom: 6em;
 }
 
-.indedetail-button{
+.indedetail-button {
 	font-family: 'Pretendard-Regular';
 	background-color: #CBF1F5;
 	color: black;
 	width: 80px;
-	height:30px;
+	height: 30px;
 	padding: 0.2px;
 	border-top-left-radius: 12px 12px;
 	border-top-right-radius: 12px 12px;
 	border: none;
-	text-align:center;
-	cursor:pointer;
+	text-align: center;
+	cursor: pointer;
 }
 
-.indexbutton-position{
+.indexbutton-position {
 	position: absolute;
 	top: 43%;
-	right:37%;
+	right: 37%;
 }
 
-.title{
+.title {
 	font-family: 'MBC1961GulimM';
 	font-size: 40px;
 }
 
-.searchbutton-position{
+.searchbutton-position {
 	position: absolute;
 	top: 80%;
-	right:35%;
+	right: 35%;
 }
 
-.searchbutton{
+.searchbutton {
 	font-family: 'Pretendard-Regular';
 	padding: 3px 5px;
 	background-color: white;
-	margin :1px;
+	margin: 1px;
 	border-radius: 6px;
-  border :2px solid #CBF1F5;
+	border: 2px solid #CBF1F5;
 	cursor: pointer;
- 	text-align: center;
- 	width: 200px;
- 	height: 32px;
- 	font-size: 18px;
+	text-align: center;
+	width: 200px;
+	height: 32px;
+	font-size: 18px;
 }
 
-.searchbutton:hover{
+.searchbutton:hover {
 	font-family: 'Pretendard-Regular';
 	padding: 3px 5px;
 	background-color: #CBF1F5;
-	margin :1px;
+	margin: 1px;
 	border-radius: 6px;
-  border :2px solid #CBF1F5;
+	border: 2px solid #CBF1F5;
 	cursor: pointer;
- 	text-align: center;
+	text-align: center;
 	width: 200px;
- 	height: 32px;
- 	font-size: 18px;
+	height: 32px;
+	font-size: 18px;
 }
 
-.belt{
+.belt {
 	background-color: #FFF1C1;
 	width: 100%;
-	height:300px;
+	height: 300px;
 	position: absolute;
 	bottom: -47%;
 }
 
-.back{
+.back {
 	position: fixed;
 	opacity: 0.95;
-	text-align:left;
-	padding-left:2%;
-	padding-top:5%;
-	padding-bottom:6%;
+	text-align: left;
+	padding-left: 2%;
+	padding-top: 5%;
+	padding-bottom: 6%;
 	background-color: #FFF1C1;
 	width: 530px;
 	height: 80px;
 	border-radius: 4px;
-	position : absolute;
+	position: absolute;
 	top: 46%;
-	left:34%;
+	left: 34%;
 }
 
-.but{
+.but {
 	font-family: 'Pretendard-Regular';
 	padding: 3px 5px;
 	background-color: white;
-	margin :1px;
+	margin: 1px;
 	border-radius: 6px;
-	border :2px solid #454545;
+	border: 2px solid #454545;
 	cursor: pointer;
- 	text-align: center;
+	text-align: center;
 }
 
-.but:hover{
+.but:hover {
 	font-family: 'Pretendard-Regular';
 	padding: 3px 5px;
-	background-color:#454545;
- 	color : white;
-	margin :1px;
+	background-color: #454545;
+	color: white;
+	margin: 1px;
 	border-radius: 6px;
-  	border :2px solid #454545;
+	border: 2px solid #454545;
 	cursor: pointer;
 }
 
-.sign-button{
+.sign-button {
 	font-family: 'Pretendard-Regular';
-	padding: 3px 5px;
-	background-color:#454545;
-	margin :1px;
-	border-radius: 6px;
-	border :2px solid #454545;
+	padding: 8px 12px;
+	background-color: #454545;
+	border-radius: 4px;
+	border: 2px solid #454545;
 	cursor: pointer;
- 	text-align: center;
- 	width: 100px;
- 	height: 30px;
- 	font-size: 15px;
- 	color: #F6F1E9;
+	text-align: center;
+	color: #F6F1E9;
+	transition: 0.4s ease;
+	display: flex;
+	justify-content: center;
 }
 
-.sign-button:hover{
-	background-color:white;
- 	color : #454545;
-	margin :1px;
+.sign-button:hover {
+	background-color: white;
+	color: #454545;
 	border-radius: 6px;
-  	border :2px solid #454545;
+	border: 2px solid #454545;
 	cursor: pointer;
-
 }
 
-.blank{
+.blank {
 	font-family: 'Pretendard-Regular';
 	border: 0;
 	padding-left: 8px;
-	padding-top : 2px;
-	padding-bottom : 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 	border-radius: 4px;
 }
 
-.signUp-balnk{
+.signUp-balnk {
 	font-family: 'Pretendard-Regular';
 	border-radius: 6px;
-	padding:4px;
+	padding: 4px;
 	width: 280px;
 	height: 35px;
-	margin:2px;
+	margin: 2px;
 }
 
-.title-blank{
+.title-blank {
 	font-family: 'Pretendard-Regular';
 	border-radius: 6px;
-	border :1px solid #454545;
-	padding:10px;
+	border: 1px solid #454545;
+	padding: 10px;
 	width: 380px;
 }
 
-.postBody-blank{
+.postBody-blank {
 	font-family: 'Pretendard-Regular';
 	border-radius: 6px;
-	border :1px solid #454545;
-	padding:10px;
+	border: 1px solid #454545;
+	padding: 10px;
 	width: 430px;
 	height: 1030px;
 	text-align: left;
 	vertical-align: top;
 }
 
-.loginId{
-  border-top-left-radius: 10px 10px;
-  border-top-right-radius: 10px 10px;
-  padding :10px;
-  height: 45px;
-  width: 300px;
-  border: 2px solid #454545;
-  font-size:20px;
+.login-blank {
+	border: 2px solid #e5e7eb;
+	padding: 8px 12px;
+	border-radius: 4px;
+	outline: none;
+	transition: 0.4s ease;
 }
 
-.loginPass{
-  border-bottom-left-radius: 10px 10px;
-  border-bottom-right-radius: 10px 10px;
-  padding :10px;
-  height: 45px;
-  width: 300px;
-  border: 2px solid #454545;
-  font-size:20px;
+.login-blank:focus {
+	border: 2px solid #9ca3af;
 }
 
-.root{
+.root {
 	font-family: 'Pretendard-Regular';
 	text-align: center;
 }
 
-.postDetail-position{
-	padding: 15%;
-
+.postDetail-position {
+	padding: 6%;
 }
 
 .camping-item {
-        display: inline-block;
-        text-align: center;
-        vertical-align: top;
-      	margin: 0 20px 20px 0;
-    }
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	margin: 0 20px 20px 0;
+}

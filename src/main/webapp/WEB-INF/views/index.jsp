@@ -19,6 +19,14 @@
 <div class="back" style="font-size: 20px;">
 	<form action="/search">
 
+<<<<<<< HEAD
+		<p>지역별</p>
+		<p>테마별</p>
+		<button class="searchbutton searchbutton-position" type="submit">검색하기</button>
+
+
+=======
+>>>>>>> origin
 		지역별
 		<%--도 영역 --%>
 		<select name="doNm" id="do">
@@ -186,17 +194,31 @@
 		</div>
 		<button type="submit">검색하기</button>
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin
 	</form>
 </div>
 <div class="belt">
 	<table style="margin: auto; width: 1355px;">
 		<tbody>
 
+<<<<<<< HEAD
+
+			<c:choose>
+				<c:when test="${!empty sessionScope.logonUser.area}">
+
+					<br />
+					<b style="font-size: 18px;">관심 지역인
+						${sessionScope.logonUser.area.substring(0,2)} 지역의 캠핑장 입니다</b>
+=======
 			<c:choose>
 				<c:when test="${!empty sessionScope.logonUser.area}">
 					
 					<br/>
 					<b style="font-size: 18px;">관심 지역인 ${sessionScope.logonUser.area.substring(0,2)} 지역의 캠핑장 입니다</b>
+>>>>>>> origin
 
 					<c:forEach items="${campingList}" var="obj">
 
@@ -211,7 +233,11 @@
 								<p style="font-size: 12px;">${obj.lineIntro}</p></td>
 						</tr>
 					</c:forEach>
+<<<<<<< HEAD
+
+=======
 					
+>>>>>>> origin
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${campingList}" var="obj">
@@ -269,3 +295,7 @@
 </script>
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin
