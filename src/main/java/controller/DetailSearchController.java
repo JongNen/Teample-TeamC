@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,26 +15,19 @@ import util.CampingAPI;
 @WebServlet("/detailSearch")
 public class DetailSearchController extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
 		String[] doNm = req.getParameterValues("doNm"); // 도
 		String[] lctCl = req.getParameterValues("lctCl"); // 입지
 		String[] facltDivNm = req.getParameterValues("facltDivNm"); // 사업주체
 		String[] sbrsCl = req.getParameterValues("sbrsCl"); // 부대시설
 		String[] induty = req.getParameterValues("induty"); // 주요시설
-		
-	
+
 		// 기타 정보(동물, 트레일러, 캠핑카)
-		String animalCmgCl = req.getParameter("animalCmgCl") != null ? req.getParameter("animalCmgCl") : "";
-		String trlerAcmpnyAt = req.getParameter("trlerAcmpnyAt") != null ? req.getParameter("trlerAcmpnyAt") : "";
-		
-//		System.out.println("do = " + Arrays.toString(doNm));
-//		System.out.println("thema = " + Arrays.toString(lctCl));
-//		System.out.println("company = " + Arrays.toString(facltDivNm));
-//		System.out.println("siseol = " + Arrays.toString(sbrsCl));
-//		System.out.println("trler = " +  trlerAcmpnyAt);
-//		System.out.println("=======================");
-			
+		String animalCmgCl = req.getParameter("animalCmgCl");
+
+		String trlerAcmpnyAt = req.getParameter("trlerAcmpnyAt");
+
 		int p;
 
 		if (req.getParameter("pageNo") == null) {
@@ -49,8 +40,9 @@ public class DetailSearchController extends HttpServlet {
 
 		if (doNm == null && lctCl == null && facltDivNm == null && sbrsCl == null 
 			&&induty==null&& animalCmgCl == null && trlerAcmpnyAt == null) {
+			
 			List<Item> response = CampingAPI.getCamping(pageNo);
-
+			
 			if (response != null) {
 				req.setAttribute("datas", response); // 검색에 필요한 데이터 끌어다 쓰게
 				req.setAttribute("total", CampingAPI.cache.size()); // 불러온 검색 데이터 수
@@ -81,19 +73,17 @@ public class DetailSearchController extends HttpServlet {
 			req.setAttribute("existPrev", existPrev);
 			req.setAttribute("existNext", existNext);
 			
-			
+		
 		} else {
 			//애완동물 
-			if (animalCmgCl.equals("on")) {
-				animalCmgCl = "가능";
-			} else if(animalCmgCl.equals("불가능") ){
-				animalCmgCl = "불가능";
-			} else {
-				animalCmgCl =null;
-			}
-	//	System.out.println("animal = " +  animalCmgCl);
 			
-			if(trlerAcmpnyAt.equals("on")) {
+			if (animalCmgCl != null && animalCmgCl.equals("on")) {
+				animalCmgCl = "가능";
+			} else{
+				animalCmgCl = "불가능";
+			} 
+			
+			if(trlerAcmpnyAt != null && trlerAcmpnyAt.equals("on")) {
 				trlerAcmpnyAt = "Y";
 			} else {
 				trlerAcmpnyAt = "N";
@@ -133,21 +123,19 @@ public class DetailSearchController extends HttpServlet {
 
 			req.setAttribute("existPrev", existPrev);
 			req.setAttribute("existNext", existNext);
-			
-			
-		}
 
+		}
 		// doNm 검색 세팅
 		String[] doAndMctNm = {"광주시", "대구시", "대전시", "부산시", "서울시", "세종시", "인천시", "울산시", "제주도", "강원도", "경기도", "경상북도",
 				"경상남도", "전라북도", "전라남도", "충청북도", "충청남도" };
 		req.setAttribute("doList", doAndMctNm);
 		
 		// lctCl 검색 세팅
-				
+		
 		String[] thema = {"강", "계곡", "도심", "산", "섬", "숲", "해변" };
-				
+		
 		req.setAttribute("themaList", thema);
-
+		
 		String[] facList = {"지자체", "국립공원", "자연휴양림", "국민여가", "민간" };
 		req.setAttribute("facList", facList);
 
@@ -156,7 +144,6 @@ public class DetailSearchController extends HttpServlet {
 		
 		String[] indutyList = {"일반야영장", "자동차야영장", "카라반", "글램핑"};
 		req.setAttribute("indutyList", indutyList);
-		
 		req.getRequestDispatcher("/WEB-INF/views/detailSearch.jsp").forward(req, resp);
 	}
 }

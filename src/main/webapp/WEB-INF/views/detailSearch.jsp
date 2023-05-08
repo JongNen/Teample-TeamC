@@ -12,36 +12,36 @@
 				지역별
 				<c:forEach items="${doList}" var="doItem">
 					<label for="do_${doItem}">
-					<input type="checkbox" id="do_${doItem}" name="doNm" value="${doItem }" ${doItem eq param.doNm ? 'checked' : '' }>${doItem}</label>
+					<input type="checkbox" id="do_${doItem}" name="doNm" value="${doItem }">${doItem}</label>
 				</c:forEach>
 			</div>
 			<div>운영형태
 				<c:forEach items="${facList}" var="faItem">
 					<label for="fa_${faItem}">
-					<input type="checkbox" id="fa_${faItem}" name="facltDivNm" value="${faItem}" ${faItem eq param.facltDivNm ? 'checked' : '' }>${faItem}</label>
+					<input type="checkbox" id="fa_${faItem}" name="facltDivNm" value="${faItem}">${faItem}</label>
 				</c:forEach>
 			</div>
 			<div>입지구분
 				<c:forEach items="${themaList}" var="themaItem">
 					<label for="the_${themaItem}">
-					<input type="checkbox" id="the_${themaItem}" name="lctCl" value="${themaItem}" ${themaItem eq param.lctCl ? 'checked' : '' }>${themaItem}</label>
+					<input type="checkbox" id="the_${themaItem}" name="lctCl" value="${themaItem}">${themaItem}</label>
 				</c:forEach>
 			</div>
 			<div>주요시설
 				<c:forEach items="${indutyList}" var="iduItem">
 					<label for="in_${iduItem}">
-					<input type="checkbox" id="in_${iduItem}" name="induty" value="${iduItem}" ${iduItem eq param.induty ? 'checked' : '' }>${iduItem}</label>
+					<input type="checkbox" id="in_${iduItem}" name="induty" value="${iduItem}">${iduItem}</label>
 				</c:forEach>
 			</div>
 			<div>부대시설
 				<c:forEach items="${sbrList}" var="sbItem">
 					<label for="sb_${sbItem}">
-					<input type="checkbox" id="sb_${sbItem}" name="sbrsCl" value="${sbItem}" ${sbItem eq param.sbrsCl ? 'checked' : '' }>${sbItem}</label>
+					<input type="checkbox" id="sb_${sbItem}" name="sbrsCl" value="${sbItem}">${sbItem}</label>
 				</c:forEach>
 			</div>
 			<div>기타정보
-				<label for="trler"><input type="checkbox" id="trler" name="trlerAcmpnyAt" ${param.trlerAcmpnyAt != null ? 'checked' : '' }>개인 트레일러 동반 가능</label>
-				<label for="animal"><input type="checkbox" id="animal" name="animalCmgCl" ${param.animalCmgCl != null ? 'checked' : '' }>애완동물출입 가능</label>
+				<label for="trler"><input type="checkbox" id="trler" name="trlerAcmpnyAt">개인 트레일러 동반 가능</label>
+				<label for="animal"><input type="checkbox" id="animal" name="animalCmgCl">애완동물출입 가능</label>
 			</div>
 			<div>
 				<button type="submit">검색</button>
@@ -60,7 +60,7 @@
     <button class="indedetail-button" type="submit" id="ds-btn">상세보기+</button>
 </div>
 <div class ="back" style="font-size: 20px;" >
-	<form action="/search" method="get" >
+	<form action="/search" method="get" id="search-form">
 			<div>
 				지역별 
 				<%--도 영역 --%>
@@ -72,7 +72,7 @@
 				</select> 
 				 <%--도영역 끝 --%>
 				 <%--시,군,구 영역 --%>
-					<select name="sigunguNm" data-group="" class="city">
+					<select name="sigunguNm" data-group="" class="city ">
 						<option value="" ${param.sigunguNm eq '' ? 'selected' :  ''}>시/군/구</option>
 					</select>
 					<%--서울 --%>
@@ -424,7 +424,7 @@
 </script>
 
 <script>
-	const searchHidden = document.querySelector(".back")
+	const searchHidden = document.querySelector(".back");
 	const openBtn = document.querySelector(".indedetail-button");
 	const box = document.querySelector(".ds-box");
 	const overlay = box.querySelector("#ds-overlay");
