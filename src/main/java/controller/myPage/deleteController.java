@@ -36,7 +36,9 @@ public class deleteController extends HttpServlet {
 		
 
 		PostDAO.allDeleteCamp(id);
-		PostDAO.deleteReview(id);
+
+		PostDAO.deleteAllReview(id);
+
 		UserDAO.delete(id);
 
 		session.invalidate();

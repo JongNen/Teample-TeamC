@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/commons/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="/WEB-INF/views/commons/top.jsp"%>
 
 
 <%-- 캠핑장 상세정보 페이지 --%>
@@ -47,7 +47,13 @@ th {
 }
 </style>
 <meta charset="UTF-8">
-<title>camping sketch</title>
+<title></title>
+<link rel="stylesheet" href="/resource/style.css">
+<link
+	href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
 </head>
 <body>
 	<div style="position: relative; display: inline-block;">
@@ -292,7 +298,6 @@ th {
 	 
 	}
 	
-
 
 			
 		</script>

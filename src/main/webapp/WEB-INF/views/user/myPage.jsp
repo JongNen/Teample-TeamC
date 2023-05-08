@@ -314,50 +314,47 @@ fieldset {
 
 
 			<br /> <a href="/index" style="color: blue;">홈으로</a>
-			</div>
-			</div>
-			
+		</div>
+	</div>
 
 
 
 
-			<script>
-				//do 영역의 select 태그에 onchange 이벤트 추가
-				document.querySelector("#do").onchange = function(evt) {
-					// 선택한 도시값 가져오기
-					const selectedCity = evt.target.value;
 
-					// 시, 군, 구 영역의 select 태그들을 찾아서 처리
-					document.querySelectorAll(".city").forEach(function(one) {
-						if (one.dataset.group != selectedCity) {
-							one.name = "";
-							one.style.display = "none";
-						} else {
-							one.name = "sigunguNm";
-							one.style.display = "";
-						}
-					});
-				};
-				//do 영역의 select 태그에 change 이벤트 발생시키기
-				document.querySelector("#do")
-						.dispatchEvent(new Event("change"));
+	<script>
+		//do 영역의 select 태그에 onchange 이벤트 추가
+		document.querySelector("#do").onchange = function(evt) {
+			// 선택한 도시값 가져오기
+			const selectedCity = evt.target.value;
 
-				// 시, 군, 구 영역의 select 태그에 값 넣어주기
-				document.querySelectorAll(".city").forEach(
-						function(one) {
-							if (one.dataset.group === document
-									.querySelector("#do").value) {
-								one.name = "sigunguNm";
-								one.value = "${param.sigunguNm}";
-							} else {
-								one.style.display = "none";
-							}
-						});
-			</script>
-			<c:if test="${param.cause eq 'valid' }">
-				<script>
-					alert("잘못된 입력입니다!!");
-				</script>
-			</c:if>
+			// 시, 군, 구 영역의 select 태그들을 찾아서 처리
+			document.querySelectorAll(".city").forEach(function(one) {
+				if (one.dataset.group != selectedCity) {
+					one.name = "";
+					one.style.display = "none";
+				} else {
+					one.name = "sigunguNm";
+					one.style.display = "";
+				}
+			});
+		};
+		//do 영역의 select 태그에 change 이벤트 발생시키기
+		document.querySelector("#do").dispatchEvent(new Event("change"));
+
+		// 시, 군, 구 영역의 select 태그에 값 넣어주기
+		document.querySelectorAll(".city").forEach(function(one) {
+			if (one.dataset.group === document.querySelector("#do").value) {
+				one.name = "sigunguNm";
+				one.value = "${param.sigunguNm}";
+			} else {
+				one.style.display = "none";
+			}
+		});
+	</script>
+	<c:if test="${param.cause eq 'valid' }">
+		<script>
+			alert("잘못된 입력입니다!!");
+		</script>
+	</c:if>
 </body>
 </html>

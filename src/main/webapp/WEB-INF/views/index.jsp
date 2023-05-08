@@ -67,8 +67,18 @@
 </div>
 <%--기본 검색 영역 --%>
 <div class="back" style="font-size: 20px;">
+<<<<<<< HEAD
 	<form action="/search" method="get">
 		지역별
+=======
+	<form action="/search">
+
+		<p>지역별</p>
+		<p>테마별</p>
+		<button class="searchbutton searchbutton-position" type="submit">검색하기</button>
+
+
+>>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 		<%--도 영역 --%>
 		<select name="doNm" id="do">
 			<option value="" ${param.doNm eq '' ? 'selected' :  ''}>전국</option>
@@ -241,11 +251,14 @@
 	<table style="margin: auto; width: 1355px;">
 		<tbody>
 
+
 			<c:choose>
 				<c:when test="${!empty sessionScope.logonUser.area}">
-					
-					<br/>
-					<b style="font-size: 18px;">관심 지역인 ${sessionScope.logonUser.area.substring(0,2)} 지역의 캠핑장 입니다</b>
+
+					<br />
+					<b style="font-size: 18px;">관심 지역인
+						${sessionScope.logonUser.area.substring(0,2)} 지역의 캠핑장 입니다</b>
+
 
 					<c:forEach items="${campingList}" var="obj">
 
@@ -260,7 +273,9 @@
 								<p style="font-size: 12px;">${obj.lineIntro}</p></td>
 						</tr>
 					</c:forEach>
-					
+
+
+
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${campingList}" var="obj">
@@ -335,4 +350,5 @@
 	openBtn.addEventListener("click", togglePopup);
 	openBtn.addEventListener("change", togglePopup);
 </script>
+
 

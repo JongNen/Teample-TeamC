@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import data.Review;
 import repository.PostDAO;
 
-
 //후기 자세히 보기 처리 컨트롤러
 @WebServlet("/boardDetail")
 public class boardDetailController extends HttpServlet {
@@ -21,12 +20,12 @@ public class boardDetailController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setCharacterEncoding("utf-8");
-		
-		String postNum=req.getParameter("number");
-		
+
+		String postNum = req.getParameter("number");
+
 		Review review = PostDAO.findByPost(postNum);
 		req.setAttribute("post", review);
-		
+
 		req.getRequestDispatcher("/WEB-INF/views/boardDetail.jsp").forward(req, resp);
 	}
 }

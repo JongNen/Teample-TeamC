@@ -5,9 +5,13 @@
 
 <mapper namespace="posts">
 
+
 	<!-- 캠핑장 불러오기 -->
-	<select id="findByCamp" resultType="data.Like" >
-		SELECT LIKES.* FROM LIKES WHERE CAMPID = #{campid}
+	<select id="findByCamp" resultType="data.Like">
+		SELECT LIKES.*
+		FROM LIKES
+		WHERE CAMPID = #{campid}
+
 	</select>
 
 
@@ -27,7 +31,6 @@
 	<!-- 자기가 좋아요 처리한 캠핑장 불러오기 -->
 	<select id="readByMyPost" resultType="data.Like"
 		parameterType="hashmap">
-
 		SELECT
 		LIKES.*
 		FROM
@@ -64,10 +67,6 @@
 		LIKER = #{liker}
 	</delete>
 
-
-
-
-
 	<!-- 후기 쓰기 -->
 	<insert id="write" parameterType="Hashmap">
 		INSERT INTO REVIEWS(POSTNUM,
@@ -75,21 +74,29 @@
 		VALUES(POSTNUM_SEQ.NEXTVAL, #{writerName},
 		#{IMG} , #{title},
 		#{postBody}, #{writerId})
-
 	</insert>
 
+	<!-- 후기 수정하기 -->
 	<update id="modify" parameterType="Hashmap">
 		UPDATE REVIEWS
 		SET TITLE =
-		#{title}
-		IMG = #{image}
+		#{title},
+		IMG = #{image},
 		POSTBODY=#{postBody}
-		WHERE WRITER=#{writer}
+		WHERE POSTNUM=#{postNum}
 	</update>
 
 	<!-- 후기 삭제하기 -->
-	<delete id="deleteReview" parameterType="String">
-		DELETE FROM REVIEWS WHERE
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM REVIEWS
+		WHERE
+		POSTNUM=#{postNum}
+	</delete>
+	
+	<!-- 본인이 쓴 후기 전체 삭제하기 -->
+	<delete id="deleteAllReview" parameterType="int">
+		DELETE FROM REVIEWS
+		WHERE
 		WRITERID=#{writerId}
 	</delete>
 

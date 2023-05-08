@@ -19,14 +19,16 @@ public class MyPageController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    HttpSession session = req.getSession();
-	    User user = (User) session.getAttribute("logonUser");
-	    if (user == null) {
-	        resp.sendRedirect("/index");
-	        return;
-	    }
-	    
-	    String id = req.getParameter("id");
+		req.setCharacterEncoding("utf-8");
+		HttpSession session = req.getSession();
+		User logonUser = (User) session.getAttribute("logonUser");
+		Boolean logon = (Boolean) session.getAttribute("logon");
+
+		if (logon == null || !logon) {
+			resp.sendRedirect("/user/login");
+			return;
+		}
+	    String id = logonUser.getId();
 	   
 	    List<Review> myPost = PostDAO.readByMyPost(id);
 	    req.setAttribute("myPost", myPost);

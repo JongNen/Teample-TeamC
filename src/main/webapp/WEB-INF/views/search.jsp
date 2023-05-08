@@ -323,8 +323,12 @@
 		openBtn.classList.toggle("hidden");
 	}
 
+<<<<<<< HEAD
 	overlay.addEventListener("click", togglePopup);
 	closeBtn.addEventListener("click", togglePopup);
 	openBtn.addEventListener("click", togglePopup);
 	openBtn.addEventListener("change", togglePopup);
+=======
+
+>>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 </script>

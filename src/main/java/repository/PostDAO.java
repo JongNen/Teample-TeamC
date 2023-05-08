@@ -20,10 +20,12 @@ public class PostDAO extends DAO {
 		}
 	}
 
-	public static Review findByPostAtoB(Map map) {
+	// 게시글 페이징처리해서 불러오기
+	public static List<Review> findByPostAtoB(Map map) {
+
 		SqlSession session = factory.openSession(true);
 		try {
-			return session.selectOne("posts.findByPostAtoB", map);
+			return session.selectList("posts.findByPostAtoB", map);
 		} finally {
 			session.close();
 		}
@@ -70,15 +72,28 @@ public class PostDAO extends DAO {
 	}
 
 	// 후기 삭제
-	public static int deleteReview(String id) {
+
+	public static int deleteReview(int postNum) {
 		SqlSession session = factory.openSession(true);
 		try {
+			return session.delete("posts.delete", postNum);
 
-			return session.delete("posts.deleteReview", id);
 		} finally {
 			session.close();
 		}
 	}
+	
+	// 본인이 쓴 후기 전체 삭제
+
+		public static int deleteAllReview(String id) {
+			SqlSession session = factory.openSession(true);
+			try {
+				return session.delete("posts.delete", id);
+
+			} finally {
+				session.close();
+			}
+		}
 
 	// 게시글 전부 다 불러올때
 	public static List<Review> FindPostAll() {
@@ -168,9 +183,25 @@ public class PostDAO extends DAO {
 			session.close();
 		}
 	}
-}
 
-//	public static int updateReview(int postNum, String writerName, String IMG, String title, String postBody, String writerId) {
-//		
-//		
-//	}
+	// 후기 수정하기
+	public static int modifyReview(String title, String IMG, String postBody, int postNum) {
+		SqlSession session = factory.openSession(true);
+		Map<String, Object> obj = new HashMap<>();
+		try {
+			if (IMG == null) {
+				obj.put("IMG", "");
+			} else {
+				obj.put("IMG", IMG);
+			}
+			obj.put("title", title);
+			obj.put("postBody", postBody);
+			obj.put("postNum", postNum);
+			return session.update("posts.modify", obj);
+		} finally {
+			session.close();
+		}
+
+	}
+
+}
