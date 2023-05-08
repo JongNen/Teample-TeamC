@@ -251,11 +251,7 @@
 
           <%-- 페이지 처리영역 --%>
 <div style="text-align: center; font-size: 20px;">
-	<c:set var="currentPage" value="${empty param.pageNo ? 1: param.pageNo }" />
-	<c:set var="doNmStatus" value="${empty paramValues.doNm ? null : paramValues.doNm }" />
-	<c:set var="lctClStatus" value="${empty paramValues.lctCl ? null : paramValues.lctCl }" />
-	<c:set var="animalCmgClStatus" value="${empty param.animalCmgCl ? null : param.animalCmgCl }" />
-		
+	<c:set var="currentPage" value="${empty param.pageNo ? 1: param.pageNo }" />	
 	<!-- 이전 버튼 -->
 	<c:if test="${existPrev }">
          <c:url value="/detailSearch" var="target">

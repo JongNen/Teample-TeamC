@@ -27,16 +27,13 @@ a {
 	color: black;
 }
 
-<<<<<<< HEAD
 a:hover {
 	color: #05BFDB;
 }
 
-hr {
-	
-}
 
-=======
+
+
 .signup-blank {
 	border: 2px solid #e5e7eb;
 	padding: 10px 12px;
@@ -186,7 +183,6 @@ hr {
 	padding: 4px;
 }
 
->>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 .backimg-linear {
 	margin: 0;
 	width: 100%;
@@ -305,19 +301,7 @@ hr {
 
 .sign-button {
 	font-family: 'Pretendard-Regular';
-<<<<<<< HEAD
-	padding: 3px 5px;
-	background-color: #454545;
-	margin: 1px;
-	border-radius: 6px;
-	border: 2px solid #454545;
-	cursor: pointer;
-	text-align: center;
-	width: 100px;
-	height: 30px;
-	font-size: 15px;
-	color: #F6F1E9;
-=======
+
 	padding: 8px 12px;
 	background-color: #454545;
 	border-radius: 4px;
@@ -328,16 +312,12 @@ hr {
 	transition: 0.4s ease;
 	display: flex;
 	justify-content: center;
->>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
+
 }
 
 .sign-button:hover {
 	background-color: white;
 	color: #454545;
-<<<<<<< HEAD
-	margin: 1px;
-=======
->>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 	border-radius: 6px;
 	border: 2px solid #454545;
 	cursor: pointer;
@@ -380,26 +360,7 @@ hr {
 	vertical-align: top;
 }
 
-<<<<<<< HEAD
-.loginId {
-	border-top-left-radius: 10px 10px;
-	border-top-right-radius: 10px 10px;
-	padding: 10px;
-	height: 45px;
-	width: 300px;
-	border: 2px solid #454545;
-	font-size: 20px;
-}
 
-.loginPass {
-	border-bottom-left-radius: 10px 10px;
-	border-bottom-right-radius: 10px 10px;
-	padding: 10px;
-	height: 45px;
-	width: 300px;
-	border: 2px solid #454545;
-	font-size: 20px;
-=======
 .login-blank {
 	border: 2px solid #e5e7eb;
 	padding: 8px 12px;
@@ -410,7 +371,7 @@ hr {
 
 .login-blank:focus {
 	border: 2px solid #9ca3af;
->>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
+
 }
 
 .root {
@@ -419,11 +380,8 @@ hr {
 }
 
 .postDetail-position {
-<<<<<<< HEAD
-	padding: 15%;
-=======
+
 	padding: 6%;
->>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 }
 
 .camping-item {
@@ -431,7 +389,6 @@ hr {
 	text-align: center;
 	vertical-align: top;
 	margin: 0 20px 20px 0;
-<<<<<<< HEAD
 }
 
 /*-------------상세 검색의 CSS ------------------------------*/
@@ -470,6 +427,5 @@ hr {
 /*닫기 버튼 클릭시 팝업창이 사라지게 하는 CSS*/
 .hidden {
 	display: none;
-=======
->>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
+
 }

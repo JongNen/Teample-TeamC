@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
-	<%--상세검색 페이지  --%>
+<%--상세검색 페이지  --%>
 <div class="ds-box hidden">
 	<div id="ds-overlay"></div>
 	<div id="ds-content">
@@ -14,41 +14,49 @@
 			<div>
 				지역별
 				<c:forEach items="${doList}" var="doItem">
-					<label for="do_${doItem}">
-					<input type="checkbox" id="do_${doItem}" name="doNm" value="${doItem}">
-						${doItem}</label>
+					<label for="do_${doItem}"> <input type="checkbox"
+						id="do_${doItem}" name="doNm" value="${doItem}"> ${doItem}
+					</label>
 				</c:forEach>
 			</div>
-			<div>운영형태
+			<div>
+				운영형태
 				<c:forEach items="${facList}" var="faItem">
-					<label for="fa_${faItem}">
-					<input type="checkbox" id="fa_${faItem}" name="facltDivNm" value="${faItem}">
-						${faItem}</label>
+					<label for="fa_${faItem}"> <input type="checkbox"
+						id="fa_${faItem}" name="facltDivNm" value="${faItem}">
+						${faItem}
+					</label>
 				</c:forEach>
 			</div>
-			<div>입지구분
+			<div>
+				입지구분
 				<c:forEach items="${themaList}" var="themaItem">
-					<label for="do_${themaItem}">
-					<input type="checkbox" id="the_${themaItem}" name="lctCl" value="${themaItem}">
-						${themaItem}</label>
+					<label for="do_${themaItem}"> <input type="checkbox"
+						id="the_${themaItem}" name="lctCl" value="${themaItem}">
+						${themaItem}
+					</label>
 				</c:forEach>
 			</div>
-			<div>주요시설
+			<div>
+				주요시설
 				<c:forEach items="${indutyList}" var="iduItem">
-					<label for="in_${iduItem}">
-					<input type="checkbox" id="in_${iduItem}" name="induty" value="${iduItem}">${iduItem}</label>
+					<label for="in_${iduItem}"> <input type="checkbox"
+						id="in_${iduItem}" name="induty" value="${iduItem}">${iduItem}</label>
 				</c:forEach>
 			</div>
-			<div>부대시설
+			<div>
+				부대시설
 				<c:forEach items="${sbrList}" var="sbItem">
-					<label for="sb_${sbItem}">
-					<input type="checkbox" id="sb_${sbItem}" name="sbrCl" value="${sbItem}">
-						${sbItem}</label>
+					<label for="sb_${sbItem}"> <input type="checkbox"
+						id="sb_${sbItem}" name="sbrCl" value="${sbItem}">
+						${sbItem}
+					</label>
 				</c:forEach>
 			</div>
-			<div>기타정보
-				<label for="trler"><input type="checkbox" id="trler" name="trlerAcmpnyAt">개인 트레일러 동반 가능</label>
-				<label for="animal"><input type="checkbox" id="animal" name="animalCmgCl" >애완동물출입 가능</label>
+			<div>
+				기타정보 <label for="trler"><input type="checkbox" id="trler"
+					name="trlerAcmpnyAt">개인 트레일러 동반 가능</label> <label for="animal"><input
+					type="checkbox" id="animal" name="animalCmgCl">애완동물출입 가능</label>
 			</div>
 			<div>
 				<button type="submit">검색</button>
@@ -63,22 +71,13 @@
 	<img class="backimg-linear" src="/resource/image/backGround.jpg" />
 </div>
 <div class="indexbutton-position">
-    <button class="indedetail-button" type="submit" id="ds-btn">상세보기+</button>
+	<button class="indedetail-button" type="submit" id="ds-btn">상세보기+</button>
 </div>
 <%--기본 검색 영역 --%>
 <div class="back" style="font-size: 20px;">
-<<<<<<< HEAD
 	<form action="/search" method="get">
 		지역별
-=======
-	<form action="/search">
 
-		<p>지역별</p>
-		<p>테마별</p>
-		<button class="searchbutton searchbutton-position" type="submit">검색하기</button>
-
-
->>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 		<%--도 영역 --%>
 		<select name="doNm" id="do">
 			<option value="" ${param.doNm eq '' ? 'selected' :  ''}>전국</option>
@@ -332,7 +331,6 @@
 	});
 </script>
 <script>
-	
 	const searchHidden = document.querySelector(".back")
 	const openBtn = document.querySelector(".indedetail-button");
 	const box = document.querySelector(".ds-box");
