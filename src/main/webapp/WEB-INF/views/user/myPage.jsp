@@ -51,7 +51,6 @@ h1 {
 	text-decoration: underline;
 }
 
-
 .simple-btn {
 	background-color: #f0f8ff;
 	border: 1px solid #aaa;
@@ -82,7 +81,7 @@ fieldset {
 
 .heart-icon {
 	color: red;
-	font-size:16px;
+	font-size: 16px;
 }
 </style>
 </head>
@@ -303,9 +302,10 @@ fieldset {
 					<c:otherwise>
 						<ul class="list-group">
 							<c:forEach items="${myPost}" var="post">
-								<p class="list-group-item"><span class="heart-icon">&#10084;</span>
-									${post.campname} <a href="/detail?contentId=${post.campid}"
-									style="color: blue;">이동</a></p>
+								<p class="list-group-item">
+									<span class="heart-icon">&#10084;</span> ${post.campname} <a
+										href="/detail?contentId=${post.campid}" style="color: blue;">이동</a>
+								</p>
 							</c:forEach>
 						</ul>
 					</c:otherwise>

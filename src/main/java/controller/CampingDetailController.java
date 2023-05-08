@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import data.CampReview;
 import data.Like;
 import data.camping.Item;
 import repository.PostDAO;
@@ -24,11 +25,13 @@ public class CampingDetailController extends HttpServlet{
 	    String contentId = req.getParameter("contentId");
 	    Item camp = CampingAPI.findByItem(contentId);
 	    List<Like> like = PostDAO.findByCamp(contentId);
+	    List<CampReview> review = PostDAO.findByCampReview(contentId);
 
 	   
 
 	    req.setAttribute("camp", camp);    
 	    req.setAttribute("likeCheckJson", new Gson().toJson(like));
+	    req.setAttribute("review", review);
 	   
 
 	    req.getRequestDispatcher("/WEB-INF/views/campingDetail.jsp").forward(req, resp);
