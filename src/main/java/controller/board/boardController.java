@@ -30,7 +30,7 @@ public class boardController extends HttpServlet {
 			p = Integer.parseInt(req.getParameter("p"));
 			
 		}
-		List<Review> reviewLi = PostDAO.allPosts();
+		List<Review> reviewLi = PostDAO.FindPostAll();
 		
 		int totalPage = reviewLi.size() % 10 == 0 ? reviewLi.size() : reviewLi.size() / 10 + 1;
 		
