@@ -159,6 +159,17 @@ public class PostDAO extends DAO {
 			session.close();
 		}
 	}
+	
+	// 캠핑장에 대한 리뷰 작성
+		public static int campReviewCreate(Map map) {
+			SqlSession session = factory.openSession(true);
+			try {
+				return session.selectOne("posts.campReviewCreate", map);
+			} finally {
+				session.close();
+			}
+		}
+	
 
 	// 게시글 페이징 처리시
 //	public static List<Review> getFindPostAtoB(int a, int b) {

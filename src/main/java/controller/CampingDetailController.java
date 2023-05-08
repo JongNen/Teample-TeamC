@@ -27,8 +27,7 @@ public class CampingDetailController extends HttpServlet{
 
 	   
 
-	    req.setAttribute("camp", camp);
-	    req.setAttribute("likeCheck", like);
+	    req.setAttribute("camp", camp);    
 	    req.setAttribute("likeCheckJson", new Gson().toJson(like));
 	   
 
