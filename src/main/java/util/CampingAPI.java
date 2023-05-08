@@ -103,9 +103,7 @@ public class CampingAPI {
 		int page = pageNo == null ? 1 : Integer.parseInt(pageNo);
 		int from = (page - 1) * 10; // 0;
 		int to = page == (searchData.size() / 10 + 1) ? from + (searchData.size() % 10) : page * 10;
-		
-		
-		
+
 		return searchData.subList(from, to);
 	}
 	
@@ -116,8 +114,8 @@ public class CampingAPI {
 		for (Item item : cache) {
 			if (doNm != null && doNm.length > 0) {
 				boolean found = false;
-				for (String d : doNm) {
-					if (item.getDoNm().equals(d)) {
+				for (String dostr : doNm) {
+					if (item.getDoNm().equals(dostr)) {
 						found = true;
 						break;
 					}
@@ -128,8 +126,8 @@ public class CampingAPI {
 			}
 			if (lctCl != null && lctCl.length > 0) {
 				boolean found = false;
-				for (String l : lctCl) {
-					if (item.getLctCl().equals(l)) {
+				for (String lct : lctCl) {
+					if (item.getLctCl().equals(lct)) {
 						found = true;
 						break;
 					}
@@ -140,8 +138,8 @@ public class CampingAPI {
 			}
 			if (facltDivNm != null && facltDivNm.length > 0) {
 				boolean found = false;
-				for (String f : facltDivNm) {
-					if (item.getFacltDivNm().equals(f)) {
+				for (String fac : facltDivNm) {
+					if (item.getFacltDivNm().equals(fac)) {
 						found = true;
 						break;
 					}
@@ -152,8 +150,8 @@ public class CampingAPI {
 			}
 			if (sbrsCl != null && sbrsCl.length > 0) {
 				boolean found = false;
-				for (String s : sbrsCl) {
-					if (item.getSbrsCl().contains(s)) {
+				for (String sbr : sbrsCl) {
+					if (item.getSbrsCl().contains(sbr)) {
 						found = true;
 						break;
 					}
@@ -164,8 +162,8 @@ public class CampingAPI {
 			}
 			if (induty != null && induty.length > 0) {
 				boolean found = false;
-				for (String i : induty) {
-					if (item.getInduty().equals(i)) {
+				for (String ind : induty) {
+					if (item.getInduty().equals(ind)) {
 						found = true;
 						break;
 					}
@@ -174,7 +172,7 @@ public class CampingAPI {
 					continue;
 				}
 			}
-			if (animalCmgCl != null && !animalCmgCl.equals("") && !item.getAnimalCmgCl().equals(animalCmgCl)) {
+			if (animalCmgCl != null && !animalCmgCl.equals("") && !item.getAnimalCmgCl().startsWith(animalCmgCl)) {
 				continue;
 			}
 			if (trlerAcmpnyAt != null && !trlerAcmpnyAt.equals("") && !item.getTrlerAcmpnyAt().equals(trlerAcmpnyAt)) {
@@ -190,17 +188,7 @@ public class CampingAPI {
 		int page = pageNo == null ? 1 : Integer.parseInt(pageNo);
 		int from = (page - 1) * 10; // 0;
 		int to = page == (detailSearchData.size() / 10 + 1) ? from + (detailSearchData.size() % 10) : page * 10;
-//		int to = page == (detailSearchData.size() / 10 + 1) ? from + (detailSearchData.size() % 10)
-//				: (page * 10 > detailSearchData.size() ? detailSearchData.size() : page * 10);
-
-//		int page = pageNo == null ? 1 : Integer.parseInt(pageNo);
-//	    if (page <= 0) { // 페이지 번호가 0 이하인 경우, 1로 설정
-//	        page = 1;
-//	    }
-//	    int from = (page - 1) * 10; 
-//	    int to = page == (detailSearchData.size() / 10 + 1) ? from + (detailSearchData.size() % 10) : page * 10;
-
-	  
+		
 		return detailSearchData.subList(from, to);
 		
 	}

@@ -101,7 +101,7 @@
 
 		<%--부산 --%>
 		<select name="sigunguNm" data-group="부산시" class="city">
-			<c:forEach items="${busan }" var="busan">
+			<c:forEach items="${busan}" var="busan">
 				<option value="${busan}"
 					${busan eq parmam.sigunguNm ? 'selected' : ''}>${busan }</option>
 			</c:forEach>

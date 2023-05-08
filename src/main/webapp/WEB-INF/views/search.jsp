@@ -30,13 +30,11 @@
 				</c:forEach>
 			</div>
 			<div>
-				주요시설 <label for="gnrl"><input type="checkbox" id="gnrl"
-					name="gnrlSiteCo">일반야영장</label> <label for="auto"><input
-					type="checkbox" id="auto" name="autoSiteCo">자동차야영장</label> <label
-					for="glam"><input type="checkbox" id="glam"
-					name="glampSiteCo">글램핑</label> <label for="carav"><input
-					type="checkbox" id="carav" name="caravSiteCo">카라반</label>
-
+				주요시설
+				<c:forEach items="${indutyList}" var="iduItem">
+					<label for="in_${iduItem}">
+					<input type="checkbox" id="in_${iduItem}" name="induty" value="${iduItem}" ${iduItem eq param.induty ? 'checked' : '' }>${iduItem}</label>
+				</c:forEach>
 			</div>
 			<div>
 				부대시설
@@ -48,9 +46,7 @@
 			<div>
 				기타정보 <label for="trler"><input type="checkbox" id="trler"
 					name="trlerAcmpnyAt">개인 트레일러 동반 가능</label> <label for="animal"><input
-					type="checkbox" id="animal" name="animalCmgCl">애완동물출입 가능</label> <label
-					for="caraA"><input type="checkbox" id="caraA"
-					name="caravAcmpnyAt">개인 카라반 동반 가능</label>
+					type="checkbox" id="animal" name="animalCmgCl">애완동물출입 가능</label> 
 			</div>
 			<div>
 				<button type="submit">검색</button>
