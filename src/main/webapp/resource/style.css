@@ -36,27 +36,161 @@ a {
 	color: black;
 }
 
-.back-img{
+.write-main {
+	padding-top: 4em;
+	display: flex;
+	justify-content: center;
+}
+
+.write-content {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.write-range {
+	width: 55%;
+}
+
+.write-blank {
+	border: 2px solid rgba(120, 120, 120, 0.8);
+	padding: 10px 10px;
+	border-radius: 4px;
+}
+
+.write-blank1 {
+	border: 2px solid rgba(120, 120, 120, 0.8);
+	padding: 10px 10px;
+	border-radius: 4px;
+	resize: none;
+	height: 20rem;
+}
+
+.index-search-button {
+	width: 100%;
+	font-size: 13px;
+	padding: 5px 6px;
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.index-search-button:hover {
+	font-size: 14px;
+	border-radius: 6px;
+	border: 1px solid white;
+	background: white;
+	border-radius: 6px;
+	cursor: pointer;
+	box-shadow: 0 2px 4px -2px rgb(0 0 0/ 0.1), 0 4px 6px -1px
+		rgb(0 0 0/ 0.1);
+}
+
+.index-search-position {
+	padding-top: 1em;
+}
+
+.sign-up-main {
+	display: 5em;
+	padding-top: 3em;
+	gap: 8px;
+	padding-top: 3em;
+}
+
+.sign-up-main1 {
+	display: flex;
+	justify-content: center;
+}
+
+.sign-up-main2 {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	width: 20rem;
+}
+
+.sign-up-main3 {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding-top: 0.5em;
+	border: 0.6px solid #E3F6FF;
+	padding-bottom: 0.5em;
+	border-radius: 7px;
+}
+
+.sign-up-seelct {
+	gap: 8px;
+	display: flex;
+	justify-content: center;
+}
+
+.sign-up-button {
+	font-family: 'Pretendard-Regular';
+	padding: 8px 12px;
+	background-color: #454545;
+	border-radius: 4px;
+	border: 2px solid #454545;
+	cursor: pointer;
+	text-align: center;
+	color: #F6F1E9;
+	transition: 0.4s ease;
+	width: 100%;
+}
+
+.back-img {
 	background-image: url("/resource/image/backGround.jpg");
 	background-size: cover;
 	display: flex;
-	justify-content:center;
+	justify-content: center;
 	height: 65rem;
-	padding-top:1em;
+	padding-top: 1em;
 }
 
+.search div {
+	padding: 4px;
+}
 
-.search-box-position{
-	background-color: rgba(255, 241, 193,  0.9);
+.search-box {
+	border-radius: 8px;
+	text-align: center;
+	background-color: rgba(255, 241, 193, 0.9);
 	width: 30%;
 	height: 25%;
-	border-radius: 8px;
 	display: flex;
 	align-items: center;
-	padding-top: 10em;
+	background-color: rgba(255, 241, 193, 0.9);
 }
 
-.icon-size{
+.search-box-rage {
+	width: 100%;
+}
+
+.search-box-position {
+	width: 45%;
+	display: flex;
+	align-items: center;
+	margin-top: 20em;
+}
+
+.search-box-inside {
+	font-size: 20px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.search-position {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 8em;
+	gap: 15px;
+}
+
+.icon-size {
 	width: 15%;
 	border-radius: 9999px;
 }
@@ -68,12 +202,12 @@ a {
 	justify-content: center;
 }
 
-.icon-position{
+.icon-position {
 	display: flex;
 	justify-content: center;
 }
 
-.icon-size-etc{
+.icon-size-etc {
 	width: 11%;
 	border-radius: 9999px;
 }
@@ -102,7 +236,7 @@ a {
 	flex-direction: column;
 	gap: 0.3em;
 	align-items: center;
-	flex:1;
+	flex: 1;
 	padding-right: 5%;
 }
 
@@ -146,9 +280,11 @@ a {
 	text-align: center;
 }
 
+
 .write-button-position {
-	text-align: right;
-	width: 85%;
+	display: flex;
+	justify-content: end;
+	margin-right: 5px;
 }
 
 .write-button {
@@ -186,8 +322,14 @@ a {
 .board-title {
 	font-family: 'MBC1961GulimM';
 	text-align: center;
-	font-size: 30px;
-	padding: 1.4em;
+	font-size: 32px;
+	padding-top: 1em;
+	padding-bottom: 0.5em;
+}
+
+.board-subtitle {
+	font-size: 15px;
+	padding-top: 0.5em;
 }
 
 .post-title {
@@ -308,40 +450,6 @@ a {
 .title {
 	font-family: 'MBC1961GulimM';
 	font-size: 40px;
-}
-
-.searchbutton-position {
-	position: absolute;
-	top: 80%;
-	right: 35%;
-}
-
-.searchbutton {
-	font-family: 'Pretendard-Regular';
-	padding: 3px 5px;
-	background-color: white;
-	margin: 1px;
-	border-radius: 6px;
-	border: 2px solid #CBF1F5;
-	cursor: pointer;
-	text-align: center;
-	width: 200px;
-	height: 32px;
-	font-size: 18px;
-}
-
-.searchbutton:hover {
-	font-family: 'Pretendard-Regular';
-	padding: 3px 5px;
-	background-color: #CBF1F5;
-	margin: 1px;
-	border-radius: 6px;
-	border: 2px solid #CBF1F5;
-	cursor: pointer;
-	text-align: center;
-	width: 200px;
-	height: 32px;
-	font-size: 18px;
 }
 
 .belt {

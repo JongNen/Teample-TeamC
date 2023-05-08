@@ -3,19 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
 
+<%-- 자유게시판 글쓰기 --%>
 
-<div style="padding: 4em; text-align: center;">
-	<form action="/write-task" method="post">
-		<div>
-			<input class="title-blank" type="text" name="title" placeholder="제목">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title></title>
+<link rel="stylesheet" href="/resource/style.css">
+</head>
+<body>
+	<div class="write-main">
+		<div class="write-range">
+			<form action="/write-task" class="write-content">
+				<input class="write-blank" type="text" name="title" placeholder="제목">
+				<textarea class="write-blank1" placeholder="내용을 입력해주세요"
+					name="postBody"></textarea>
+				<div class="write-button-position">
+					<button class="sign-button" type="submit">등록하기</button>
+				</div>
+			</form>
 		</div>
-		<div style="padding: 1em;">
-			<input class="postBody-blank" type="text" placeholder="글 내용"
-				style="width: 400px; height: 300px;" name="postBody">
-		</div>
-		<button class="but" type="submit">작성하기</button>
-	</form>
-	<div>
-		<button class="but" type="submit">이미지 업로드하기</button>
 	</div>
-</div>
+
+</body>
+</html>
+
+
+
+
+

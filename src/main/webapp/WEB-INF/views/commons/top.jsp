@@ -36,6 +36,9 @@
 									class="fa-regular fa-square-user"></i>&nbsp;&nbsp;마이페이지</a>
 							</div>
 							<div>
+								<a href="/board"><i class="fa-regular fa-memo-pad"></i>&nbsp;자유게시판</a>
+							</div>
+							<div>
 								<a href="/user/signOut"><i
 									class="fa-solid fa-right-from-bracket"></i>&nbsp;로그아웃하기</a>
 							</div>
