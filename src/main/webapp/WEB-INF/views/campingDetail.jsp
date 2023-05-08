@@ -3,11 +3,7 @@
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="/WEB-INF/views/commons/top.jsp"%>
-<<<<<<< HEAD
-=======
 
->>>>>>> origin
 
 <%-- 캠핑장 상세정보 페이지 --%>
 
@@ -302,11 +298,7 @@ th {
 	 
 	}
 	
-<<<<<<< HEAD
-=======
 
-
->>>>>>> origin
 			
 		</script>
 
