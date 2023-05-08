@@ -111,4 +111,11 @@
 		SELECT * FROM REVIEWS
 		WHERE POSTNUM=#{postNum}
 	</select>
+	
+	<!-- 캠핑장에 대한 후기 쓰기 -->
+	<insert id="campReviewCreate" parameterType="Hashmap">
+		INSERT INTO CAMPRIVEWS(CAMPID, WRITERID, BODY)
+		VALUES(#{campid}, #{writedId}, #{body})
+		
+	</insert>
 </mapper>

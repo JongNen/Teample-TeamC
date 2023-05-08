@@ -388,7 +388,7 @@
 			 	<c:param name="animalCmgCl" value="${param.animalCmgCl}"/>
 			 </c:if>
         </c:url>	
-		<a href="${taget}">&gt;</a>
+		<a href="${target}">&gt;</a>
 	</c:if>
 </div>
 
