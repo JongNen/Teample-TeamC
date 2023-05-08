@@ -36,6 +36,14 @@ a {
 	color: black;
 }
 
+.select-deco{
+	width: 30%;
+	padding: 2px;
+	border-radius: 6px;
+	font-size: 14px;
+	text-align: center;
+}
+
 .write-main {
 	padding-top: 4em;
 	display: flex;
@@ -88,7 +96,8 @@ a {
 }
 
 .index-search-position {
-	padding-top: 1em;
+	padding-top: 0.5em;
+	width: 40%;
 }
 
 .sign-up-main {
@@ -158,7 +167,7 @@ a {
 	border-radius: 8px;
 	text-align: center;
 	background-color: rgba(255, 241, 193, 0.9);
-	width: 30%;
+	width: 25%;
 	height: 25%;
 	display: flex;
 	align-items: center;
@@ -176,17 +185,28 @@ a {
 	margin-top: 20em;
 }
 
+.search-inside-range{
+	width: 70%;
+	display: flex;
+	align-items: center;
+
+}
+
 .search-box-inside {
 	font-size: 20px;
 	font-weight: bold;
-	padding-left: 10px;
+	width: 80%;
+	display: flex;
+	align-items: center;
+	margin-left: 30px;
+	gap: 10px;
 }
 
 .search-position {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 8em;
+	padding: 5em;
 	gap: 15px;
 }
 

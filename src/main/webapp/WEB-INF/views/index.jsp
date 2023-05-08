@@ -16,7 +16,7 @@
 					<div class="search-box-inside">
 						지역별
 						<%--도 영역 --%>
-						<select name="doNm" id="do">
+						<select name="doNm" id="do" class="select-deco">
 							<option value="" ${param.doNm eq '' ? 'selected' :  ''}>전국</option>
 							<c:forEach items="${doList}" var="obj">
 								<option value="${obj}" ${obj eq param.doNm ? 'selected' : '' }>${obj}</option>
@@ -24,12 +24,12 @@
 						</select>
 						<%--도영역 끝 --%>
 						<%--시,군,구 영역 --%>
-						<select name="sigunguNm" data-group="" class="city">
+						<select name="sigunguNm" data-group="" class="city select-deco">
 							<option value="" ${param.sigunguNm eq '' ? 'selected' :  ''}>시/군/구</option>
 						</select>
 						<%--서울 --%>
-						<select name="sigunguNm" data-group="서울시" class="city">
-							<c:forEach items="${seoul }" var="seoul">
+						<select name="sigunguNm" data-group="서울시" class="city select-deco">
+							<c:forEach items="${seoul }" var="seoul" >
 								<option value="${seoul}"
 									${seoul eq parmam.sigunguNm ? 'selected' : ''}>${seoul }</option>
 							</c:forEach>
@@ -173,7 +173,7 @@
 					<div class="search-box-inside">
 						테마별
 						<%--테마별 --%>
-						<select name="lctCl">
+						<select name="lctCl" class="select-deco">
 							<option value="" ${param.lctCl eq '' ? 'selected' :  ''}>테마별</option>
 							<c:forEach items="${themaList }" var="thema">
 								<option value="${thema }"
@@ -181,9 +181,9 @@
 							</c:forEach>
 						</select>
 						<%--테마별 끝 --%>
-						<div class="index-search-position">
-							<button class="index-search-button" type="submit">검색하기</button>
-						</div>
+					</div>
+					<div class="index-search-position">
+						<button class="index-search-button" type="submit">검색하기</button>
 					</div>
 				</form>
 			</div>
