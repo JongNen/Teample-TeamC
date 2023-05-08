@@ -27,6 +27,16 @@ a {
 	color: black;
 }
 
+<<<<<<< HEAD
+a:hover {
+	color: #05BFDB;
+}
+
+hr {
+	
+}
+
+=======
 .signup-blank {
 	border: 2px solid #e5e7eb;
 	padding: 10px 12px;
@@ -176,6 +186,7 @@ a {
 	padding: 4px;
 }
 
+>>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 .backimg-linear {
 	margin: 0;
 	width: 100%;
@@ -294,6 +305,19 @@ a {
 
 .sign-button {
 	font-family: 'Pretendard-Regular';
+<<<<<<< HEAD
+	padding: 3px 5px;
+	background-color: #454545;
+	margin: 1px;
+	border-radius: 6px;
+	border: 2px solid #454545;
+	cursor: pointer;
+	text-align: center;
+	width: 100px;
+	height: 30px;
+	font-size: 15px;
+	color: #F6F1E9;
+=======
 	padding: 8px 12px;
 	background-color: #454545;
 	border-radius: 4px;
@@ -304,11 +328,16 @@ a {
 	transition: 0.4s ease;
 	display: flex;
 	justify-content: center;
+>>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 }
 
 .sign-button:hover {
 	background-color: white;
 	color: #454545;
+<<<<<<< HEAD
+	margin: 1px;
+=======
+>>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 	border-radius: 6px;
 	border: 2px solid #454545;
 	cursor: pointer;
@@ -351,6 +380,26 @@ a {
 	vertical-align: top;
 }
 
+<<<<<<< HEAD
+.loginId {
+	border-top-left-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
+	padding: 10px;
+	height: 45px;
+	width: 300px;
+	border: 2px solid #454545;
+	font-size: 20px;
+}
+
+.loginPass {
+	border-bottom-left-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	padding: 10px;
+	height: 45px;
+	width: 300px;
+	border: 2px solid #454545;
+	font-size: 20px;
+=======
 .login-blank {
 	border: 2px solid #e5e7eb;
 	padding: 8px 12px;
@@ -361,6 +410,7 @@ a {
 
 .login-blank:focus {
 	border: 2px solid #9ca3af;
+>>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 }
 
 .root {
@@ -369,7 +419,11 @@ a {
 }
 
 .postDetail-position {
+<<<<<<< HEAD
+	padding: 15%;
+=======
 	padding: 6%;
+>>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 }
 
 .camping-item {
@@ -377,4 +431,45 @@ a {
 	text-align: center;
 	vertical-align: top;
 	margin: 0 20px 20px 0;
+<<<<<<< HEAD
+}
+
+/*-------------상세 검색의 CSS ------------------------------*/
+/*팝업창 CSS*/
+.ds-box {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/*box가 열리면서 주변이 어둡게 해주는 CSS*/
+#ds-overlay {
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+/*box 안 컨텐츠 CSS*/
+#ds-content {
+	position: relative;
+	background-color: aliceblue;
+	padding: 50px 100px;
+	text-align: center;
+	width: 50%;
+	height: 50%;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+	border-radius: 10px;
+}
+/*닫기 버튼 클릭시 팝업창이 사라지게 하는 CSS*/
+.hidden {
+	display: none;
+=======
+>>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 }

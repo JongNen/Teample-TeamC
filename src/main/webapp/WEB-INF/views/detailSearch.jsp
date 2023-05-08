@@ -12,38 +12,36 @@
 				지역별
 				<c:forEach items="${doList}" var="doItem">
 					<label for="do_${doItem}">
-					<input type="checkbox" id="do_${doItem}" name="doNm" value="${doItem}">${doItem}</label>
+					<input type="checkbox" id="do_${doItem}" name="doNm" value="${doItem }" ${doItem eq param.doNm ? 'checked' : '' }>${doItem}</label>
 				</c:forEach>
 			</div>
 			<div>운영형태
 				<c:forEach items="${facList}" var="faItem">
 					<label for="fa_${faItem}">
-					<input type="checkbox" id="fa_${faItem}" name="facltDivNm" value="${faItem}">${faItem}</label>
+					<input type="checkbox" id="fa_${faItem}" name="facltDivNm" value="${faItem}" ${faItem eq param.facltDivNm ? 'checked' : '' }>${faItem}</label>
 				</c:forEach>
 			</div>
 			<div>입지구분
 				<c:forEach items="${themaList}" var="themaItem">
-					<label for="do_${themaItem}">
-					<input type="checkbox" id="the_${themaItem}" name="lctCl" value="${themaItem}">${themaItem}</label>
+					<label for="the_${themaItem}">
+					<input type="checkbox" id="the_${themaItem}" name="lctCl" value="${themaItem}" ${themaItem eq param.lctCl ? 'checked' : '' }>${themaItem}</label>
 				</c:forEach>
 			</div>
 			<div>주요시설
-				<label for="gnrl"><input type="checkbox" id="gnrl" name="gnrlSiteCo">일반야영장</label>
-				<label for="auto"><input type="checkbox" id="auto" name="autoSiteCo">자동차야영장</label>
-				<label for="glam"><input type="checkbox" id="glam" name="glampSiteCo">글램핑</label>
-				<label for="carav"><input type="checkbox" id="carav" name="caravSiteCo">카라반</label>
-					
+				<c:forEach items="${indutyList}" var="iduItem">
+					<label for="in_${iduItem}">
+					<input type="checkbox" id="in_${iduItem}" name="induty" value="${iduItem}" ${iduItem eq param.induty ? 'checked' : '' }>${iduItem}</label>
+				</c:forEach>
 			</div>
 			<div>부대시설
 				<c:forEach items="${sbrList}" var="sbItem">
 					<label for="sb_${sbItem}">
-					<input type="checkbox" id="sb_${sbItem}" name="sbrsCl" value="${sbItem}">${sbItem}</label>
+					<input type="checkbox" id="sb_${sbItem}" name="sbrsCl" value="${sbItem}" ${sbItem eq param.sbrsCl ? 'checked' : '' }>${sbItem}</label>
 				</c:forEach>
 			</div>
 			<div>기타정보
-				<label for="trler"><input type="checkbox" id="trler" name="trlerAcmpnyAt">개인 트레일러 동반 가능</label>
-				<label for="animal"><input type="checkbox" id="animal" name="animalCmgCl" >애완동물출입 가능</label>
-				<label for="caraA"><input type="checkbox" id="caraA" name="caravAcmpnyAt">개인 카라반 동반 가능</label>
+				<label for="trler"><input type="checkbox" id="trler" name="trlerAcmpnyAt" ${param.trlerAcmpnyAt != null ? 'checked' : '' }>개인 트레일러 동반 가능</label>
+				<label for="animal"><input type="checkbox" id="animal" name="animalCmgCl" ${param.animalCmgCl != null ? 'checked' : '' }>애완동물출입 가능</label>
 			</div>
 			<div>
 				<button type="submit">검색</button>
@@ -203,7 +201,6 @@
 					<%--경상남도 끝--%>
 				<%--시,군,구 영역 끝 --%>
 			</div>
-				
 			<div>
 			<%--테마별 --%>
 				테마별 <select name="lctCl">
@@ -238,10 +235,14 @@
 				<td>${list.facltNm.replace("(주)", " ")}</td>
 				<td>${list.lineIntro }<br>
 				 (${list.lctCl})<br>
-				${list.facltDivNm }<br>
-				${list.animalCmgCl }
+				사업주체 : ${list.facltDivNm }<br>
+				애완동물 출입여부 : ${list.animalCmgCl }<br>
+				개인 트레일러 동반 여부 : ${list.trlerAcmpnyAt }<br>
+				부대시설: ${list.sbrsCl} <br>
+				주요시설: ${list.induty}
+				
 				</td>
-				<td>${list.sbrsCl}</td>	
+				<td></td>	
 				<td>${list.addr1}</td>
 			</tr>
 		</c:forEach>
@@ -251,31 +252,147 @@
           <%-- 페이지 처리영역 --%>
 <div style="text-align: center; font-size: 20px;">
 	<c:set var="currentPage" value="${empty param.pageNo ? 1: param.pageNo }" />
-	<c:set var="doNmStatus" value="${empty param.doNm ? null : param.doNm }" />
-	<c:set var="sigunguNmStatus" value="${empty param.sigunguNm ? null : param.sigunguNm }" />
-	<c:set var="lctClStatus" value="${empty param.lctCl ? null : param.lctCl }" />
+	<c:set var="doNmStatus" value="${empty paramValues.doNm ? null : paramValues.doNm }" />
+	<c:set var="lctClStatus" value="${empty paramValues.lctCl ? null : paramValues.lctCl }" />
+	<c:set var="animalCmgClStatus" value="${empty param.animalCmgCl ? null : param.animalCmgCl }" />
 		
 	<!-- 이전 버튼 -->
 	<c:if test="${existPrev }">
-		<a
-			href="/search?pageNo=${start-1 }&doNm=${doNmStatus}&sigunguNm=${sigunguNmStatus}&lctCl=${lctClStatus}">&lt;</a>
+         <c:url value="/detailSearch" var="target">
+			<c:param name="pageNo" value="${start-1}" />
+			<%--도 파람처리 --%>
+			<c:if test="${not empty paramValues.doNm}">
+				<c:forEach items="${paramValues.doNm}" var="doChk">
+					<c:param name="doNm" value="${doChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--입지처리 --%>
+			<c:if test="${not empty paramValues.lctCl}">
+				<c:forEach items="${paramValues.lctCl}" var="theChk">
+					<c:param name="lctCl" value="${theChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--운영형태  --%>
+			<c:if test="${not empty paramValues.facltDivNm}">
+				<c:forEach items="${paramValues.facltDivNm}" var="faChk">
+					<c:param name="facltDivNm" value="${faChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--주요시설--%>
+			<c:if test="${not empty paramValues.induty}">
+				<c:forEach items="${paramValues.induty}" var="idtChk">
+					<c:param name="induty" value="${idtChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--부대시설--%>
+			<c:if test="${not empty paramValues.sbrsCl}">
+				<c:forEach items="${paramValues.sbrsCl}" var="sbrChk">
+					<c:param name="sbrsCl" value="${sbrChk}"/>trlerAcmpnyAt
+				</c:forEach>
+			</c:if>
+			 <c:if test="${not empty param.trlerAcmpnyAt}">
+			 	<c:param name="trlerAcmpnyAt" value="${param.trlerAcmpnyAt}"/>
+			 </c:if>
+			 <c:if test="${not empty param.animalCmgCl}">
+			 	<c:param name="animalCmgCl" value="${param.animalCmgCl}"/>
+			 </c:if>
+        </c:url>	
+		<a href="${target }">&lt;</a>
 	</c:if>
 
 	<!-- 전체페이지 불러오기 -->
 	<c:forEach var="p" begin="${start }" end="${last }">
-		<c:choose>
-			<c:when test="${p eq currentPage }">
-				<b style="color: #05BFDB;">${p }</b>
-			</c:when>
-			<c:otherwise>
-				<a href="/search?pageNo=${p }&doNm=${doNmStatus}&sigunguNm=${sigunguNmStatus}&lctCl=${lctClStatus}">${p }</a>
-			</c:otherwise>
-		</c:choose>
+		<c:url value="/detailSearch" var="target">
+			<c:param name="pageNo" value="${p}" />
+			<%--도 파람처리 --%>
+			<c:if test="${not empty paramValues.doNm}">
+				<c:forEach items="${paramValues.doNm}" var="doChk">
+					<c:param name="doNm" value="${doChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--입지처리 --%>
+			<c:if test="${not empty paramValues.lctCl}">
+				<c:forEach items="${paramValues.lctCl}" var="theChk">
+					<c:param name="lctCl" value="${theChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--운영형태  --%>
+			<c:if test="${not empty paramValues.facltDivNm}">
+				<c:forEach items="${paramValues.facltDivNm}" var="faChk">
+					<c:param name="facltDivNm" value="${faChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--주요시설--%>
+			<c:if test="${not empty paramValues.induty}">
+				<c:forEach items="${paramValues.induty}" var="idtChk">
+					<c:param name="induty" value="${idtChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--부대시설--%>
+			<c:if test="${not empty paramValues.sbrsCl}">
+				<c:forEach items="${paramValues.sbrsCl}" var="sbrChk">
+					<c:param name="sbrsCl" value="${sbrChk}"/>trlerAcmpnyAt
+				</c:forEach>
+			</c:if>
+			 <c:if test="${not empty param.trlerAcmpnyAt}">
+			 	<c:param name="trlerAcmpnyAt" value="${param.trlerAcmpnyAt}"/>
+			 </c:if>
+			 <c:if test="${not empty param.animalCmgCl}">
+			 	<c:param name="animalCmgCl" value="${param.animalCmgCl}"/>
+			 </c:if>
+        </c:url>
+			<c:choose>
+				<c:when test="${p eq currentPage }">
+					<b style="color: #05BFDB;">${p }</b>
+				</c:when>
+				<c:otherwise>
+					<a href="${target }">${p }</a>
+				</c:otherwise>
+			</c:choose>
 	</c:forEach>
 
 	<!--다음버튼영역  -->
 	<c:if test="${existNext }">
-		<a href="/search?pageNo=${last+1 }&doNm=${doNmStatus}&sigunguNm=${sigunguNmStatus}&lctCl=${lctClStatus}">&gt;</a>
+		<c:url value="/detailSearch" var="target">
+			<c:param name="pageNo" value="${last+1}" />
+			<%--도 파람처리 --%>
+			<c:if test="${not empty paramValues.doNm}">
+				<c:forEach items="${paramValues.doNm}" var="doChk">
+					<c:param name="doNm" value="${doChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--입지처리 --%>
+			<c:if test="${not empty paramValues.lctCl}">
+				<c:forEach items="${paramValues.lctCl}" var="theChk">
+					<c:param name="lctCl" value="${theChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--운영형태  --%>
+			<c:if test="${not empty paramValues.facltDivNm}">
+				<c:forEach items="${paramValues.facltDivNm}" var="faChk">
+					<c:param name="facltDivNm" value="${faChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--주요시설--%>
+			<c:if test="${not empty paramValues.induty}">
+				<c:forEach items="${paramValues.induty}" var="idtChk">
+					<c:param name="induty" value="${idtChk}"/>
+				</c:forEach>
+			</c:if>
+			<%--부대시설--%>
+			<c:if test="${not empty paramValues.sbrsCl}">
+				<c:forEach items="${paramValues.sbrsCl}" var="sbrChk">
+					<c:param name="sbrsCl" value="${sbrChk}"/>trlerAcmpnyAt
+				</c:forEach>
+			</c:if>
+			<c:if test="${not empty param.trlerAcmpnyAt}">
+			 	<c:param name="trlerAcmpnyAt" value="${param.trlerAcmpnyAt}"/>
+			 </c:if>
+			 <c:if test="${not empty param.animalCmgCl}">
+			 	<c:param name="animalCmgCl" value="${param.animalCmgCl}"/>
+			 </c:if>
+        </c:url>	
+		<a href="${taget}">&gt;</a>
 	</c:if>
 </div>
 
@@ -309,8 +426,8 @@
 		}
 	});
 </script>
+
 <script>
-	
 	const searchHidden = document.querySelector(".back")
 	const openBtn = document.querySelector(".indedetail-button");
 	const box = document.querySelector(".ds-box");
@@ -323,12 +440,8 @@
 		openBtn.classList.toggle("hidden");
 	}
 
-<<<<<<< HEAD
 	overlay.addEventListener("click", togglePopup);
 	closeBtn.addEventListener("click", togglePopup);
 	openBtn.addEventListener("click", togglePopup);
 	openBtn.addEventListener("change", togglePopup);
-=======
-
->>>>>>> a681cebb4acd389c3568c1b0f169bba647605b0d
 </script>
