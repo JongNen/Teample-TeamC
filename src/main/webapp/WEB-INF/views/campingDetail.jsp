@@ -113,9 +113,13 @@ th {
 		<div class="detail-img">
 			<img src="${camp.firstImageUrl}"
 				onerror="this.src='/resource/image/tent.png';" />
-			<button id="likeButton" onclick="like()" class="like-button-position">
-				<i id="likeIcon" class="far fa-heart heart-icon like-button"></i>
-			</button>
+			<c:if test="${sessionScope.logon}">
+				<button id="likeButton" onclick="like()"
+					style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none;">
+					<i id="likeIcon" class="far fa-heart heart-icon"
+						style="font-size: 40px;"></i>
+				</button>
+			</c:if>
 		</div>
 		<div class="camping-content">
 			<div class="camping-line"></div>
@@ -143,18 +147,6 @@ th {
 			</div>
 			<div>
 				<%@ include file="/WEB-INF/views/commons/icon.jsp"%>
-			</div>
-			<div style="position: relative; display: inline-block;">
-				<img src="${camp.firstImageUrl}"
-					onerror="this.src='/resource/image/tent.png';"
-					style="max-width: 500px; height: 300px; opacity: 0.9;" />
-				<c:if test="${sessionScope.logon}">
-					<button id="likeButton" onclick="like()"
-						style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none;">
-						<i id="likeIcon" class="far fa-heart heart-icon"
-							style="font-size: 40px;"></i>
-					</button>
-				</c:if>
 			</div>
 			<div
 				style="display: flex; justify-content: center; align-items: center;">
@@ -345,17 +337,13 @@ th {
 					</c:forEach>
 				</div>
 			</div>
+		</div>
+	</div>
 
+	<!-- ///////////////////////////// 스크립트 부분 ////////////////////////////////// -->
 
-
-
-
-
-			<!-- ///////////////////////////// 스크립트 부분 ////////////////////////////////// -->
-
-
-			<!-- 상세 보기 영역 -->
-			<script>
+	<!-- 상세 보기 영역 -->
+	<script>
 		function toggleDetail() {
 		    var campInfo = document.getElementById("campInfo");
 		    var mapElement = document.getElementById("map");
@@ -368,14 +356,11 @@ th {
 		}
 	</script>
 
-
-
-			>>>>>>> 4b679f47e2e0a0a7fb4f417d002adb22fc1c497e
-			<!-- 지도 관련 부분 -->
-			<c:if test="${!empty camp.addr1}">
-				<script type="text/javascript"
-					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdd7a2dbaa2570a180f3c39b9a412437"></script>
-				<script>
+	<!-- 지도 관련 부분 -->
+	<c:if test="${!empty camp.addr1}">
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdd7a2dbaa2570a180f3c39b9a412437"></script>
+		<script>
 	let pos = new kakao.maps.LatLng(${camp.mapY}, ${camp.mapX});	
 	let container = document.querySelector('#map');
 	let options = {		
@@ -409,8 +394,8 @@ th {
 
 </script>
 
-				<!-- 후기 관련 부분 -->
-				<script>
+		<!-- 후기 관련 부분 -->
+		<script>
 		function toggleReview() {
 			var campInfo = document.getElementById("campInfo");
 			var mapElement = document.getElementById("map");
@@ -424,10 +409,10 @@ th {
 		}
 	</script>
 
-			</c:if>
+	</c:if>
 
-			<!-- 좋아요 부분 -->
-			<script>	
+	<!-- 좋아요 부분 -->
+	<script>	
 	   const likes = ${likeCheckJson};
 	   const userId = "${sessionScope.logonUser.id}";
 	   let liked = false;
@@ -452,11 +437,7 @@ th {
 		xhr.send();
 		const txt = xhr.responseText;
 		const obj = JSON.parse(txt);
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> 4b679f47e2e0a0a7fb4f417d002adb22fc1c497e
 	  // isLiked 값에 따라 하트 색 변경
 	  if (obj.done === 'fas') {
 	    likeIcon.classList.remove("fas");
@@ -468,18 +449,13 @@ th {
 	 
 	}
 	
-<<<<<<< HEAD
 	</script>
-			=======
-			</script>
-			<c:if test="${param.cause eq 'valid' }">
-				<script>
+
+	<c:if test="${param.cause eq 'valid' }">
+		<script>
 			alert("비회원은 글 쓰기가 불가능합니다.");
 		</script>
-			</c:if>
+	</c:if>
 
-
-
-			>>>>>>> 4b679f47e2e0a0a7fb4f417d002adb22fc1c497e
 </body>
 </html>
