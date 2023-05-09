@@ -292,14 +292,12 @@
 	<table style="margin: auto; width: 1355px;">
 		<tbody>
 
-
 			<c:choose>
 				<c:when test="${!empty sessionScope.logonUser.area}">
 
 					<br />
-					<b style="font-size: 18px;">관심 지역인
-						${sessionScope.logonUser.area.substring(0,2)} 지역의 캠핑장 입니다</b>
-
+					<b style="font-size: 18px; display: flex; justify-content: center;">관심
+						지역인 ${sessionScope.logonUser.area.substring(0,2)} 지역의 캠핑장 입니다</b>
 
 					<c:forEach items="${campingList}" var="obj">
 
@@ -314,8 +312,6 @@
 								<p style="font-size: 12px;">${obj.lineIntro}</p></td>
 						</tr>
 					</c:forEach>
-
-
 
 				</c:when>
 				<c:otherwise>
@@ -338,8 +334,6 @@
 		</tbody>
 	</table>
 </div>
-
-
 
 <script>
 	//do 영역의 select 태그에 onchange 이벤트 추가
