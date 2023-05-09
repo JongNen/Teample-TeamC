@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import data.CampReview;
 import data.Like;
 import data.Review;
 
@@ -149,6 +150,39 @@ public class PostDAO extends DAO {
 			session.close();
 		}
 	}
+	
+	// 캠핑장에 대한 리뷰 작성
+		public static int campReviewCreate(Map map) {
+			SqlSession session = factory.openSession(true);
+			try {
+				return session.insert("posts.campReviewCreate", map);
+			} finally {
+				session.close();
+			}
+		}
+		
+		// 캠핑장에 대한 리뷰 불러오기
+		public static List<CampReview> findByCampReview(String id) {
+			SqlSession session = factory.openSession(true);
+			try {
+
+				return session.selectList("posts.findByCampReview", id);
+			} finally {
+				session.close();
+			}
+		}
+		
+		// 캠핑장에 대한 리뷰 삭제(본인만 가능)
+		public static int deleteCampReview(int id) {
+			SqlSession session = factory.openSession(true);
+			try {
+
+				return session.delete("posts.deleteCampReview", id);
+			} finally {
+				session.close();
+			}
+		}
+	
 
 	// 특정 게시글 볼때
 	public static Review findByPost(String postNum) {

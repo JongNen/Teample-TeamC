@@ -17,14 +17,11 @@ public class SearchController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 사용자가 검색한 것을 받아오고
-		String doNm = req.getParameter("doNm"); // 도
-		String sigunguNm = req.getParameter("sigunguNm"); // 시,군,구
-		String lctCl = req.getParameter("lctCl"); // 입자구분
-
-		/*
-		 * System.out.println("doNm = " + doNm); System.out.println("si = " +
-		 * sigunguNm); System.out.println("lct = " + lctCl);
-		 */
+		String doNm = req.getParameter("doNm") == null ? "" : req.getParameter("doNm"); // 도
+		String sigunguNm = req.getParameter("sigunguNm") == null ? "" : req.getParameter("sigunguNm"); // 시,군,구
+		String lctCl = req.getParameter("lctCl") == null ? "" :  req.getParameter("lctCl"); // 입자구분
+		
+	
 		int p;
 
 		if (req.getParameter("pageNo") == null) {
@@ -119,8 +116,7 @@ public class SearchController extends HttpServlet {
 		
 
 		// lctCl 검색 세팅
-		String[] thema = { "강", "계곡", "도심", "산", "섬", "숲", "해변" };
-
+		String[] thema = {"강", "계곡", "도심", "산", "섬", "숲", "해변" };
 		req.setAttribute("themaList", thema);
 
 		// sigungu 검색 세팅(각 광역시, 도에 있는 시, 군, 구를 세팅
@@ -187,6 +183,14 @@ public class SearchController extends HttpServlet {
 		String[] jeju = { "전체", "제주시", "서귀포시" };
 		req.setAttribute("jeju", jeju);
 		
+		String[] facList = {"지자체", "국립공원", "자연휴양림", "국민여가", "민간" };
+		req.setAttribute("facList", facList);
+
+		String[] sbrList = {"전기", "무선인터넷", "장작판매", "온수", "트렘폴린", "물놀이장", "놀이터", "산책로", "운동장", " 운동시설", "마트.편의점" };
+		req.setAttribute("sbrList", sbrList);
+		
+		String[] indutyList = {"일반야영장", "자동차야영장", "카라반", "글램핑"};
+		req.setAttribute("indutyList", indutyList);
 
 		req.getRequestDispatcher("/WEB-INF/views/search.jsp").forward(req, resp);
 

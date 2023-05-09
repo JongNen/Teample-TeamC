@@ -6,6 +6,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -47,10 +49,10 @@ public class CampingAPI {
 
 	/** 데이터를 불러올때 10개씩 불러오기(전체 데이터 페이징) */
 	public synchronized static List<Item> getCamping(String pageNo) {
-
+		int lastPage=344;
 		int page = pageNo == null ? 1 : Integer.parseInt(pageNo);
 		int from = (page - 1) * 10;
-		int to = page == 344 ? from + 6 : page * 10;
+		int to = page == lastPage ? from + 6 : page * 10;
 
 		return cache.subList(from, to);
 
@@ -75,7 +77,7 @@ public class CampingAPI {
 	/**
 	 * 세팅된 cache에서 도,시군구, 입지구분등 기본 검색에 관한 메서드 검색에서 공백이 아니거나 가져오는 변수가 같지 않으면 continue
 	 */
-	public static List<Item> search(String doNm, String sigungu, String lctCl) {
+	public static List<Item> search(String doNm, String sigunguNm, String lctCl) {
 
 		List<Item> found = new ArrayList<>();
 
@@ -83,14 +85,14 @@ public class CampingAPI {
 			if (!doNm.equals("") && !item.getDoNm().equals(doNm)) {
 				continue;
 			}
-			if (!sigungu.equals("") && !item.getSigunguNm().equals(sigungu)) {
+			if (!sigunguNm.equals("") && !item.getSigunguNm().equals(sigunguNm)) {
 				continue;
 			}
 			if (!lctCl.equals("") && !item.getLctCl().contains(lctCl)) {
 				continue;
 			}
 			found.add(item);
-			System.out.println(item.getLctCl());
+	
 		}
 		return found;
 	}
@@ -103,6 +105,92 @@ public class CampingAPI {
 		int to = page == (searchData.size() / 10 + 1) ? from + (searchData.size() % 10) : page * 10;
 
 		return searchData.subList(from, to);
+	}
+	
+	/**상세 검색시 데이터를 필터링 하는 메소드 */
+	public static List<Item> detailSearch(String[] doNm, String[] lctCl, String[] facltDivNm, String[] sbrsCl,
+			String[] induty, String animalCmgCl, String trlerAcmpnyAt) {
+		List<Item> founds = new ArrayList<>();
+		for (Item item : cache) {
+			if (doNm != null && doNm.length > 0) {
+				boolean found = false;
+				for (String dostr : doNm) {
+					if (item.getDoNm().equals(dostr)) {
+						found = true;
+						break;
+					}
+				}
+				if (!found) {
+					continue;
+				}
+			}
+			if (lctCl != null && lctCl.length > 0) {
+				boolean found = false;
+				for (String lct : lctCl) {
+					if (item.getLctCl().equals(lct)) {
+						found = true;
+						break;
+					}
+				}
+				if (!found) {
+					continue;
+				}
+			}
+			if (facltDivNm != null && facltDivNm.length > 0) {
+				boolean found = false;
+				for (String fac : facltDivNm) {
+					if (item.getFacltDivNm().equals(fac)) {
+						found = true;
+						break;
+					}
+				}
+				if (!found) {
+					continue;
+				}
+			}
+			if (sbrsCl != null && sbrsCl.length > 0) {
+				boolean found = false;
+				for (String sbr : sbrsCl) {
+					if (item.getSbrsCl().contains(sbr)) {
+						found = true;
+						break;
+					}
+				}
+				if (!found) {
+					continue;
+				}
+			}
+			if (induty != null && induty.length > 0) {
+				boolean found = false;
+				for (String ind : induty) {
+					if (item.getInduty().equals(ind)) {
+						found = true;
+						break;
+					}
+				}
+				if (!found) {
+					continue;
+				}
+			}
+			if (animalCmgCl != null && !animalCmgCl.equals("") && !item.getAnimalCmgCl().startsWith(animalCmgCl)) {
+				continue;
+			}
+			if (trlerAcmpnyAt != null && !trlerAcmpnyAt.equals("") && !item.getTrlerAcmpnyAt().equals(trlerAcmpnyAt)) {
+				continue;
+			}
+			founds.add(item);
+		}
+		return founds;
+	}
+
+	/**상세검색 페이징 처리하는 메소드 */
+	public static List<Item> detailSearchPaging(List<Item> detailSearchData, String pageNo) {
+		int page = pageNo == null ? 1 : Integer.parseInt(pageNo);
+		int from = (page - 1) * 10; // 0;
+		int to = page == (detailSearchData.size() / 10 + 1) ? from + (detailSearchData.size() % 10) : page * 10;
+		
+		return detailSearchData.subList(from, to);
+		
 	}
 
 }

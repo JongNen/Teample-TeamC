@@ -102,8 +102,36 @@
 		WRITED DESC
 	</select>
 	<!-- 특정 후기 확인하기 -->
-	<select id="findBypostNum" resultType="data.Review">
+	<select id="findBypostNum" resultType="data.CampReview">
 		SELECT * FROM REVIEWS
 		WHERE POSTNUM=#{postNum}
 	</select>
+
+	<!-- 캠핑장에 대한 후기 쓰기 -->
+	<insert id="campReviewCreate" parameterType="Hashmap">
+		INSERT INTO
+		CAMPREVIEWS(CAMPID, WRITERID, BODY, WRITERNAME, REVIEWNUM)
+		VALUES(#{campId}, #{writerId}, #{body}, #{writerName},
+		REVIEWNUM_SEQ.NEXTVAL)
+	</insert>
+
+
+	<!-- 캠핑장 후기 불러오기 -->
+	<select id="findByCampReview" resultType="data.CampReview">
+		SELECT * FROM CAMPREVIEWS
+		WHERE CAMPID=#{campId}
+		ORDER BY REVIEWNUM DESC
+	</select>
+
+
+	<!-- 캠핑장 후기 삭제하기 -->
+	<delete id="deleteCampReview" parameterType="int">
+		DELETE FROM
+		CAMPREVIEWS
+		WHERE
+		REVIEWNUM=#{reviewNum}
+	</delete>
+
+
+
 </mapper>

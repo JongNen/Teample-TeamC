@@ -28,7 +28,7 @@
 		</div>
 		<div style="padding-top: 20em;">
 			<c:choose>
-				<c:when test="${post.writerId eq logonUser.id	 }">
+				<c:when test="${post.writerId eq logonUser.id}">
 					<p style="text-align: right;">
 						<a href="/modifyReview?number=${post.postNum }">수정</a> | <a
 							href="/deleteReview?number=${post.postNum }">삭제</a>

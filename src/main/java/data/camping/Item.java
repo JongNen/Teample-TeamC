@@ -18,22 +18,93 @@ public class Item {
 	String tel; // 전화번호
 	String homepage; // 홈페이지 주소
 	String tooltip; // 툴팁
+	String glampInnerFclty; // 글램핑 내부시설
 	String caravInnerFclty; // 카라반 내부시설
 	String operPdCl; // 운영기간
 	String operDeCl; // 운영일
 	String sbrsEtc; // 부대시설 기타
-	String animalCmgCl; // 애완동물출입
 	String tourEraCl; // 여행시기
 	String firstImageUrl; // 대표이미지
-	String sbrsCl; //부대시설
-	
-	
+	String sbrsCl; // 부대시설
+	String posblFcltyCl; // 주변이용가능시설
+	String gnrlSiteCo; // 주요시설 일반야영장
+	String autoSiteCo; // 주요시설 자동차야영장
+	String glampSiteCo; // 주요시설 글램핑
+	String caravSiteCo; // 주요시설 카라반
+	String facltDivNm; // 사업주제(지자체, 국립공원, 자연휴양림, 국민여가, 민간)
+	String trlerAcmpnyAt; // 개인 트레일러 동반 여부(Y:사용, N:미사용)
+	String animalCmgCl; // 애완동물출입(가능 : 불가능)
+
+	public String getFacltDivNm() {
+		return facltDivNm;
+	}
+
+	public void setFacltDivNm(String facltDivNm) {
+		this.facltDivNm = facltDivNm;
+	}
+
+	public String getGnrlSiteCo() {
+		return gnrlSiteCo;
+	}
+
+	public void setGnrlSiteCo(String gnrlSiteCo) {
+		this.gnrlSiteCo = gnrlSiteCo;
+	}
+
+	public String getAutoSiteCo() {
+		return autoSiteCo;
+	}
+
+	public void setAutoSiteCo(String autoSiteCo) {
+		this.autoSiteCo = autoSiteCo;
+	}
+
+	public String getGlampSiteCo() {
+		return glampSiteCo;
+	}
+
+	public void setGlampSiteCo(String glampSiteCo) {
+		this.glampSiteCo = glampSiteCo;
+	}
+
+	public String getCaravSiteCo() {
+		return caravSiteCo;
+	}
+
+	public void setCaravSiteCo(String caravSiteCo) {
+		this.caravSiteCo = caravSiteCo;
+	}
+
+	public String getGlampInnerFclty() {
+		return glampInnerFclty;
+	}
+
+	public void setGlampInnerFclty(String glampInnerFclty) {
+		this.glampInnerFclty = glampInnerFclty;
+	}
+
 	public String getSbrsCl() {
 		return sbrsCl;
 	}
 
 	public void setSbrsCl(String sbrsCl) {
 		this.sbrsCl = sbrsCl;
+	}
+
+	public String getPosblFcltyCl() {
+		return posblFcltyCl;
+	}
+
+	public void setPosblFcltyCl(String posblFcltyCl) {
+		this.posblFcltyCl = posblFcltyCl;
+	}
+
+	public String getTrlerAcmpnyAt() {
+		return trlerAcmpnyAt;
+	}
+
+	public void setTrlerAcmpnyAt(String trlerAcmpnyAt) {
+		this.trlerAcmpnyAt = trlerAcmpnyAt;
 	}
 
 	public String getContentId() {

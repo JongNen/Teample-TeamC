@@ -51,12 +51,6 @@ h1 {
 	text-decoration: underline;
 }
 
-.list-group-item {
-	padding: 10px;
-	margin-bottom: 10px;
-	list-style-type: circle;
-}
-
 .simple-btn {
 	background-color: #f0f8ff;
 	border: 1px solid #aaa;
@@ -84,6 +78,11 @@ fieldset {
 	background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.8),
 		rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0));
 }
+
+.heart-icon {
+	color: red;
+	font-size: 16px;
+}
 </style>
 </head>
 <body>
@@ -96,6 +95,7 @@ fieldset {
 		<div class="content">
 			<div>${sessionScope.logonUser.name}님
 				로그인중(${sessionScope.logonUser.id})</div>
+
 			<c:choose>
 				<c:when test="${empty sessionScope.logonUser.area}">
 					<div>설정된 관심 지역이 없습니다.</div>
@@ -105,8 +105,7 @@ fieldset {
 					<div>관심지역 = ${sessionScope.logonUser.area }</div>
 				</c:otherwise>
 			</c:choose>
-			<a href="/user/delete?id=${sessionScope.logonUser.id}"
-				class="delete-link">회원탈퇴하기</a> <br /> <br /> <br />
+			<a href="/index" style="color: blue;">홈으로</a> <br /> <br /> <br />
 			<h2>비밀번호 및 닉네임 수정</h2>
 
 			<small style="color: red;">* 비밀번호와 닉네임은 필수 입력입니다.</small>
@@ -303,17 +302,19 @@ fieldset {
 					<c:otherwise>
 						<ul class="list-group">
 							<c:forEach items="${myPost}" var="post">
-								<li class="list-group-item">${post.campname}<a
-									href="/detail?contentId=${post.campid}" style="color: blue;">
-										이동</a></li>
+								<p class="list-group-item">
+									<span class="heart-icon">&#10084;</span> ${post.campname} <a
+										href="/detail?contentId=${post.campid}" style="color: blue;">이동</a>
+								</p>
 							</c:forEach>
 						</ul>
 					</c:otherwise>
 				</c:choose>
 			</fieldset>
 
+			<br /> <a href="/user/delete?id=${sessionScope.logonUser.id}"
+				class="delete-link">회원탈퇴하기</a> <br /> <br />
 
-			<br /> <a href="/index" style="color: blue;">홈으로</a>
 		</div>
 	</div>
 

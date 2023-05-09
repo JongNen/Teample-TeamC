@@ -36,7 +36,7 @@ a {
 	color: black;
 }
 
-.select-deco{
+.select-deco {
 	width: 30%;
 	padding: 2px;
 	border-radius: 6px;
@@ -185,11 +185,10 @@ a {
 	margin-top: 20em;
 }
 
-.search-inside-range{
+.search-inside-range {
 	width: 70%;
 	display: flex;
 	align-items: center;
-
 }
 
 .search-box-inside {
@@ -276,6 +275,10 @@ a {
 	color: #2D2727;
 }
 
+a:hover {
+	color: #05BFDB;
+}
+
 .signup-blank {
 	border: 2px solid #e5e7eb;
 	padding: 10px 12px;
@@ -299,7 +302,6 @@ a {
 	gap: 12px;
 	text-align: center;
 }
-
 
 .write-button-position {
 	display: flex;
@@ -603,4 +605,42 @@ a {
 	text-align: center;
 	vertical-align: top;
 	margin: 0 20px 20px 0;
+}
+
+/*-------------상세 검색의 CSS ------------------------------*/
+/*팝업창 CSS*/
+.ds-box {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/*box가 열리면서 주변이 어둡게 해주는 CSS*/
+#ds-overlay {
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+/*box 안 컨텐츠 CSS*/
+#ds-content {
+	position: relative;
+	background-color: aliceblue;
+	padding: 50px 100px;
+	text-align: center;
+	width: 50%;
+	height: 50%;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+	border-radius: 10px;
+}
+/*닫기 버튼 클릭시 팝업창이 사라지게 하는 CSS*/
+.hidden {
+	display: none;
 }
