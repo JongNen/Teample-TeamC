@@ -21,3 +21,9 @@
 		<button class="but" type="submit">이미지 업로드하기</button>
 	</div>
 </div>
+
+<c:if test="${param.cause eq 'valid' }">
+	<script>
+		alert("잘못된 입력입니다 !!");
+	</script>
+</c:if>

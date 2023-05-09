@@ -27,6 +27,11 @@ public class writeTaskController extends HttpServlet {
 		String title = req.getParameter("title");
 		String postBody = req.getParameter("postBody");
 		String IMG = "";
+		
+		if(title == null || title.matches("")) {
+			resp.sendRedirect("/write?cause=valid");
+			return;
+		}
 
 		int r = PostDAO.createReview(writerName, IMG, title, postBody, writerId);
 

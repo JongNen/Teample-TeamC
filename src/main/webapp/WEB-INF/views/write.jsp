@@ -30,6 +30,13 @@
 </html>
 
 
+<c:if test="${param.cause eq 'valid' }">
+	<script>
+		alert("잘못된 입력입니다 !!");
+	</script>
+</c:if>
+
+
 
 
 

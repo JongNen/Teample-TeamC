@@ -6,6 +6,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
 <%--상세검색 페이지  --%>
+<style>
+img:hover{
+	cursor: pointer;
+}
+</style>
+
+
+
 <div class="ds-box hidden">
 	<div id="ds-overlay"></div>
 	<div id="ds-content">

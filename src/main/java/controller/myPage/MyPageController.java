@@ -25,7 +25,7 @@ public class MyPageController extends HttpServlet {
 		Boolean logon = (Boolean) session.getAttribute("logon");
 
 		if (logon == null || !logon) {
-			resp.sendRedirect("/user/login");
+			resp.sendRedirect("/user/signIn");
 			return;
 		}
 	    String id = logonUser.getId();
