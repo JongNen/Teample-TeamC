@@ -39,26 +39,25 @@
 				</c:forEach>
 			</div>
 		</div>
+		<div class="bord-bottom-position">
+			<div class="write-button-position">
+				<form action="/write">
+					<button class="write-button" type="submit">글쓰러가기</button>
+				</form>
+			</div>
 
-		<%-- 페이징처리 --%>
-		<div style="padding: 1em; text-align: center;">
-			<c:set var="currentPage" value="${empty param.p ? 1: param.p }" />
-			<c:choose>
-				<c:when test="${param.p eq null|| param.p eq 1 || param.p <10}">
-				</c:when>
-				<c:otherwise>
-					<a href="/board"><i class="fa-solid fa-chevrons-left"></i></a>
-					<a href="/board?p=${previousPage }"> <i
-						class="fa-solid fa-chevron-left"></i></a>
-				</c:otherwise>
-			</c:choose>
-			<div class="bord-bottom-position">
-				<div class="write-button-position">
-					<form action="/write">
-						<button class="write-button" type="submit">글쓰러가기</button>
-					</form>
-				</div>
-
+			<%-- 페이징처리 --%>
+			<div style="padding: 1em; text-align: center;">
+				<c:set var="currentPage" value="${empty param.p ? 1: param.p }" />
+				<c:choose>
+					<c:when test="${param.p eq null|| param.p eq 1 || param.p <10}">
+					</c:when>
+					<c:otherwise>
+						<a href="/board"><i class="fa-solid fa-chevrons-left"></i></a>
+						<a href="/board?p=${previousPage }"> <i
+							class="fa-solid fa-chevron-left"></i></a>
+					</c:otherwise>
+				</c:choose>
 				<c:forEach begin="1" end="${totalPage}" var="pg">
 					<c:choose>
 						<c:when test="${pg eq currentPage }">
@@ -80,6 +79,7 @@
 							class="fa-solid fa-chevrons-right"></i></a>
 					</c:otherwise>
 				</c:choose>
+
 			</div>
 		</div>
 	</div>

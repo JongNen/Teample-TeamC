@@ -37,9 +37,9 @@ a {
 }
 
 .detail-search{
-	background-color: #CBF1F5;
+	background-color: white;
 	border-radius: 4px;
-	border: 0.6px solid #CBF1F5;
+	border: 0.6px solid white;
 	cursor: pointer;
 	padding:3px;
 }
@@ -327,7 +327,8 @@ a:hover {
 .write-button-position {
 	display: flex;
 	justify-content: end;
-	margin-right: 5px;
+	padding-right: 14%;
+	padding-top: 1em;
 }
 
 .write-button {
