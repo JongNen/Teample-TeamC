@@ -70,8 +70,8 @@ h1 {
 fieldset {
 	border: 5px solid skyblue;
 	border-radius: 20px;
-	padding: 10px;
-	width: 45%;
+	padding: 5px;
+	width: 40%;
 	height: auto;
 	box-sizing: border-box;
 	background-color: #f0f8ff;
@@ -81,8 +81,23 @@ fieldset {
 
 .heart-icon {
 	color: red;
-	font-size: 16px;
+	font-size: 18px;
+	margin: 0px 10px;
 }
+
+.list-group-item {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 10px 0px;
+	
+}
+
+.list-group-item .campname {
+	width: 100%;
+}
+
+
 </style>
 </head>
 <body>
@@ -114,8 +129,8 @@ fieldset {
 					<div style="margin: 0.4em">
 						<input type="hidden" name="id"
 							value="${sessionScope.logonUser.id}"> <input
-							type="password" placeholder="비밀번호" name="pass" class="join-input" value = "1111"/>
-						<small>* 4글자 이상(초기값 1111)</small>
+							type="password" placeholder="비밀번호" name="pass" class="join-input"
+							value="1111" /> <small>* 4글자 이상(초기값 1111)</small>
 					</div>
 
 					<div style="margin: 0.4em">
@@ -302,10 +317,9 @@ fieldset {
 					<c:otherwise>
 						<ul class="list-group">
 							<c:forEach items="${myPost}" var="post">
-								<p class="list-group-item">
-									<span class="heart-icon">&#10084;</span> ${post.campname} <a
-										href="/detail?contentId=${post.campid}" style="color: blue;">이동</a>
-								</p>
+								<li class="list-group-item"><span class="heart-icon">&#10084;</span>
+									${post.campname} <a href="/detail?contentId=${post.campid}"
+									style="color: blue; margin: 0px 10px">이동</a></li>
 							</c:forEach>
 						</ul>
 					</c:otherwise>

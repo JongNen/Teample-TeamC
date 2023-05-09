@@ -17,8 +17,10 @@
 </head>
 <body>
 	<div style="text-align: center;">
-		<div class="board-title">자유게시판
-			<div class="board-subtitle">캠핑에 관한 이야기를 자유롭게 나누어보세요</div></div>
+		<div class="board-title">
+			자유게시판
+			<div class="board-subtitle">캠핑에 관한 이야기를 자유롭게 나누어보세요</div>
+		</div>
 		<div style="text-align: center; margin-left: 15em;">
 			<div class="post-title">
 				<div class="post-t1">번호</div>
@@ -42,7 +44,9 @@
 		<div class="bord-bottom-position">
 			<div class="write-button-position">
 				<form action="/write">
-					<button class="write-button" type="submit">글쓰러가기</button>
+					<c:if test="${sessionScope.logon}">
+						<button class="write-button" type="submit">글쓰러가기</button>
+					</c:if>
 				</form>
 			</div>
 
@@ -54,13 +58,14 @@
 				<a href="/board?p=1"><i class="fa-solid fa-chevrons-left"></i></a>
 				<c:choose>
 					<c:when test="${existPrev}">
-						<a href="/board?p=${start-1}"><i class="fa-solid fa-chevron-left"></i></a>
+						<a href="/board?p=${start-1}"><i
+							class="fa-solid fa-chevron-left"></i></a>
 					</c:when>
 					<c:otherwise>
 						<a><i class="fa-solid fa-chevron-left"></i></a>
-					</c:otherwise> 
+					</c:otherwise>
 				</c:choose>
-				
+
 				<!-- 페이지 넘버 처리 -->
 				<c:forEach begin="${start}" end="${last}" var="pg">
 					<c:choose>
@@ -72,17 +77,19 @@
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-				
+
 				<!-- next 처리 -->
 				<c:choose>
 					<c:when test="${existNext}">
-						<a href="/board?p=${last + 1}"><i class="fa-solid fa-chevron-right"></i></a>
+						<a href="/board?p=${last + 1}"><i
+							class="fa-solid fa-chevron-right"></i></a>
 					</c:when>
 					<c:otherwise>
 						<a><i class="fa-solid fa-chevron-right"></i></a>
 					</c:otherwise>
 				</c:choose>
-				<a href="/board?p=${totalPage}"><i class="fa-solid fa-chevrons-right"></i></a>
+				<a href="/board?p=${totalPage}"><i
+					class="fa-solid fa-chevrons-right"></i></a>
 			</div>
 		</div>
 	</div>

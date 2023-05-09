@@ -18,7 +18,7 @@
 				value="${idSave }" required /> <input class="login-blank"
 				type="password" name="pass" placeholder="비밀번호" />
 				<c:if test="${param.error eq 1 }">
-					<h4 style="color: red">아아디와 비밀번호를 다시 확인해주세요.</h4>
+					<h4 style="color: red">아이디와 비밀번호를 다시 확인해주세요.</h4>
 				</c:if>
 			<div
 				style="font-size: 14px; display: flex; gap: 8px; align-items: center;">

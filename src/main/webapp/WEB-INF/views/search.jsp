@@ -2,6 +2,34 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
+
+<style>
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 20px 0;
+	font-size: 14px;
+}
+
+td, th {
+	border: 1px solid #ddd;
+	text-align: center;
+	padding: 8px;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+tr:hover {
+	background-color: #f5f5f5;
+}
+</style>
+
 <%--상세검색 페이지  --%>
 <div class="ds-box hidden">
 	<div id="ds-overlay"></div>
@@ -15,7 +43,7 @@
 				<div class="ds-container">
 					<div class="ds-list-title1">지역별</div>
 					<div class="ds-list-rage">
-						<ul>			
+						<ul>
 							<c:forEach items="${doList}" var="doItem">
 								<li><label for="do_${doItem}"> <input
 										type="checkbox" id="do_${doItem}" name="doNm"
@@ -55,7 +83,7 @@
 							<c:forEach items="${indutyList}" var="iduItem">
 								<li><label for="in_${iduItem}"> <input
 										type="checkbox" id="in_${iduItem}" name="induty"
-										value="${iduItem}"	>${iduItem}</label></li>
+										value="${iduItem}">${iduItem}</label></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -75,10 +103,9 @@
 				<div class="ds-container">
 					<div class="ds-list-title3">기타정보</div>
 					<div class="ds-list-rage">
-							<label for="trler"><input type="checkbox"
-									id="trler" name="trlerAcmpnyAt">개인 트레일러 동반 가능</label>
-							<label for="animal"><input type="checkbox"
-									id="animal" name="animalCmgCl">애완동물출입 가능</label>
+						<label for="trler"><input type="checkbox" id="trler"
+							name="trlerAcmpnyAt">개인 트레일러 동반 가능</label> <label for="animal"><input
+							type="checkbox" id="animal" name="animalCmgCl">애완동물출입 가능</label>
 					</div>
 				</div>
 			</div>
@@ -355,16 +382,15 @@
 <div style="display: flex; justify-content: center; padding: 8px;">
 
 	<table>
-		<c:forEach items="${datas }" var="list">
+		<c:forEach items="${datas}" var="list">
 			<tr onclick="location.href='/detail?contentId=${list.contentId}'">
 				<td><img
 					src="${not empty list.firstImageUrl ? list.firstImageUrl :'/resource/image/tent.png'}"
-					style="height: 100px; width: 120px"
+					style="height: 120px; width: 180px"
 					onerror="this.onerror=null; this.src='/resource/image/tent.png';" /></td>
 				<td>${list.facltNm.replace("(주)", " ")}</td>
-				<td>${not empty list.lineIntro ? list.lineIntro : '-' }
-				</td>
-				<td>${list.addr1} ${list.addr2 }<br>
+				<td>${not empty list.lineIntro ? list.lineIntro : '-' }</td>
+				<td>${list.addr1}</td>
 			</tr>
 		</c:forEach>
 	</table>

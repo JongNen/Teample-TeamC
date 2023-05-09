@@ -308,7 +308,7 @@ th {
 
 			<!-- 지도 영역 -->
 			<div id="map"
-				style="width: 100%; height: 400px; margin: auto; display: none; justify-content: center; align-items: center; border: 1px solid #dddddd">
+				style="width: 80%; height: 400px; margin: auto; display: none; justify-content: center; align-items: center; border: 1px solid #dddddd">
 
 				<c:choose>
 					<c:when test="${empty camp.addr1 }">
