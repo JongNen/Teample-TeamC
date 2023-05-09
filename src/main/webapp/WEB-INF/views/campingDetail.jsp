@@ -81,11 +81,11 @@ th {
 	font-size: 14px;
 }
 
-.comment-wrapper{
+.comment-wrapper {
 	width: 860px;
 }
 
-.comment-but{
+.comment-but {
 	height: 100%;
 	border-radius: 4px;
 	border: 0.7px solid;
@@ -94,20 +94,18 @@ th {
 	padding: 5px;
 }
 
-.comment-but:hover{
+.comment-but:hover {
 	box-shadow: 0 2px 4px -2px rgb(0 0 0/ 0.1), 0 4px 6px -1px
 		rgb(0 0 0/ 0.1);
-	
 }
 
-.comment-deco{
+.comment-deco {
 	width: 35rem;
 	padding: 5px 5px;
 	resize: none;
 	border-radius: 4px;
 	border: 0.6px solid;
 }
-
 </style>
 <meta charset="UTF-8">
 <title></title>
@@ -122,7 +120,7 @@ th {
 
 	<div class="detail-main">
 		<div class="detail-img">
-			<img style="opacity: 0.8;"src="${camp.firstImageUrl}"
+			<img style="opacity: 0.8;" src="${camp.firstImageUrl}"
 				onerror="this.src='/resource/image/tent.png';" />
 			<c:if test="${sessionScope.logon}">
 				<button id="likeButton" onclick="like()"
@@ -267,6 +265,31 @@ th {
 								</c:otherwise>
 							</c:choose>
 						</tr>
+
+						<tr>
+							<td>부대시설</td>
+							<c:choose>
+								<c:when test="${not empty camp.sbrsCl}">
+									<td>${camp.sbrsCl}</td>
+								</c:when>
+								<c:otherwise>
+									<td>-</td>
+								</c:otherwise>
+							</c:choose>
+						</tr>
+
+						<tr>
+							<td>기타시설</td>
+							<c:choose>
+								<c:when test="${not empty camp.sbrsEtc}">
+									<td>${camp.sbrsEtc}</td>
+								</c:when>
+								<c:otherwise>
+									<td>-</td>
+								</c:otherwise>
+							</c:choose>
+						</tr>
+
 						<tr>
 							<td>애완동물 출입</td>
 							<c:choose>
@@ -278,17 +301,7 @@ th {
 								</c:otherwise>
 							</c:choose>
 						</tr>
-						<tr>
-							<td>캠핑장 소개</td>
-							<c:choose>
-								<c:when test="${not empty camp.lineIntro}">
-									<td>${camp.lineIntro}</td>
-								</c:when>
-								<c:otherwise>
-									<td>-</td>
-								</c:otherwise>
-							</c:choose>
-						</tr>
+
 					</table>
 				</div>
 			</div>
@@ -302,58 +315,54 @@ th {
             지도정보를 확보 하지 못해 렌더링에 실패하였습니다.
         </c:when>
 
-			<c:otherwise>
-			</c:otherwise>
-		</c:choose>
-	</div>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
+			</div>
 
 
 			<div id="review" style="display: none">
 				<!-- 댓글 작성 영역 -->
 				<div class="comment-wrapper">
-					<form action="/camp/review" method="post" style="display: flex; gap: 3px;">
-						<textarea name="body" placeholder="댓글을 입력해주세요" class="comment-deco" ></textarea>
+					<form action="/camp/review" method="post"
+						style="display: flex; gap: 3px;">
+						<textarea name="body" placeholder="댓글을 입력해주세요"
+							class="comment-deco"></textarea>
 						<input type="hidden" name="contentId" value="${param.contentId}">
 						<div>
 							<button class="comment-but" type="submit">댓글 작성</button>
 						</div>
-            
-				<textarea name="body" placeholder="후기를 입력해주세요"></textarea>
-				<input type="hidden" name="contentId" value="${param.contentId}">
-				<div>
-					<button type="submit">후기 작성</button>
+					</form>
 				</div>
-			</form>
-		</div>
 
-		<!-- 댓글 보기 영역 -->
-		<div class="comment-list">
-			<c:choose>
-				<c:when test="${empty review}">
-					<p>아직 등록된 후기가 없습니다.</p>
-				</c:when>
-				<c:otherwise>
-					<c:forEach items="${review}" var="m">
-						<div class="comment">
-							<div class="writer">${m.writerName}님(${m.writerId})
-								<c:if test="${sessionScope.logonUser.id eq m.writerId}">
-									<a
-										href="/camp/delete?contentId=${param.contentId}&reviewNum=${m.reviewNum}"
-										style="color: red"> 삭제</a>
-								</c:if>
-							</div>
-							<div class="body">${m.body}</div>
-						</div>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</div>
+				<!-- 댓글 보기 영역 -->
+				<div class="comment-list">
+					<c:choose>
+						<c:when test="${empty review}">
+							<p>아직 등록된 후기가 없습니다.</p>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${review}" var="m">
+								<div class="comment">
+									<div class="writer">${m.writerName}님(${m.writerId})
+										<c:if test="${sessionScope.logonUser.id eq m.writerId}">
+											<a
+												href="/camp/delete?contentId=${param.contentId}&reviewNum=${m.reviewNum}"
+												style="color: red"> 삭제</a>
+										</c:if>
+									</div>
+									<div class="body">${m.body}</div>
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
 
-	<!-- ///////////////////////////// 스크립트 부분 ////////////////////////////////// -->
+			<!-- ///////////////////////////// 스크립트 부분 ////////////////////////////////// -->
 
-	<!-- 상세 보기 영역 -->
-	<script>
+			<!-- 상세 보기 영역 -->
+			<script>
 		function toggleDetail() {
 		    var campInfo = document.getElementById("campInfo");
 		    var mapElement = document.getElementById("map");
@@ -366,11 +375,11 @@ th {
 		}
 	</script>
 
-	<!-- 지도 관련 부분 -->
-	<c:if test="${!empty camp.addr1}">
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdd7a2dbaa2570a180f3c39b9a412437"></script>
-		<script>
+			<!-- 지도 관련 부분 -->
+			<c:if test="${!empty camp.addr1}">
+				<script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdd7a2dbaa2570a180f3c39b9a412437"></script>
+				<script>
 	let pos = new kakao.maps.LatLng(${camp.mapY}, ${camp.mapX});	
 	let container = document.querySelector('#map');
 	let options = {		
@@ -404,8 +413,8 @@ th {
 
 </script>
 
-		<!-- 후기 관련 부분 -->
-		<script>
+				<!-- 후기 관련 부분 -->
+				<script>
 		function toggleReview() {
 			var campInfo = document.getElementById("campInfo");
 			var mapElement = document.getElementById("map");
@@ -419,10 +428,10 @@ th {
 		}
 	</script>
 
-	</c:if>
+			</c:if>
 
-	<!-- 좋아요 부분 -->
-	<script>	
+			<!-- 좋아요 부분 -->
+			<script>	
 	
 	   const likes = ${likeCheckJson};
 	   const userId = "${sessionScope.logonUser.id}";
@@ -462,11 +471,10 @@ th {
 	
 		</script>
 
-	<c:if test="${param.cause eq 'valid' }">
-		<script>
+			<c:if test="${param.cause eq 'valid' }">
+				<script>
 			alert("비회원은 글 쓰기가 불가능합니다.");
 		</script>
-	</c:if>
-
+			</c:if>
 </body>
 </html>
