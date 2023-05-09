@@ -24,6 +24,11 @@ public class writeModifyTaskController extends HttpServlet {
 		String title = req.getParameter("title");
 		String postBody = req.getParameter("postBody");
 		String IMG = "";
+		
+		if(title == null || title.matches("")) {
+			resp.sendRedirect("/modifyReview?cause=valid&number=" + number);
+			return;
+		}
 
 		Review review = PostDAO.findByPost(number);
 
