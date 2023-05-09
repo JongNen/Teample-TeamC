@@ -24,9 +24,19 @@ public class PostDAO extends DAO {
 	// 게시글 페이징처리해서 불러오기
 	public static List<Review> findByPostAtoB(Map map) {
 
-		SqlSession session = factory.openSession(true);
+		SqlSession session = factory.openSession();
 		try {
 			return session.selectList("posts.findByPostAtoB", map);
+		} finally {
+			session.close();
+		}
+	}
+	
+	// 게시글 전체 갯수 불러오기
+	public static int findByPostAll() {
+		SqlSession session = factory.openSession(true);
+		try {
+			return session.selectOne("posts.findByPostAll");
 		} finally {
 			session.close();
 		}
@@ -213,5 +223,4 @@ public class PostDAO extends DAO {
 		}
 
 	}
-
 }

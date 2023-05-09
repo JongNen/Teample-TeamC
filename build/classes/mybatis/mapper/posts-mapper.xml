@@ -22,6 +22,11 @@
 		) WHERE RN BETWEEN #{a} AND
 		#{b}
 	</select>
+	
+	<!-- 게시글 전체 갯수 가져오기 -->
+	<select id="findByPostAll" resultType="int">
+		SELECT COUNT(*) FROM reviews
+	</select>
 
 	<!-- 자기가 좋아요 처리한 캠핑장 불러오기 -->
 	<select id="readByMyPost" resultType="data.Like"
@@ -101,8 +106,10 @@
 		BY
 		WRITED DESC
 	</select>
+	
 	<!-- 특정 게시물 확인하기 -->
-	<select id="findBypostNum" resultType="data.Review" parameterType="int">
+	<select id="findBypostNum" resultType="data.Review"
+		parameterType="int">
 		SELECT * FROM REVIEWS
 		WHERE POSTNUM=#{postNum}
 	</select>
@@ -118,7 +125,8 @@
 
 	<!-- 캠핑장 후기 불러오기 -->
 	<select id="findByCampReview" resultType="data.CampReview">
-		SELECT * FROM CAMPREVIEWS
+		SELECT * FROM
+		CAMPREVIEWS
 		WHERE CAMPID=#{campId}
 		ORDER BY REVIEWNUM DESC
 	</select>
