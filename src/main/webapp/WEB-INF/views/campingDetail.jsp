@@ -60,9 +60,11 @@ th {
 }
 
 .comment-list {
-	margin-top: 20px;
+	margin-top: 10px;
 	border: 1px solid #ccc;
 	padding: 10px;
+	width: 72%;
+	border-radius: 3px;
 }
 
 .comment {
@@ -79,28 +81,33 @@ th {
 	font-size: 14px;
 }
 
-.comment-wrapper textarea {
-	width: 30%;
-	height: 150px;
-	padding: 10px;
-	border: none;
-	border-radius: 5px;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-	resize: none;
-	font-size: 16px;
-	font-family: inherit;
-	height: 150px;
+.comment-wrapper{
+	width: 860px;
 }
 
-.comment-wrapper button {
-	background-color: #4CAF50;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	padding: 10px;
-	font-size: 16px;
+.comment-but{
+	height: 100%;
+	border-radius: 4px;
+	border: 0.7px solid;
+	background-color: white;
 	cursor: pointer;
+	padding: 5px;
 }
+
+.comment-but:hover{
+	box-shadow: 0 2px 4px -2px rgb(0 0 0/ 0.1), 0 4px 6px -1px
+		rgb(0 0 0/ 0.1);
+	
+}
+
+.comment-deco{
+	width: 35rem;
+	padding: 5px 5px;
+	resize: none;
+	border-radius: 4px;
+	border: 0.6px solid;
+}
+
 </style>
 <meta charset="UTF-8">
 <title></title>
@@ -167,7 +174,7 @@ th {
 				style="display: flex; justify-content: center; width: 960px; margin-top: 20px;">
 				<div class="table" id="campInfo"
 					style="display: block; width: 100%;">
-					<table style="text-align: center; padding-left: 3%;">
+					<table style="text-align: center; padding-left: 12%;">
 						<tr>
 							<th>항목</th>
 							<th>내용</th>
@@ -301,20 +308,23 @@ th {
 	</div>
 
 
-	<div id="review" style="display: none">
-		<!-- 댓글 작성 영역 -->
-		<div class="comment-wrapper">
-			<form action="/camp/review" method="post">
-
+			<div id="review" style="display: none">
+				<!-- 댓글 작성 영역 -->
+				<div class="comment-wrapper">
+					<form action="/camp/review" method="post" style="display: flex; gap: 3px;">
+						<textarea name="body" placeholder="댓글을 입력해주세요" class="comment-deco" ></textarea>
+						<input type="hidden" name="contentId" value="${param.contentId}">
+						<div>
+							<button class="comment-but" type="submit">댓글 작성</button>
+						</div>
+            
 				<textarea name="body" placeholder="후기를 입력해주세요"></textarea>
 				<input type="hidden" name="contentId" value="${param.contentId}">
 				<div>
 					<button>후기 작성</button>
 				</div>
-
 			</form>
 		</div>
-
 
 		<!-- 댓글 보기 영역 -->
 		<div class="comment-list">
@@ -337,11 +347,8 @@ th {
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-
 		</div>
 	</div>
-
-
 
 	<!-- ///////////////////////////// 스크립트 부분 ////////////////////////////////// -->
 
