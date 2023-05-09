@@ -36,12 +36,23 @@ a {
 	color: black;
 }
 
+.detail-button{
+	background-color: #02031B;
+	border: 1px solid #02031B;
+	border-radius: 4px;
+	color: white;
+	padding: 5px 55px;
+	cursor: pointer;
+}
+
 .detail-search{
-	background-color: white;
+	background-color: #F2E7D5;
+	color:black;
 	border-radius: 4px;
 	border: 0.6px solid white;
 	cursor: pointer;
-	padding:3px;
+	padding-left:3px;
+	font-size: 15px;
 }
 
 detail-search:hover{
@@ -79,6 +90,27 @@ detail-search:hover{
 	border-radius: 4px;
 }
 
+.quit-button-position{
+	padding-top:5px;
+	padding-right: 5px;
+	
+}
+
+.quit-button{
+	background-color: #F0F8FF;
+	border: 0;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.reset-button{
+	background-color:transparent;
+	border: 0;
+	font-size:22px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
 .write-blank1 {
 	border: 2px solid rgba(120, 120, 120, 0.8);
 	padding: 10px 10px;
@@ -89,16 +121,17 @@ detail-search:hover{
 
 .index-search-button {
 	width: 100%;
-	font-size: 13px;
+	font-size: 16px;
 	padding: 5px 6px;
-	background-color: white;
-	border: 1px solid white;
+	background-color: #F2E7D5;
+	border: 0.6px solid white;
 	border-radius: 6px;
 	cursor: pointer;
+	font-weight: bold;
 }
 
 .index-search-button:hover {
-	font-size: 14px;
+	font-size: 17px;
 	border-radius: 6px;
 	border: 1px solid white;
 	background: white;
@@ -658,7 +691,7 @@ a:hover {
 	padding: 10px 20px;
 	text-align: center;
 	width: 40%;
-	height: 50%;
+	height: 53%;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
 		rgba(0, 0, 0, 0.23);
 	border-radius: 10px;
@@ -725,9 +758,9 @@ label {
 
 /*box 내부 검색, 초기화 버튼 제어*/
 .btn-ctr {
-	padding-top: 20px;
 	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
+	width: 53%;
+	padding-left:35%;
+	padding-top:1.5em;
 }

@@ -3,27 +3,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
 
-<div style="padding: 4em; text-align: center;">
-	<form action="/modifyReview-Task" method="post">
-		<input type="hidden" name="number" value="${post.postNum }">
-		<div>
-			<input class="title-blank" type="text" name="title"
-				value="${post.title }">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title></title>
+<link rel="stylesheet" href="/resource/style.css">
+</head>
+<body>
+	<div class="write-main">
+		<div class="write-range">
+			<form action="/modifyReview-Task" method="post" class="write-content">
+			<input type="hidden" name="number" value="${post.postNum }">
+				<input class="write-blank" type="text" name="title" value="${post.title }">
+					<input class="write-blank1" value="${post.postBody }"
+						name="postBody">
+				<div class="write-button-position">
+					<button class="sign-button" type="submit">수정하기</button>
+				</div>
+			</form>
 		</div>
-		<div style="padding: 1em;">
-			<input class="postBody-blank" type="text"
-				style="width: 400px; height: 300px;" name="postBody"
-				value="${post.postBody }">
-		</div>
-		<button class="but" type="submit">수정하기</button>
-	</form>
-	<div>
-		<button class="but" type="submit">이미지 업로드하기</button>
 	</div>
-</div>
+
+</body>
+</html>
 
 <c:if test="${param.cause eq 'valid' }">
 	<script>
 		alert("잘못된 입력입니다 !!");
 	</script>
 </c:if>
+

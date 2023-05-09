@@ -20,21 +20,32 @@
 				<textarea class="write-blank1" placeholder="내용을 입력해주세요"
 					name="postBody"></textarea>
 				<div class="write-button-position">
-					<button class="sign-button" type="submit">등록하기</button>
+					<button class="sign-button" type="submit" id="post">등록하기</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
+<script>
+		const popUp = document.querySelector("#pop");
+
+		document.querySelector("#post").onclick = function() {
+			popUp.style.display = "flex";
+		}
+
+
+</script>
+
 </body>
 </html>
-
 
 <c:if test="${param.cause eq 'valid' }">
 	<script>
 		alert("잘못된 입력입니다 !!");
 	</script>
 </c:if>
+
+
 
 
 
