@@ -24,47 +24,54 @@ public class IndexController extends HttpServlet {
 
 		HttpSession session = req.getSession(); // 현재 HttpSession 객체 가져오기
 		User logonUser = (User) session.getAttribute("logonUser"); // 세션 속성 가져오기
-		System.out.println(logonUser);
 
 		List<Item> response = CampingAPI.campingList();
 
 		List<Item> recommends = new ArrayList<>();
-		
+
 		int count = 0;
+		boolean loggedIn = req.getSession().getAttribute("logonUser") != null && logonUser.getArea() != null;
 
-		if (req.getSession().getAttribute("logonUser") == null || logonUser.getArea() == null) {
-			// 로그인 상태가 아니면..
-			while (count < 5) {
-				count++;
-				Item item = response.get((int) (Math.random() * response.size()));
-
-				recommends.add(item);
+		for (Item item : response) {
+			if (count >= 5) {
+				break;
 			}
 
-		} else {
-			// 반복문을 돌면서 하나씩 체크
-			
+			if (loggedIn) {
+				if (item.getSigunguNm().length() < 2 || item.getAddr1().length() < 2 || item.getDoNm().length() < 2) {
+					continue;
 
-			for (Item item : response) {
-				if (item.getSigunguNm().length() >= 2 && item.getAddr1().length() >= 2
-						&& item.getDoNm().length() >= 2) {
-
-					if (logonUser.getArea().matches(item.getSigunguNm())) {
-
-						count++;
-						recommends.add(item);
-
-					} else if (logonUser.getArea().substring(0,2).matches(item.getDoNm().substring(0,2))) {
-
-						count++;
-						recommends.add(item);
-					}
-
-					if (count == 5) {
-						count = 0;
-						break;
-					}
 				}
+
+				if (!logonUser.getArea().matches(item.getSigunguNm())
+						&& !logonUser.getArea().substring(0, 2).matches(item.getDoNm().substring(0, 2))) {
+					continue;
+
+				}
+				recommends.add(item);
+				count++;
+
+			} else if (logonUser == null) {
+				Item random = response.get((int) (Math.random() * response.size()));
+				recommends.add(random);
+				count++;
+			}
+
+		}
+
+		if (loggedIn && count < 5) {
+			req.setAttribute("count", count);
+			while (count < 5) {
+
+				Item random = response.get((int) (Math.random() * response.size()));
+				recommends.add(random);
+				count++;
+			}
+		} else if (count == 0) {
+			while (count < 5) {
+				Item random = response.get((int) (Math.random() * response.size()));
+				recommends.add(random);
+				count++;
 			}
 		}
 
@@ -143,19 +150,18 @@ public class IndexController extends HttpServlet {
 
 		String[] jeju = { "전체", "제주시", "서귀포시" };
 		req.setAttribute("jeju", jeju);
-		
-		//상세 검색때 필요한 데이터
+
+		// 상세 검색때 필요한 데이터
 		String[] facList = { "지자체", "국립공원", "자연휴양림", "국민여가", "민간" };
 		req.setAttribute("facList", facList);
 
-		String[] sbrList = { "전기", "무선인터넷", "장작판매", "온수", "트렘폴린", "물놀이장", "놀이터", 
-							"산책로", "운동장", " 운동시설", "마트-편의점" };
+		String[] sbrList = { "전기", "무선인터넷", "장작판매", "온수", "트렘폴린", "물놀이장", "놀이터", "산책로", "운동장", " 운동시설", "마트-편의점" };
 
 		req.setAttribute("sbrList", sbrList);
-		
-		String[] indutyList = {"일반야영장", "자동차야영장", "카라반", "글램핑"};
+
+		String[] indutyList = { "일반야영장", "자동차야영장", "카라반", "글램핑" };
 		req.setAttribute("indutyList", indutyList);
-		
+
 		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
 
 	}

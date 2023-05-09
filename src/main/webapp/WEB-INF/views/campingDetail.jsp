@@ -126,7 +126,7 @@ th {
 				<button id="likeButton" onclick="like()"
 					style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none;">
 					<i id="likeIcon" class="far fa-heart heart-icon"
-						style="font-size: 60px;"></i>
+						style="font-size: 40px;"></i>
 				</button>
 			</c:if>
 		</div>
@@ -171,7 +171,7 @@ th {
 			<div
 				style="display: flex; justify-content: center; width: 960px; margin-top: 20px;">
 				<div class="table" id="campInfo"
-					style="display: block; width: 100%;">
+					style="display: '${param.review eq '1' ? 'none' : 'block'}'; width: 100%;">
 					<table style="text-align: center; padding-left: 12%;">
 						<tr>
 							<th>항목</th>
@@ -321,8 +321,8 @@ th {
 			</div>
 
 
-			<div id="review" style="display: none">
-				<!-- 댓글 작성 영역 -->
+			<!-- 댓글 작성 영역 -->
+			<div id="review" style="display: none;">
 				<div class="comment-wrapper">
 					<form action="/camp/review" method="post"
 						style="display: flex; gap: 3px;">
@@ -414,6 +414,18 @@ th {
 </script>
 
 				<!-- 후기 관련 부분 -->
+				<c:if test="${param.review eq '1' }">
+					<script>
+				var campInfo = document.getElementById("campInfo");
+				var mapElement = document.getElementById("map");
+		    	var review = document.getElementById("review");
+		   		if (review.style.display === "none") {
+		        	review.style.display = "block";
+		        	mapElement.style.display="none";
+		        	campInfo.style.display = "none";
+		   		} 
+	   		</script>
+				</c:if>
 				<script>
 		function toggleReview() {
 			var campInfo = document.getElementById("campInfo");

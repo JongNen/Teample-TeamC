@@ -114,8 +114,8 @@ fieldset {
 					<div style="margin: 0.4em">
 						<input type="hidden" name="id"
 							value="${sessionScope.logonUser.id}"> <input
-							type="password" placeholder="비밀번호" name="pass" class="join-input" />
-						<small>* 4글자 이상</small>
+							type="password" placeholder="비밀번호" name="pass" class="join-input" value = "1111"/>
+						<small>* 4글자 이상(초기값 1111)</small>
 					</div>
 
 					<div style="margin: 0.4em">
