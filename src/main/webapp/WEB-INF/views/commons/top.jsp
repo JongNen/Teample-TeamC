@@ -63,13 +63,17 @@
 	</section>
 
 	<script type="text/javascript">
+		const popUp = document.querySelector("#pop");
+
 		document.querySelector("#status").onclick = function() {
-			document.querySelector("#pop").style.display = "flex";
+			popUp.style.display = "flex";
 		}
-		document.querySelector("#status").onmouseout = function() {
-			document.querySelector("#pop").style.display = "";
+
+		document.querySelector("#status").onmouseleave = function() {
+			popUp.style.display = "none";
 		}
 	</script>
+
 
 </body>
 </html>

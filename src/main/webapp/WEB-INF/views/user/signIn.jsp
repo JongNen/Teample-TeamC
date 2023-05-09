@@ -20,7 +20,7 @@
 			<div
 				style="font-size: 14px; display: flex; gap: 8px; align-items: center;">
 				<input type="checkbox" name="check" id="auto-login"> <label
-					style="cursor: pointer;" for="auto-login">자동로그인하기</label>
+					style="cursor: pointer;" for="auto-login">ID 저장</label>
 			</div>
 			<button class="sign-button" type="submit">
 				<b>로그인</b>
