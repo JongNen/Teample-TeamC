@@ -21,15 +21,15 @@
 			<div class="board-subtitle">캠핑에 관한 이야기를 자유롭게 나누어보세요</div></div>
 		<div style="text-align: center; margin-left: 15em;">
 			<div class="post-title">
-				<div class="post-t1">게시글번호</div>
+				<div class="post-t1">번호</div>
 				<div class="post-t2">제목</div>
 				<div class="post-t3">작성자</div>
 				<div class="post-t3">작성일</div>
 			</div>
 			<div class="post-content">
-				<c:forEach items="${list }" var="li">
+				<c:forEach items="${list }" var="li" varStatus="num">
 					<div class="post-contentmain">
-						<div class="post-content1">${li.postNum }</div>
+						<div class="post-content1">${param.p eq 1 ? num.count : (idx - 10) + num.count}</div>
 						<div class="post-content2">
 							<a href="/boardDetail?number=${li.postNum }">${li.title }</a>
 						</div>
@@ -46,19 +46,23 @@
 				</form>
 			</div>
 
+
 			<%-- 페이징처리 --%>
 			<div style="padding: 1em; text-align: center;">
 				<c:set var="currentPage" value="${empty param.p ? 1: param.p }" />
+				<!-- prev 처리 -->
+				<a href="/board?p=1"><i class="fa-solid fa-chevrons-left"></i></a>
 				<c:choose>
-					<c:when test="${param.p eq null|| param.p eq 1 || param.p <10}">
+					<c:when test="${existPrev}">
+						<a href="/board?p=${start-1}"><i class="fa-solid fa-chevron-left"></i></a>
 					</c:when>
 					<c:otherwise>
-						<a href="/board"><i class="fa-solid fa-chevrons-left"></i></a>
-						<a href="/board?p=${previousPage }"> <i
-							class="fa-solid fa-chevron-left"></i></a>
-					</c:otherwise>
+						<a><i class="fa-solid fa-chevron-left"></i></a>
+					</c:otherwise> 
 				</c:choose>
-				<c:forEach begin="1" end="${totalPage}" var="pg">
+				
+				<!-- 페이지 넘버 처리 -->
+				<c:forEach begin="${start}" end="${last}" var="pg">
 					<c:choose>
 						<c:when test="${pg eq currentPage }">
 							<b style="color: #05BFDB;">${pg }</b>
@@ -68,18 +72,17 @@
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-
+				
+				<!-- next 처리 -->
 				<c:choose>
-					<c:when test="${currentPage eq totalPage }">
+					<c:when test="${existNext}">
+						<a href="/board?p=${last + 1}"><i class="fa-solid fa-chevron-right"></i></a>
 					</c:when>
 					<c:otherwise>
-						<a href="/board?p=${nextPage }"><i
-							class="fa-solid fa-chevron-right"></i></a>
-						<a href="/board?p=${totalPage }"><i
-							class="fa-solid fa-chevrons-right"></i></a>
+						<a><i class="fa-solid fa-chevron-right"></i></a>
 					</c:otherwise>
 				</c:choose>
-
+				<a href="/board?p=${totalPage}"><i class="fa-solid fa-chevrons-right"></i></a>
 			</div>
 		</div>
 	</div>
