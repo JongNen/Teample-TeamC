@@ -82,7 +82,7 @@ fieldset {
 .heart-icon {
 	color: red;
 	font-size: 18px;
-	margin: 0px 10px;
+	margin: 0px 5px;
 }
 
 .list-group-item {
