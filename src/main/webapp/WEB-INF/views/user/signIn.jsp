@@ -13,7 +13,7 @@
 	<form style="display: flex; justify-content: center;"
 		action="/user/signIn-task" method="post">
 		<div
-			style="text-align: center; display: flex; flex-direction: column; gap: 12px; width: 40rem;">
+			style="text-align: center; display: flex; flex-direction: column; gap: 12px; width: 20rem;">
 			<input class="login-blank" type="text" name="id" placeholder="아이디"
 				value="${idSave }" required /> <input class="login-blank"
 				type="password" name="pass" placeholder="비밀번호" />

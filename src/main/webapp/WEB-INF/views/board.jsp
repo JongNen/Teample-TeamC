@@ -17,7 +17,8 @@
 </head>
 <body>
 	<div style="text-align: center;">
-		<div class="board-title">캠핑장후기게시판</div>
+		<div class="board-title">자유게시판
+			<div class="board-subtitle">캠핑에 관한 이야기를 자유롭게 나누어보세요</div></div>
 		<div style="text-align: center; margin-left: 15em;">
 			<div class="post-title">
 				<div class="post-t1">게시글번호</div>
