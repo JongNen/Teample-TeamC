@@ -27,12 +27,8 @@ public class SignUpTaskController extends HttpServlet {
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
 		String name = req.getParameter("name");
-		String area = req.getParameter("area");
-
-		System.out.println("id = " + id);
-		System.out.println("pass = " + pass);
-		System.out.println("name = " + name);
-		System.out.println("area = " + area);
+		String doNm = req.getParameter("doNm");
+		String sigunguNm = req.getParameter("sigunguNm");
 
 		// 패스워드를 암호화하고 비밀번호에 세팅
 		String hashed = BCrypt.hashpw(pass, BCrypt.gensalt());
@@ -41,7 +37,14 @@ public class SignUpTaskController extends HttpServlet {
 		map.put("id", id);
 		map.put("pass", hashed);
 		map.put("name", name);
-		map.put("area", area);
+		if (doNm != null && sigunguNm == null) {
+
+			map.put("area", doNm);
+		} else if (doNm != null && sigunguNm != null) {
+			map.put("area", sigunguNm);
+		} else {
+			map.put("area", null);
+		}
 
 		// 회원가입시 제약조건이 맞지 않으면 에러 팝업 / 그게 아니면 가입 성공으로 메인페이지로
 		if (UserService.volume(id, pass, name)) {
