@@ -24,6 +24,7 @@ public class IndexController extends HttpServlet {
 
 		HttpSession session = req.getSession(); // 현재 HttpSession 객체 가져오기
 		User logonUser = (User) session.getAttribute("logonUser"); // 세션 속성 가져오기
+		System.out.println(logonUser);
 
 		List<Item> response = CampingAPI.campingList();
 
