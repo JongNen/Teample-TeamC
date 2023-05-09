@@ -401,7 +401,7 @@ img:hover{
 </script>
 <script>
 	const searchHidden = document.querySelector(".back")
-	const openBtn = document.querySelector(".indedetail-button");
+	const openBtn = document.querySelector(".detail-search");
 	const box = document.querySelector(".ds-box");
 	const overlay = box.querySelector("#ds-overlay");
 	const closeBtn = box.querySelector(".close-box-btn");
