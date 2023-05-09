@@ -30,15 +30,14 @@ tr:hover {
 }
 </style>
 
-<%--상세검색 페이지  --%>
 <div class="ds-box hidden">
 	<div id="ds-overlay"></div>
 	<div id="ds-content">
-		<div class="ds-btn-ctr">
-			<button class="close-box-btn" style="border-color: white;">X</button>
+		<div class="ds-btn-ctr quit-button-position">
+			<button class="close-box-btn quit-button"><i class="fa-sharp fa-regular fa-circle-xmark"></i></button>
 		</div>
 		<h3>원하는 캠핑장 정보를 상세하게 검색해보세요.</h3>
-		<form action="/detailSearch" method="get">
+		<form action="/detailSearch" method="get" style="padding-left:30px;">
 			<div>
 				<div class="ds-container">
 					<div class="ds-list-title1">지역별</div>
@@ -110,70 +109,10 @@ tr:hover {
 				</div>
 			</div>
 			<div class="btn-ctr">
-				<button type="submit">검색</button>
-				<button type="reset">초기화</button>
-			</div>
-		</form>
-	</div>
-</div>
-<%--상세검색 페이지  --%>
-
-<!-- 검색 전체화면 -->
-<div class="ds-box hidden">
-	<div id="ds-overlay"></div>
-	<div id="ds-content">
-		<button class="close-box-btn">닫기</button>
-		<form action="/detailSearch" method="get">
-			<div>
-				지역별
-				<c:forEach items="${doList}" var="doItem">
-					<label for="do_${doItem}"> <input type="checkbox"
-						id="do_${doItem}" name="doNm" value="${doItem}"> ${doItem}
-					</label>
-				</c:forEach>
-			</div>
-			<div>
-				운영형태
-				<c:forEach items="${facList}" var="faItem">
-					<label for="fa_${faItem}"> <input type="checkbox"
-						id="fa_${faItem}" name="facltDivNm" value="${faItem}">
-						${faItem}
-					</label>
-				</c:forEach>
-			</div>
-			<div>
-				입지구분
-				<c:forEach items="${themaList}" var="themaItem">
-					<label for="do_${themaItem}"> <input type="checkbox"
-						id="the_${themaItem}" name="lctCl" value="${themaItem}">
-						${themaItem}
-					</label>
-				</c:forEach>
-			</div>
-			<div>
-				주요시설
-				<c:forEach items="${indutyList}" var="iduItem">
-					<label for="in_${iduItem}"> <input type="checkbox"
-						id="in_${iduItem}" name="induty" value="${iduItem}">${iduItem}</label>
-				</c:forEach>
-			</div>
-			<div>
-				부대시설
-				<c:forEach items="${sbrList}" var="sbItem">
-					<label for="sb_${sbItem}"> <input type="checkbox"
-						id="sb_${sbItem}" name="sbrCl" value="${sbItem}">
-						${sbItem}
-					</label>
-				</c:forEach>
-			</div>
-			<div>
-				기타정보 <label for="trler"><input type="checkbox" id="trler"
-					name="trlerAcmpnyAt">개인 트레일러 동반 가능</label> <label for="animal"><input
-					type="checkbox" id="animal" name="animalCmgCl">애완동물출입 가능</label>
-			</div>
-			<div>
-				<button type="submit">검색</button>
-				<button type="reset">초기화</button>
+				<button type="submit" class="detail-button">검색</button>
+				<button type="reset" class="reset-button">
+					<i class="fa-solid fa-arrow-rotate-left"></i>
+				</button>
 			</div>
 		</form>
 	</div>
@@ -184,6 +123,9 @@ tr:hover {
 	<div class="back-img">
 		<div class="search-box search-box-position">
 			<%-- 기본검색영역 --%>
+			<div class="detail-search-position">
+				<button class="detail-search" type="submit" id="ds-btn">상세검색 <i class="fa-regular fa-magnifying-glass-plus"></i></button>
+			</div>
 			<div class="search-box-rage">
 				<form class="search-position" action="/search" method="get">
 					<div class="search-box-inside">

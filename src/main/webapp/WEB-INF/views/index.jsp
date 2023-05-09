@@ -12,16 +12,16 @@ img:hover {
 }
 </style>
 
-
-
 <div class="ds-box hidden">
 	<div id="ds-overlay"></div>
 	<div id="ds-content">
-		<div class="ds-btn-ctr">
-			<button class="close-box-btn" style="border-color: white;">X</button>
+		<div class="ds-btn-ctr quit-button-position">
+			<button class="close-box-btn quit-button">
+				<i class="fa-sharp fa-regular fa-circle-xmark"></i>
+			</button>
 		</div>
 		<h3>원하는 캠핑장 정보를 상세하게 검색해보세요.</h3>
-		<form action="/detailSearch" method="get">
+		<form action="/detailSearch" method="get" style="padding-left: 30px;">
 			<div>
 				<div class="ds-container">
 					<div class="ds-list-title1">지역별</div>
@@ -93,8 +93,10 @@ img:hover {
 				</div>
 			</div>
 			<div class="btn-ctr">
-				<button type="submit">검색</button>
-				<button type="reset">초기화</button>
+				<button type="submit" class="detail-button">검색</button>
+				<button type="reset" class="reset-button">
+					<i class="fa-solid fa-arrow-rotate-left"></i>
+				</button>
 			</div>
 		</form>
 	</div>
@@ -106,7 +108,7 @@ img:hover {
 		<div class="search-box search-box-position">
 			<%-- 기본검색영역 --%>
 			<div class="detail-search-position">
-				<button class="detail-search" type="submit" id="ds-btn">상세검색하기</button>
+				<button class="detail-search" type="submit" id="ds-btn">상세검색 <i class="fa-regular fa-magnifying-glass-plus"></i></button>
 			</div>
 			<div class="search-box-rage">
 				<form class="search-position" action="/search" method="get">
@@ -298,7 +300,6 @@ img:hover {
 	document.querySelector("#do").onchange = function(evt) {
 		// 선택한 도시값 가져오기
 		const selectedCity = evt.target.value;
-
 		// 시, 군, 구 영역의 select 태그들을 찾아서 처리
 		document.querySelectorAll(".city").forEach(function(one) {
 			if (one.dataset.group != selectedCity) {
@@ -312,14 +313,12 @@ img:hover {
 	};
 	//do 영역의 select 태그에 change 이벤트 발생시키기
 	document.querySelector("#do").dispatchEvent(new Event("change"));
-
 	// 시, 군, 구 영역의 select 태그에 값 넣어주기
 	document.querySelectorAll(".city").forEach(function(one) {
 		if (one.dataset.group === document.querySelector("#do").value) {
 			one.name = "sigunguNm";
 			one.value = "${param.sigunguNm}";
 		} else {
-
 			one.style.display = "none";
 		}
 	});
@@ -328,7 +327,6 @@ img:hover {
 <div class="belt">
 	<table style="margin: auto; width: 1355px;">
 		<tbody>
-
 			<c:choose>
 				<c:when test="${!empty sessionScope.logonUser.area and empty count}">
 					<br />
@@ -336,9 +334,7 @@ img:hover {
 						지역인 <span style="color: blue; margin: 0px 5px;">${sessionScope.logonUser.area.substring(0,2)}
 					</span>지역의 캠핑장 입니다
 					</b>
-
 					<c:forEach items="${campingList}" var="obj">
-
 						<tr class="camping-item"
 							onclick="location.href='/detail?contentId=${obj.contentId}'">
 							<td style="width: 20%; max-width: 270px;"><img
@@ -346,7 +342,6 @@ img:hover {
 								src="${obj.firstImageUrl}"
 								onerror="this.src='/resource/image/tent.png';" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
 								<br>
-
 								<p style="font-size: 12px;">${obj.lineIntro}</p></td>
 						</tr>
 					</c:forEach>
@@ -359,7 +354,6 @@ img:hover {
 					</b>
 
 					<c:forEach items="${campingList}" var="obj">
-
 						<tr class="camping-item"
 							onclick="location.href='/detail?contentId=${obj.contentId}'">
 							<td style="width: 20%; max-width: 270px;"><img
@@ -367,7 +361,6 @@ img:hover {
 								src="${obj.firstImageUrl}"
 								onerror="this.src='/resource/image/tent.png';" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
 								<br>
-
 								<p style="font-size: 12px;">${obj.lineIntro}</p></td>
 						</tr>
 					</c:forEach>
@@ -383,13 +376,10 @@ img:hover {
 								onerror="this.src='/resource/image/tent.png';" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
 								<br>
 								<p style="font-size: 12px;">${obj.lineIntro}</p></td>
-
 						</tr>
 					</c:forEach>
-
 				</c:otherwise>
 			</c:choose>
-
 		</tbody>
 	</table>
 </div>
@@ -437,7 +427,6 @@ img:hover {
 		searchHidden.classList.toggle("hidden");
 		openBtn.classList.toggle("hidden");
 	}
-
 	overlay.addEventListener("click", togglePopup);
 	closeBtn.addEventListener("click", togglePopup);
 	openBtn.addEventListener("click", togglePopup);

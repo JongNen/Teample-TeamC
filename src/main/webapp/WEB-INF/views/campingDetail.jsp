@@ -124,7 +124,7 @@ th {
 				onerror="this.src='/resource/image/tent.png';" />
 			<c:if test="${sessionScope.logon}">
 				<button id="likeButton" onclick="like()"
-					style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none;">
+					style="position: absolute; cursor:pointer; top: 10px; right: 10px; background-color: transparent; border: none;">
 					<i id="likeIcon" class="far fa-heart heart-icon"
 						style="font-size: 40px;"></i>
 				</button>
