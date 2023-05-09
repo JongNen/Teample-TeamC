@@ -290,55 +290,54 @@ th {
 					<c:when test="${empty camp.addr1 }">
             지도정보를 확보 하지 못해 렌더링에 실패하였습니다.
         </c:when>
-					<c:otherwise>
-					</c:otherwise>
-				</c:choose>
-			</div>
+
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>
+	</div>
 
 
-			<div id="review" style="display: none">
-				<!-- 댓글 작성 영역 -->
-				<div class="comment-wrapper">
-					<form action="/camp/review" method="post">
+	<div id="review" style="display: none">
+		<!-- 댓글 작성 영역 -->
+		<div class="comment-wrapper">
+			<form action="/camp/review" method="post">
 
-						<textarea name="body" placeholder="댓글을 입력해주세요"></textarea>
-						<input type="hidden" name="contentId" value="${param.contentId}">
-						<div>
-							<button>댓글 작성</button>
-						</div>
-
-					</form>
+				<textarea name="body" placeholder="후기를 입력해주세요"></textarea>
+				<input type="hidden" name="contentId" value="${param.contentId}">
+				<div>
+					<button>후기 작성</button>
 				</div>
 
+			</form>
+		</div>
 
-				<!-- 댓글 보기 영역 -->
-				<div class="comment-list">
+
+		<!-- 댓글 보기 영역 -->
+		<div class="comment-list">
+			<c:choose>
+				<c:when test="${empty review}">
+					<p>아직 등록된 후기가 없습니다.</p>
+				</c:when>
+				<c:otherwise>
 					<c:forEach items="${review}" var="m">
-						<c:choose>
-							<c:when test="${sessionScope.logonUser.id eq m.writerId}">
-								<div class="comment">
-									<div class="writer">${m.writerName}님(${m.writerId})
-										<a
-											href="/camp/delete?contentId=${param.contentId}&reviewNum=${m.reviewNum}"
-											style="color: red"> 삭제</a>
-									</div>
-									<div class="body">${m.body}</div>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="comment">
-									<div class="writer">${m.writerName}님(${m.writerId})</div>
-									<div class="body">${m.body}</div>
-								</div>
-
-							</c:otherwise>
-						</c:choose>
-
+						<div class="comment">
+							<div class="writer">${m.writerName}님(${m.writerId})
+								<c:if test="${sessionScope.logonUser.id eq m.writerId}">
+									<a
+										href="/camp/delete?contentId=${param.contentId}&reviewNum=${m.reviewNum}"
+										style="color: red"> 삭제</a>
+								</c:if>
+							</div>
+							<div class="body">${m.body}</div>
+						</div>
 					</c:forEach>
-				</div>
-			</div>
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 	</div>
+
+
 
 	<!-- ///////////////////////////// 스크립트 부분 ////////////////////////////////// -->
 
@@ -413,6 +412,7 @@ th {
 
 	<!-- 좋아요 부분 -->
 	<script>	
+	
 	   const likes = ${likeCheckJson};
 	   const userId = "${sessionScope.logonUser.id}";
 	   let liked = false;
@@ -449,7 +449,7 @@ th {
 	 
 	}
 	
-	</script>
+		</script>
 
 	<c:if test="${param.cause eq 'valid' }">
 		<script>
