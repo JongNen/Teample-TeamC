@@ -18,26 +18,23 @@ public class Item {
 	String tel; // 전화번호
 	String homepage; // 홈페이지 주소
 	String tooltip; // 툴팁
-	String glampInnerFclty; //글램핑 내부시설
+	String glampInnerFclty; // 글램핑 내부시설
 	String caravInnerFclty; // 카라반 내부시설
 	String operPdCl; // 운영기간
 	String operDeCl; // 운영일
 	String sbrsEtc; // 부대시설 기타
 	String tourEraCl; // 여행시기
 	String firstImageUrl; // 대표이미지
-	String sbrsCl; // 부대시설 
-	String posblFcltyCl; // 주변이용가능시설 
+	String sbrsCl; // 부대시설
+	String posblFcltyCl; // 주변이용가능시설
 	String gnrlSiteCo; // 주요시설 일반야영장
-	String autoSiteCo; //주요시설 자동차야영장
-	String glampSiteCo; //주요시설 글램핑
-	String caravSiteCo; //주요시설 카라반
+	String autoSiteCo; // 주요시설 자동차야영장
+	String glampSiteCo; // 주요시설 글램핑
+	String caravSiteCo; // 주요시설 카라반
 	String facltDivNm; // 사업주제(지자체, 국립공원, 자연휴양림, 국민여가, 민간)
 	String trlerAcmpnyAt; // 개인 트레일러 동반 여부(Y:사용, N:미사용)
 	String animalCmgCl; // 애완동물출입(가능 : 불가능)
-	
-	
-	
-	
+
 	public String getFacltDivNm() {
 		return facltDivNm;
 	}
@@ -45,7 +42,7 @@ public class Item {
 	public void setFacltDivNm(String facltDivNm) {
 		this.facltDivNm = facltDivNm;
 	}
-	
+
 	public String getGnrlSiteCo() {
 		return gnrlSiteCo;
 	}
@@ -78,7 +75,6 @@ public class Item {
 		this.caravSiteCo = caravSiteCo;
 	}
 
-
 	public String getGlampInnerFclty() {
 		return glampInnerFclty;
 	}
@@ -103,7 +99,6 @@ public class Item {
 		this.posblFcltyCl = posblFcltyCl;
 	}
 
-	
 	public String getTrlerAcmpnyAt() {
 		return trlerAcmpnyAt;
 	}
@@ -111,7 +106,7 @@ public class Item {
 	public void setTrlerAcmpnyAt(String trlerAcmpnyAt) {
 		this.trlerAcmpnyAt = trlerAcmpnyAt;
 	}
-	
+
 	public String getContentId() {
 		return contentId;
 	}
@@ -303,7 +298,5 @@ public class Item {
 	public void setFirstImageUrl(String firstImageUrl) {
 		this.firstImageUrl = firstImageUrl;
 	}
-
-	
 
 }
