@@ -71,6 +71,9 @@
 	<div class="back-img">
 		<div class="search-box search-box-position">
 			<%-- 기본검색영역 --%>
+				<div class="detail-search-position">
+					 <button class="detail-search"type="submit" id="ds-btn">상세검색하기</button>
+				</div>
 			<div class="search-box-rage">
 				<form class="search-position" action="/search" method="get">
 					<div class="search-box-inside">

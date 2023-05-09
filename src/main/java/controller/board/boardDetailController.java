@@ -24,6 +24,7 @@ public class boardDetailController extends HttpServlet {
 		String postNum = req.getParameter("number");
 
 		Review review = PostDAO.findByPost(postNum);
+		
 		req.setAttribute("post", review);
 
 		req.getRequestDispatcher("/WEB-INF/views/boardDetail.jsp").forward(req, resp);

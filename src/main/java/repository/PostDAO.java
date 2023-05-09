@@ -183,7 +183,6 @@ public class PostDAO extends DAO {
 			}
 		}
 	
-
 	// 특정 게시글 볼때
 	public static Review findByPost(String postNum) {
 		SqlSession session = factory.openSession();
