@@ -101,8 +101,8 @@
 		BY
 		WRITED DESC
 	</select>
-	<!-- 특정 후기 확인하기 -->
-	<select id="findBypostNum" resultType="data.CampReview">
+	<!-- 특정 게시물 확인하기 -->
+	<select id="findBypostNum" resultType="data.Review" parameterType="int">
 		SELECT * FROM REVIEWS
 		WHERE POSTNUM=#{postNum}
 	</select>

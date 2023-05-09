@@ -188,7 +188,7 @@ public class PostDAO extends DAO {
 	public static Review findByPost(String postNum) {
 		SqlSession session = factory.openSession();
 		try {
-			return session.selectOne("posts.findBypostNum", postNum);
+			return session.selectOne("posts.findBypostNum", Integer.parseInt(postNum));
 
 		} finally {
 			session.close();

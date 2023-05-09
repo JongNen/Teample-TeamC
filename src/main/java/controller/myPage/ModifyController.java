@@ -38,13 +38,14 @@ public class ModifyController extends HttpServlet {
 		String name = req.getParameter("name");
 		String doNm = req.getParameter("doNm");
 		String sigunguNm = req.getParameter("sigunguNm");
+		
 
 		if (!UserService.volume(id, pass, name)) {
 			resp.sendRedirect("/user/myPage?cause=valid");
 			return;
 		}
 
-		Map update = new HashMap<>();
+		Map<String, Object> update = new HashMap<>();
 		update.put("id", id);
 		if (pass != null) {
 			pass = BCrypt.hashpw(pass, BCrypt.gensalt());
@@ -70,7 +71,10 @@ public class ModifyController extends HttpServlet {
 
 		UserDAO.updateUser(update);
 
-		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
+		session.removeAttribute("logonUser");
+		session.setAttribute("logonUser", UserDAO.findById(id));
+
+		resp.sendRedirect("/index");
 
 	}
 

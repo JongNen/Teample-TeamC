@@ -297,7 +297,9 @@
 
 					<br />
 					<b style="font-size: 18px; display: flex; justify-content: center;">관심
-						지역인 <span style="color:blue;">${sessionScope.logonUser.area.substring(0,2)}</span> 지역의 캠핑장 입니다</b>
+						지역인 <span style="color: blue; margin: 0px 5px;">${sessionScope.logonUser.area.substring(0,2)}
+					</span>지역의 캠핑장 입니다
+					</b>
 
 					<c:forEach items="${campingList}" var="obj">
 
