@@ -272,41 +272,39 @@ th {
 		<!-- 댓글 작성 영역 -->
 		<div class="comment-wrapper">
 			<form action="/camp/review" method="post">
-				
-					<textarea name="body" placeholder="댓글을 입력해주세요"></textarea>
-					<input type="hidden" name="contentId" value="${param.contentId}">
-					<div>
-						<button>댓글 작성</button>
-					</div>
-			
+
+				<textarea name="body" placeholder="후기를 입력해주세요"></textarea>
+				<input type="hidden" name="contentId" value="${param.contentId}">
+				<div>
+					<button>후기 작성</button>
+				</div>
+
 			</form>
 		</div>
 
 
 		<!-- 댓글 보기 영역 -->
 		<div class="comment-list">
-			<c:forEach items="${review}" var="m">
-				<c:choose>
-					<c:when test="${sessionScope.logonUser.id eq m.writerId}">
+			<c:choose>
+				<c:when test="${empty review}">
+					<p>아직 등록된 후기가 없습니다.</p>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${review}" var="m">
 						<div class="comment">
 							<div class="writer">${m.writerName}님(${m.writerId})
-								<a
-									href="/camp/delete?contentId=${param.contentId}&reviewNum=${m.reviewNum}"
-									style="color: red"> 삭제</a>
+								<c:if test="${sessionScope.logonUser.id eq m.writerId}">
+									<a
+										href="/camp/delete?contentId=${param.contentId}&reviewNum=${m.reviewNum}"
+										style="color: red"> 삭제</a>
+								</c:if>
 							</div>
 							<div class="body">${m.body}</div>
 						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="comment">
-							<div class="writer">${m.writerName}님(${m.writerId})</div>
-							<div class="body">${m.body}</div>
-						</div>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 
-					</c:otherwise>
-				</c:choose>
-
-			</c:forEach>
 		</div>
 	</div>
 
@@ -391,6 +389,7 @@ th {
 
 	<!-- 좋아요 부분 -->
 	<script>	
+	
 	   const likes = ${likeCheckJson};
 	   const userId = "${sessionScope.logonUser.id}";
 	   let liked = false;
@@ -430,7 +429,7 @@ th {
 	}
 	
 		</script>
-		<c:if test="${param.cause eq 'valid' }">
+	<c:if test="${param.cause eq 'valid' }">
 		<script>
 			alert("비회원은 글 쓰기가 불가능합니다.");
 		</script>
