@@ -309,7 +309,7 @@ th {
 				<textarea name="body" placeholder="후기를 입력해주세요"></textarea>
 				<input type="hidden" name="contentId" value="${param.contentId}">
 				<div>
-					<button>후기 작성</button>
+					<button type="submit">후기 작성</button>
 				</div>
 
 			</form>
