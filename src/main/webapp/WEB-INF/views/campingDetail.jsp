@@ -126,7 +126,7 @@ th {
 				<button id="likeButton" onclick="like()"
 					style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none;">
 					<i id="likeIcon" class="far fa-heart heart-icon"
-						style="font-size: 40px;"></i>
+						style="font-size: 60px;"></i>
 				</button>
 			</c:if>
 		</div>
