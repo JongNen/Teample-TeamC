@@ -6,49 +6,83 @@
 <div class="ds-box hidden">
 	<div id="ds-overlay"></div>
 	<div id="ds-content">
-		<button class="close-box-btn">닫기</button>
+		<div class="ds-btn-ctr">
+			<button class="close-box-btn" style="border-color: white;">X</button>
+		</div>
+		<h3>원하는 캠핑장 정보를 상세하게 검색해보세요.</h3>
 		<form action="/detailSearch" method="get">
 			<div>
-				지역별
-				<c:forEach items="${doList}" var="doItem">
-					<label for="do_${doItem}"> <input type="checkbox"
-						id="do_${doItem}" name="doNm" value="${doItem}">${doItem}</label>
-				</c:forEach>
+				<div class="ds-container">
+					<div class="ds-list-title1">지역별</div>
+					<div class="ds-list-rage">
+						<ul>			
+							<c:forEach items="${doList}" var="doItem">
+								<li><label for="do_${doItem}"> <input
+										type="checkbox" id="do_${doItem}" name="doNm"
+										value="${doItem}">${doItem}</label></li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+				<div class="ds-container">
+					<div class="ds-list-title">운영형태</div>
+					<div class="ds-list-rage">
+						<ul>
+							<c:forEach items="${facList}" var="faItem">
+								<li><label for="fa_${faItem}"> <input
+										type="checkbox" id="fa_${faItem}" name="facltDivNm"
+										value="${faItem}">${faItem}</label></li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+				<div class="ds-container">
+					<div class="ds-list-title">입지구분</div>
+					<div class="ds-list-rage">
+						<ul>
+							<c:forEach items="${themaList}" var="themaItem">
+								<li><label for="do_${themaItem}"> <input
+										type="checkbox" id="the_${themaItem}" name="lctCl"
+										value="${themaItem}">${themaItem}</label></li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+				<div class="ds-container">
+					<div class="ds-list-title">주요시설</div>
+					<div class="ds-list-rage">
+						<ul>
+							<c:forEach items="${indutyList}" var="iduItem">
+								<li><label for="in_${iduItem}"> <input
+										type="checkbox" id="in_${iduItem}" name="induty"
+										value="${iduItem}"	>${iduItem}</label></li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+				<div class="ds-container">
+					<div class="ds-list-title2">부대시설</div>
+					<div class="ds-list-rage">
+						<ul>
+							<c:forEach items="${sbrList}" var="sbItem">
+								<li><label for="sb_${sbItem}"> <input
+										type="checkbox" id="sb_${sbItem}" name="sbrsCl"
+										value="${sbItem}">${sbItem}</label></li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+				<div class="ds-container">
+					<div class="ds-list-title3">기타정보</div>
+					<div class="ds-list-rage">
+							<label for="trler"><input type="checkbox"
+									id="trler" name="trlerAcmpnyAt">개인 트레일러 동반 가능</label>
+							<label for="animal"><input type="checkbox"
+									id="animal" name="animalCmgCl">애완동물출입 가능</label>
+					</div>
+				</div>
 			</div>
-			<div>
-				운영형태
-				<c:forEach items="${facList}" var="faItem">
-					<label for="fa_${faItem}"> <input type="checkbox"
-						id="fa_${faItem}" name="facltDivNm" value="${faItem}">${faItem}</label>
-				</c:forEach>
-			</div>
-			<div>
-				입지구분
-				<c:forEach items="${themaList}" var="themaItem">
-					<label for="do_${themaItem}"> <input type="checkbox"
-						id="the_${themaItem}" name="lctCl" value="${themaItem}">${themaItem}</label>
-				</c:forEach>
-			</div>
-			<div>
-				주요시설
-				<c:forEach items="${indutyList}" var="iduItem">
-					<label for="in_${iduItem}">
-					<input type="checkbox" id="in_${iduItem}" name="induty" value="${iduItem}" ${iduItem eq param.induty ? 'checked' : '' }>${iduItem}</label>
-				</c:forEach>
-			</div>
-			<div>
-				부대시설
-				<c:forEach items="${sbrList}" var="sbItem">
-					<label for="sb_${sbItem}"> <input type="checkbox"
-						id="sb_${sbItem}" name="sbrsCl" value="${sbItem}">${sbItem}</label>
-				</c:forEach>
-			</div>
-			<div>
-				기타정보 <label for="trler"><input type="checkbox" id="trler"
-					name="trlerAcmpnyAt">개인 트레일러 동반 가능</label> <label for="animal"><input
-					type="checkbox" id="animal" name="animalCmgCl">애완동물출입 가능</label> 
-			</div>
-			<div>
+			<div class="btn-ctr">
 				<button type="submit">검색</button>
 				<button type="reset">초기화</button>
 			</div>
@@ -328,11 +362,9 @@
 					style="height: 100px; width: 120px"
 					onerror="this.onerror=null; this.src='/resource/image/tent.png';" /></td>
 				<td>${list.facltNm.replace("(주)", " ")}</td>
-				<td>${list.lineIntro }<br> (${list.lctCl})<br>
-					${list.facltDivNm }<br> ${list.animalCmgCl }
+				<td>${not empty list.lineIntro ? list.lineIntro : '-' }
 				</td>
-				<td>${list.sbrsCl}</td>
-				<td>${list.addr1}</td>
+				<td>${list.addr1} ${list.addr2 }<br>
 			</tr>
 		</c:forEach>
 	</table>
@@ -342,13 +374,6 @@
 <div style="text-align: center; font-size: 20px;">
 	<c:set var="currentPage"
 		value="${empty param.pageNo ? 1: param.pageNo }" />
-	<c:set var="doNmStatus"
-		value="${empty param.doNm ? null : param.doNm }" />
-	<c:set var="sigunguNmStatus"
-		value="${empty param.sigunguNm ? null : param.sigunguNm }" />
-	<c:set var="lctClStatus"
-		value="${empty param.lctCl ? null : param.lctCl }" />
-
 	<!-- 이전 버튼 -->
 	<c:if test="${existPrev }">
 		<a
