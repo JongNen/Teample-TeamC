@@ -40,14 +40,18 @@ th {
 }
 
 .detail_btn button {
-	width: 30%;
-	height: 40px;
+	font-weight: bold;
+	font-size: 16px;
+	width: 15%;
+	padding: 3px 5px;
+	background-color: white;
 	border: 1px solid #8e8e8e;
 	border-radius: 5px;
 }
 
 .detail_btn button:hover {
-	background: white;
+	box-shadow: 0 2px 4px -2px rgb(0 0 0/ 0.1), 0 4px 6px -1px
+		rgb(0 0 0/ 0.1);
 	cursor: pointer;
 }
 
@@ -111,7 +115,7 @@ th {
 
 	<div class="detail-main">
 		<div class="detail-img">
-			<img src="${camp.firstImageUrl}"
+			<img style="opacity: 0.8;"src="${camp.firstImageUrl}"
 				onerror="this.src='/resource/image/tent.png';" />
 			<c:if test="${sessionScope.logon}">
 				<button id="likeButton" onclick="like()"
@@ -149,9 +153,9 @@ th {
 				<%@ include file="/WEB-INF/views/commons/icon.jsp"%>
 			</div>
 			<div
-				style="display: flex; justify-content: center; align-items: center;">
+				style="display: flex; justify-content: center; align-items: center; width: 500px; margin-top: 1em; padding-right: 12%;">
 				<div class="detail_btn"
-					style="display: flex; justify-content: space-around; width: 960px;">
+					style="display: flex; justify-content: space-between; width: 500px;">
 					<button onclick="toggleDetail()">상세정보</button>
 					<button onclick="toggleMap()">지도보기</button>
 					<button onclick="toggleReview()">후기</button>
@@ -163,7 +167,7 @@ th {
 				style="display: flex; justify-content: center; width: 960px; margin-top: 20px;">
 				<div class="table" id="campInfo"
 					style="display: block; width: 100%;">
-					<table>
+					<table style="text-align: center; padding-left: 3%;">
 						<tr>
 							<th>항목</th>
 							<th>내용</th>
