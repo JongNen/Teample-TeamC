@@ -43,7 +43,7 @@ public class campReviewController extends HttpServlet {
 
 		PostDAO.campReviewCreate(review);
 
-		resp.sendRedirect("/detail?contentId=" + contentId);
+		resp.sendRedirect("/detail?review=1&contentId=" + contentId);
 
 	}
 

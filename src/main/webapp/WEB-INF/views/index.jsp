@@ -293,8 +293,7 @@
 		<tbody>
 
 			<c:choose>
-				<c:when test="${!empty sessionScope.logonUser.area}">
-
+				<c:when test="${!empty sessionScope.logonUser.area and empty count}">
 					<br />
 					<b style="font-size: 18px; display: flex; justify-content: center;">관심
 						지역인 <span style="color: blue; margin: 0px 5px;">${sessionScope.logonUser.area.substring(0,2)}
@@ -314,8 +313,29 @@
 								<p style="font-size: 12px;">${obj.lineIntro}</p></td>
 						</tr>
 					</c:forEach>
-
 				</c:when>
+
+				<c:when test="${!empty sessionScope.logonUser.area and count < 5}">
+					<b style="font-size: 18px; display: flex; justify-content: center;">관심
+						지역인 <span style="color: blue; margin: 0px 5px;">${sessionScope.logonUser.area.substring(0,2)}
+					</span>지역의 캠핑장의 수가 ${count}개라 다른 ${5-count}곳을 소개해드릴께요
+					</b>
+
+					<c:forEach items="${campingList}" var="obj">
+
+						<tr class="camping-item"
+							onclick="location.href='/detail?contentId=${obj.contentId}'">
+							<td style="width: 20%; max-width: 270px;"><img
+								style="border-radius: 50%; width: 180px; height: 180px; margin: 20px;"
+								src="${obj.firstImageUrl}"
+								onerror="this.src='/resource/image/tent.png';" /> <br> <b>${obj.facltNm.replace("(주)", "")}</b>
+								<br>
+
+								<p style="font-size: 12px;">${obj.lineIntro}</p></td>
+						</tr>
+					</c:forEach>
+				</c:when>
+
 				<c:otherwise>
 					<c:forEach items="${campingList}" var="obj">
 						<tr class="camping-item"
