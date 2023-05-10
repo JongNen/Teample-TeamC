@@ -120,7 +120,7 @@ fieldset {
 					<div>관심지역 = ${sessionScope.logonUser.area }</div>
 				</c:otherwise>
 			</c:choose>
-			<a href="/index" style="color: blue;">홈으로</a> <br /> <br /> <br />
+			<a href="/index" style="color: blue;">홈으로</a> <br /> <br /> <br />		
 			<h2>비밀번호 및 닉네임 수정</h2>
 
 			<small style="color: red;">* 비밀번호와 닉네임은 필수 입력입니다.</small>
@@ -130,12 +130,12 @@ fieldset {
 						<input type="hidden" name="id"
 							value="${sessionScope.logonUser.id}"> <input
 							type="password" placeholder="비밀번호" name="pass" class="join-input"
-							value="1111" /> <small>* 4글자 이상(초기값 1111)</small>
+							value="1111" maxlength="10"/> <small>* 4글자 이상(초기값 1111)</small>
 					</div>
 
 					<div style="margin: 0.4em">
-						<input type="name" placeholder="닉네임" name="name"
-							class="join-input" value="${sessionScope.logonUser.name}" /> <small>*
+						<input type="text" placeholder="닉네임" name="name"
+							class="join-input" value="${sessionScope.logonUser.name}" maxlength="10"/> <small>*
 							3글자 이상</small>
 					</div>
 

@@ -350,7 +350,7 @@ img:hover {
 				<c:when test="${!empty sessionScope.logonUser.area and count < 5}">
 					<b style="font-size: 18px; display: flex; justify-content: center;">관심
 						지역인 <span style="color: blue; margin: 0px 5px;">${sessionScope.logonUser.area.substring(0,2)}
-					</span>지역의 캠핑장의 수가 ${count}개라 다른 ${5-count}곳을 소개해드릴께요
+					</span>지역의 캠핑장의 수가 ${count}개라 다른 ${5-count}곳을 추가로 소개해드릴께요
 					</b>
 
 					<c:forEach items="${campingList}" var="obj">

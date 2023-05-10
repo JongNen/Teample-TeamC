@@ -16,10 +16,12 @@
 			<form action="/modifyReview-Task" method="post" class="write-content">
 			<input type="hidden" name="number" value="${post.postNum }">
 				<input class="write-blank" type="text" name="title" value="${post.title }">
-					<input class="write-blank1" value="${post.postBody }"
+					<input class="write-blank1" value="${post.postBody}"
 						name="postBody">
-				<div class="write-button-position">
-					<button class="sign-button" type="submit">수정하기</button>
+					<div class="modify-button-position">
+					<div>현재 등록된 이미지:
+						<br> <img style="width: 30px;padding-top:2px; text-align: center;" src="/upload/${post.img}"> ${post.img }</div>
+					<div><button class="sign-button" type="submit">수정하기</button></div>
 				</div>
 			</form>
 		</div>
@@ -33,4 +35,3 @@
 		alert("잘못된 입력입니다 !!");
 	</script>
 </c:if>
-

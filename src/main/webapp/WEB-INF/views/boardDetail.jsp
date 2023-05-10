@@ -24,7 +24,15 @@
 			<i class="fa-solid fa-user" style="margin: 4px;"></i>${post.writerName }
 			| <i class="fa-light fa-calendar-pen" style="margin: 4px;"></i>${post. writed}</div>
 		<hr />
-		<div style="padding-left: 1em; padding-top: 1.7em;">${post.postBody }
+		<div style="padding-left: 1em; padding-top: 1.7em;">
+
+
+			<c:if test="${post.img != null }">
+				<div>
+					<img style="width: 25%;" src="/upload/${post.img}">
+				</div>
+			</c:if>
+			<div style="padding-top: 1em;">${post.postBody }</div>
 		</div>
 		<div style="padding-top: 20em;">
 			<c:choose>

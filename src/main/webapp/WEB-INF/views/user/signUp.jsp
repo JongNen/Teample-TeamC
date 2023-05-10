@@ -22,9 +22,9 @@
 				</c:if>
 				<input class="signup-blank" type="text" name="id"
 					placeholder="아이디(영문)" /> <input class="signup-blank"
-					type="password" name="pass" placeholder="비밀번호(4자리 이상)" /> <input
+					type="password" name="pass" placeholder="비밀번호(4자리 이상)" maxlength="10"/> <input
 					class="signup-blank" type="text" name="name"
-					placeholder="이름(3자리 이상)" />
+					placeholder="이름(3자리 이상)" maxlength="10"/>
 
 				<div class="sign-up-main3">
 					<div>*관심 지역을 선택해주세요(필수 입력항목 아님!)</div>

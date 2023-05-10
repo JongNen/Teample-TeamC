@@ -24,7 +24,8 @@
 		<div style="text-align: center; margin-left: 15em;">
 			<div class="post-title">
 				<div class="post-t1">번호</div>
-				<div class="post-t2">제목</div>
+				<div class="post-t2">제목
+				</div>
 				<div class="post-t3">작성자</div>
 				<div class="post-t3">작성일</div>
 			</div>
@@ -34,6 +35,10 @@
 						<div class="post-content1">${param.p eq 1 ? num.count : (idx - 10) + num.count}</div>
 						<div class="post-content2">
 							<a href="/boardDetail?number=${li.postNum }">${li.title }</a>
+							<c:if test="${li.img !=null}">
+								&nbsp;&nbsp;<i class="fa-regular fa-image"></i>
+							</c:if>
+							
 						</div>
 						<div class="post-content3">${li.writerName }</div>
 						<div class="post-content3">${li.writed }</div>
@@ -93,5 +98,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
