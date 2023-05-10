@@ -94,7 +94,7 @@
 	</delete>
 
 	<!-- 본인이 쓴 후기 전체 삭제하기 -->
-	<delete id="deleteAllReview" parameterType="int">
+	<delete id="deleteAllReview" parameterType="String">
 		DELETE FROM REVIEWS
 		WHERE
 		WRITERID=#{writerId}

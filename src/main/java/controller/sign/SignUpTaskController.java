@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -20,6 +21,14 @@ public class SignUpTaskController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		HttpSession session = req.getSession();
+		Boolean logon = (Boolean) session.getAttribute("logon");
+
+		if (logon) {
+			resp.sendRedirect("/index");
+			return;
+		}
 
 		// 회원가입시 사용자 정보 처리
 
@@ -29,6 +38,11 @@ public class SignUpTaskController extends HttpServlet {
 		String name = req.getParameter("name");
 		String doNm = req.getParameter("doNm");
 		String sigunguNm = req.getParameter("sigunguNm");
+		
+		if(UserDAO.findById(id) != null) {
+			resp.sendRedirect("/user/signUp?error=1");
+			return;
+		}
 
 		// 패스워드를 암호화하고 비밀번호에 세팅
 		String hashed = BCrypt.hashpw(pass, BCrypt.gensalt());

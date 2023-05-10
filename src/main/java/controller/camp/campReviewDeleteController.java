@@ -1,4 +1,4 @@
-package controller.write;
+package controller.camp;
 
 import java.io.IOException;
 

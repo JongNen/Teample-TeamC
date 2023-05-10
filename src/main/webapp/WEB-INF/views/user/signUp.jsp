@@ -15,14 +15,17 @@
 	<div class="sign-up-main">
 		<form class="sign-up-main1" action="/user/signUp-task" method="post">
 			<div class="sign-up-main2">
-			
+
 				<div style="color: red; font-weight: 500px;">*전부 필수 입력항목입니다.</div>
+				<c:if test="${param.error eq 1 }">
+					<h4 style="color: red">중복된 아이디 입니다.</h4>
+				</c:if>
 				<input class="signup-blank" type="text" name="id"
 					placeholder="아이디(영문)" /> <input class="signup-blank"
 					type="password" name="pass" placeholder="비밀번호(4자리 이상)" /> <input
-					class="signup-blank" type="text" name="name" 
+					class="signup-blank" type="text" name="name"
 					placeholder="이름(3자리 이상)" />
-		
+
 				<div class="sign-up-main3">
 					<div>*관심 지역을 선택해주세요(필수 입력항목 아님!)</div>
 					<div class="sign-up-seelct">
@@ -181,7 +184,7 @@
 						<%--시,군,구 영역 끝 --%>
 					</div>
 				</div>
-				<div style="padding-top:0.7em;">
+				<div style="padding-top: 0.7em;">
 					<button class="sign-up-button" type="submit">가입하기</button>
 				</div>
 			</div>
@@ -189,6 +192,7 @@
 
 		</form>
 	</div>
+
 	<script>
 		//do 영역의 select 태그에 onchange 이벤트 추가
 		document.querySelector("#do").onchange = function(evt) {
@@ -226,6 +230,7 @@
 			alert("잘못된 입력입니다 !!");
 		</script>
 	</c:if>
+
 
 </body>
 </html>

@@ -26,13 +26,9 @@ public class deleteController extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		User logonUser = (User) session.getAttribute("logonUser");
-		Boolean logon = (Boolean) session.getAttribute("logon");
-		if (logon == null || !logon) {
-			resp.sendRedirect("/user/login");
-			return;
-		}
+		
 
-		String id = req.getParameter("id");
+		String id = logonUser.getId();
 		
 
 		PostDAO.allDeleteCamp(id);
