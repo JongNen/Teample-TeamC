@@ -10,13 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/user/signOut")
-public class SignOutController extends HttpServlet{
+public class SignOutController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		// 로그아웃 기능
 		HttpSession session = req.getSession();
-		session.invalidate();
-		resp.sendRedirect("/index");
-		return;
+		req.setCharacterEncoding("utf-8");
+		Boolean logon = (Boolean) session.getAttribute("logon");
+
+		if (!logon) {
+			resp.sendRedirect("/index");
+			return;
+		} else {
+
+			session.invalidate();
+			resp.sendRedirect("/index");
+			return;
+		}
 	}
 }

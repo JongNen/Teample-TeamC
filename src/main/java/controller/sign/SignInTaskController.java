@@ -18,41 +18,52 @@ import repository.UserDAO;
 @WebServlet("/user/signIn-task")
 public class SignInTaskController extends HttpServlet {
 	@Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String id = req.getParameter("id");
-        String pass = req.getParameter("pass");
-        String check = req.getParameter("check");
+		req.setCharacterEncoding("utf-8");
+		HttpSession session = req.getSession();
+		Boolean logon = (Boolean) session.getAttribute("logon");
 
+		if (logon) {
+			resp.sendRedirect("/index");
+			return;
+		}
 
-        User found = UserDAO.findById(id);
+		String id = req.getParameter("id");
+		String pass = req.getParameter("pass");
+		String check = req.getParameter("check");
 
-        //DB에 저장된 아이디 비번 확인
-        if (found != null && BCrypt.checkpw(pass, found.getPass())) {
-            HttpSession session = req.getSession();
-            session.setAttribute("logon", true);
-            session.setAttribute("logonUser", found);
-            
+		User found = UserDAO.findById(id);
 
-            // 로그인이 되면 쿠키생성
-            if(check != null && check.equals("on")) {
-                Cookie c = new Cookie("ID_SAVE", found.getId());
-                c.setPath("/");
-                c.setMaxAge(606024303);
-                resp.addCookie(c);
-                resp.sendRedirect("/");
-            }else {
-                resp.sendRedirect("/");
-            }
+		// DB에 저장된 아이디 비번 확인
+		if (found != null && BCrypt.checkpw(pass, found.getPass())) {
 
-        } else {
+			session.setAttribute("logon", true);
+			session.setAttribute("logonUser", found);
 
-            resp.sendRedirect("/user/signIn?error=1");
+			// 로그인이 되면 쿠키생성
+			if (check != null && check.equals("on")) {
+				Cookie c = new Cookie("ID_SAVE", found.getId());
+				c.setPath("/");
+				c.setMaxAge(606024303);
+				resp.addCookie(c);
+				resp.sendRedirect("/");
+			} else {
 
-            return;
-        }
+			 	resp.sendRedirect("/");
 
+			}
 
+		} else {
+			Cookie c = new Cookie("ID_SAVE", "");
+			c.setPath("/");
+			c.setMaxAge(0);
+			resp.addCookie(c);
 
-    }
+			resp.sendRedirect("/user/signIn?error=1");
+
+			return;
+		}
+
+	}
 }

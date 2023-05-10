@@ -22,12 +22,7 @@ public class MyPageController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		HttpSession session = req.getSession();
 		User logonUser = (User) session.getAttribute("logonUser");
-		Boolean logon = (Boolean) session.getAttribute("logon");
-
-		if (logon == null || !logon) {
-			resp.sendRedirect("/user/signIn");
-			return;
-		}
+	
 	    String id = logonUser.getId();
 	   
 	    List<Review> myPost = PostDAO.readByMyPost(id);

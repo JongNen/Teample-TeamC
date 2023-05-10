@@ -1,4 +1,4 @@
-package controller.write;
+package controller.camp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ public class campReviewController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		req.setCharacterEncoding("utf-8");
 		HttpSession session = req.getSession();
 		User logonUser = (User) session.getAttribute("logonUser");
@@ -30,7 +30,7 @@ public class campReviewController extends HttpServlet {
 			resp.sendRedirect("/detail?cause=valid&contentId=" + contentId);
 			return;
 		}
-		
+
 		String id = logonUser.getId();
 		String body = req.getParameter("body");
 		String name = logonUser.getName();
