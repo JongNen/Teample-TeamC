@@ -130,7 +130,10 @@ th {
 				</button>
 			</c:if>
 		</div>
+			
+		
 		<div class="camping-content">
+		
 			<div class="camping-line"></div>
 			<div class="camping-name">
 				<c:choose>
@@ -141,6 +144,7 @@ th {
 
 					</c:otherwise>
 				</c:choose>
+			
 			</div>
 			<div class="camping-line">
 				<div class="onelog-introduce">
@@ -161,9 +165,11 @@ th {
 				style="display: flex; justify-content: center; align-items: center; width: 500px; margin-top: 1em; padding-right: 12%;">
 				<div class="detail_btn"
 					style="display: flex; justify-content: space-between; width: 500px;">
+
 					<button onclick="toggleDetail()">상세정보</button>
 					<button onclick="toggleMap()">지도보기</button>
 					<button onclick="toggleReview()">후기</button>
+					
 				</div>
 			</div>
 

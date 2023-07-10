@@ -75,8 +75,10 @@
 		<c:if test="${fn:contains(camp.sbrsCl, '마트'||'편의점') }">
 			<img class="icon-size-etc" src="/resource/icon/basket.png" />
 		</c:if>
-		<c:if test="${fn:contains(camp.animalCmgCl, '가능') }">
+		<c:if test="${camp.animalCmgCl != '불가능'}">
+		<c:if test="${fn:contains(camp.animalCmgCl, '가능') }">">
 			<img class="icon-size-etc" src="/resource/icon/pet.png" />
+		</c:if>
 		</c:if>
 		
 	</div>

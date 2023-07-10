@@ -34,10 +34,12 @@ tr:hover {
 	<div id="ds-overlay"></div>
 	<div id="ds-content">
 		<div class="ds-btn-ctr quit-button-position">
-			<button class="close-box-btn quit-button"><i class="fa-sharp fa-regular fa-circle-xmark"></i></button>
+			<button class="close-box-btn quit-button">
+				<i class="fa-sharp fa-regular fa-circle-xmark"></i>
+			</button>
 		</div>
 		<h3>원하는 캠핑장 정보를 상세하게 검색해보세요.</h3>
-		<form action="/detailSearch" method="get" style="padding-left:30px;">
+		<form action="/detailSearch" method="get" style="padding-left: 30px;">
 			<div>
 				<div class="ds-container">
 					<div class="ds-list-title1">지역별</div>
@@ -124,7 +126,9 @@ tr:hover {
 		<div class="search-box search-box-position">
 			<%-- 기본검색영역 --%>
 			<div class="detail-search-position">
-				<button class="detail-search" type="submit" id="ds-btn">상세검색 <i class="fa-regular fa-magnifying-glass-plus"></i></button>
+				<button class="detail-search" type="submit" id="ds-btn">
+					상세검색 <i class="fa-regular fa-magnifying-glass-plus"></i>
+				</button>
 			</div>
 			<div class="search-box-rage">
 				<form class="search-position" action="/search" method="get">
@@ -344,27 +348,88 @@ tr:hover {
 		value="${empty param.pageNo ? 1: param.pageNo }" />
 	<!-- 이전 버튼 -->
 	<c:if test="${existPrev }">
-		<a
-			href="/search?pageNo=${start-1 }&doNm=${doNmStatus}&sigunguNm=${sigunguNmStatus}&lctCl=${lctClStatus}">&lt;</a>
+		<c:url value="/search" var="target">
+			<c:param name="pageNo" value="${start-1}" />
+			<%--도 파람처리 --%>
+			<c:if test="${not empty paramValues.doNm}">
+				<c:forEach items="${paramValues.doNm}" var="doChk">
+					<c:param name="doNm" value="${doChk}" />
+				</c:forEach>
+			</c:if>
+			<%--시군구 파람처리 --%>
+			<c:if test="${not empty paramValues.sigunguNm}">
+				<c:forEach items="${paramValues.sigunguNm}" var="siChk">
+					<c:param name="sigunguNm" value="${siChk}" />
+				</c:forEach>
+			</c:if>
+			<%--입지처리 --%>
+			<c:if test="${not empty paramValues.lctCl}">
+				<c:forEach items="${paramValues.lctCl}" var="theChk">
+					<c:param name="lctCl" value="${theChk}" />
+				</c:forEach>
+			</c:if>
+		</c:url>
+		<a href="${target }">&lt;</a>
 	</c:if>
 
 	<!-- 전체페이지 불러오기 -->
 	<c:forEach var="p" begin="${start }" end="${last }">
+		<c:url value="/search" var="target">
+			<c:param name="pageNo" value="${p}" />
+			<%--도 파람처리 --%>
+			<c:if test="${not empty paramValues.doNm}">
+				<c:forEach items="${paramValues.doNm}" var="doChk">
+					<c:param name="doNm" value="${doChk}" />
+				</c:forEach>
+			</c:if>
+			<%--시군구 파람처리 --%>
+			<c:if test="${not empty paramValues.sigunguNm}">
+				<c:forEach items="${paramValues.sigunguNm}" var="siChk">
+					<c:param name="sigunguNm" value="${siChk}" />
+				</c:forEach>
+			</c:if>
+			<%--입지처리 --%>
+			<c:if test="${not empty paramValues.lctCl}">
+				<c:forEach items="${paramValues.lctCl}" var="theChk">
+					<c:param name="lctCl" value="${theChk}" />
+				</c:forEach>
+			</c:if>
+
+		</c:url>
 		<c:choose>
 			<c:when test="${p eq currentPage }">
 				<b style="color: #05BFDB;">${p }</b>
 			</c:when>
 			<c:otherwise>
-				<a
-					href="/search?pageNo=${p }&doNm=${doNmStatus}&sigunguNm=${sigunguNmStatus}&lctCl=${lctClStatus}">${p }</a>
+				<a href="${target }">${p }</a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 
 	<!--다음버튼영역  -->
 	<c:if test="${existNext }">
-		<a
-			href="/search?pageNo=${last+1 }&doNm=${doNmStatus}&sigunguNm=${sigunguNmStatus}&lctCl=${lctClStatus}">&gt;</a>
+		<c:url value="/search" var="target">
+			<c:param name="pageNo" value="${last+1}" />
+			<%--도 파람처리 --%>
+			<c:if test="${not empty paramValues.doNm}">
+				<c:forEach items="${paramValues.doNm}" var="doChk">
+					<c:param name="doNm" value="${doChk}" />
+				</c:forEach>
+			</c:if>
+			<%--시군구 파람처리 --%>
+			<c:if test="${not empty paramValues.sigunguNm}">
+				<c:forEach items="${paramValues.sigunguNm}" var="siChk">
+					<c:param name="sigunguNm" value="${siChk}" />
+				</c:forEach>
+			</c:if>
+			<%--입지처리 --%>
+			<c:if test="${not empty paramValues.lctCl}">
+				<c:forEach items="${paramValues.lctCl}" var="theChk">
+					<c:param name="lctCl" value="${theChk}" />
+				</c:forEach>
+			</c:if>
+		</c:url>
+		<a href="${target}">&gt;</a>
 	</c:if>
 </div>
 
