@@ -30,8 +30,9 @@ public class deleteController extends HttpServlet {
 
 		String id = logonUser.getId();
 		
-
-		PostDAO.allDeleteCamp(id);
+		PostDAO.deleteAllCampReview(id);
+		
+		PostDAO.DeleteLikeCamp(id);
 
 		PostDAO.deleteAllReview(id);
 

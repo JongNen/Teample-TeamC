@@ -41,18 +41,18 @@ public class SignInTaskController extends HttpServlet {
 			session.setAttribute("logon", true);
 			session.setAttribute("logonUser", found);
 
-			// 로그인이 되면 쿠키생성
+			// 로그인이 되면 쿠키 생성
 			if (check != null && check.equals("on")) {
-				Cookie c = new Cookie("ID_SAVE", found.getId());
-				c.setPath("/");
-				c.setMaxAge(606024303);
-				resp.addCookie(c);
-				resp.sendRedirect("/");
+			    Cookie c = new Cookie("ID_SAVE", found.getId());
+			    c.setPath("/");
+			    c.setMaxAge(606024303);
+			    resp.addCookie(c);
+			  
+			    req.getRequestDispatcher("/index").forward(req, resp);
 			} else {
-
-			 	resp.sendRedirect("/");
-
+			    resp.sendRedirect("/");
 			}
+
 
 		} else {
 			Cookie c = new Cookie("ID_SAVE", "");

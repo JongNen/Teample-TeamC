@@ -43,7 +43,7 @@ public class PostDAO extends DAO {
 	}
 
 	// 자기가 쓴 글
-	public static List<Review> readByMyPost(String name) {
+	public static List<Like> readByMyPost(String name) {
 		SqlSession session = factory.openSession(true);
 		try {
 			return session.selectList("posts.readByMyPost", name);
@@ -142,10 +142,10 @@ public class PostDAO extends DAO {
 	}
 
 	// 좋아요된 캠핑장 전체 삭제
-	public static int allDeleteCamp(String id) {
+	public static int DeleteLikeCamp(String id) {
 		SqlSession session = factory.openSession(true);
 		try {
-			return session.delete("posts.allDeleteCamp", id);
+			return session.delete("posts.DeleteLikeCamp", id);
 		} finally {
 			session.close();
 		}
@@ -192,6 +192,21 @@ public class PostDAO extends DAO {
 				session.close();
 			}
 		}
+		
+		
+		// 캠핑장에 대한 리뷰 전체 삭제
+				public static int deleteAllCampReview(String id) {
+					SqlSession session = factory.openSession(true);
+					try {
+
+						return session.delete("posts.deleteAllCampReview", id);
+					} finally {
+						session.close();
+					}
+				}
+		
+		
+		
 	
 	// 특정 게시글 볼때
 	public static Review findByPost(String postNum) {

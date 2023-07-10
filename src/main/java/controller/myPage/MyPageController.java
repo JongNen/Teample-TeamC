@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import data.Review;
+import data.Like;
 import data.User;
 import repository.PostDAO;
 
@@ -25,7 +25,7 @@ public class MyPageController extends HttpServlet {
 	
 	    String id = logonUser.getId();
 	   
-	    List<Review> myPost = PostDAO.readByMyPost(id);
+	    List<Like> myPost = PostDAO.readByMyPost(id);
 	    req.setAttribute("myPost", myPost);
 	    
 

@@ -35,10 +35,8 @@
 		LIKES.*
 		FROM
 		LIKES
-		JOIN USERS ON LIKES.LIKER =
-		USERS.ID
 		WHERE
-		USERS.ID = #{id}
+		LIKER = #{id}
 		ORDER BY CAMPNAME
 	</select>
 
@@ -62,7 +60,7 @@
 	</select>
 
 	<!-- 좋아요 된 캠핑장 전부 삭제 -->
-	<delete id="allDeleteCamp" parameterType="String">
+	<delete id="DeleteLikeCamp" parameterType="String">
 		DELETE FROM LIKES WHERE
 		LIKER = #{liker}
 	</delete>
@@ -93,7 +91,7 @@
 		POSTNUM=#{postNum}
 	</delete>
 
-	<!-- 본인이 쓴 후기 전체 삭제하기 -->
+	<!-- 본인이 쓴 게시판후기 전체 삭제하기 -->
 	<delete id="deleteAllReview" parameterType="String">
 		DELETE FROM REVIEWS
 		WHERE
@@ -138,6 +136,15 @@
 		CAMPREVIEWS
 		WHERE
 		REVIEWNUM=#{reviewNum}
+	</delete>
+	
+	<!-- 캠핑장 후기 전체 삭제하기 -->
+	
+	<delete id="deleteAllCampReview" parameterType="String">
+		DELETE FROM
+		CAMPREVIEWS
+		WHERE
+		WRITERID=#{writerid}
 	</delete>
 
 
