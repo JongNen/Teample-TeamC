@@ -12,11 +12,11 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver"
-					value="oracle.jdbc.driver.OracleDriver" />
+					value="com.mysql.cj.jdbc.Driver" />
 				<property name="url"
-					value="jdbc:oracle:thin:@3.34.136.30:1521:xe" />
-				<property name="username" value="TEAM_C" />
-				<property name="password" value="1q2w3e4r" />
+					value="jdbc:mysql://database-1.cwmsu3cjhaig.ap-northeast-2.rds.amazonaws.com:3306/team_project" />
+				<property name="username" value="Jongs" />
+				<property name="password" value="elxm153353" />
 			</dataSource>
 		</environment>
 	</environments>

@@ -1,7 +1,8 @@
 package controller.board;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +36,6 @@ public class writeModifyTaskController extends HttpServlet {
 		String number = req.getParameter("number");
 		String title = req.getParameter("title");
 		String postBody = req.getParameter("postBody");
-		String IMG = "";
 
 		if (title == null || title.matches("")) {
 			resp.sendRedirect("/modifyReview?cause=valid&number=" + number);
@@ -45,8 +45,13 @@ public class writeModifyTaskController extends HttpServlet {
 		Review review = PostDAO.findByPost(number);
 
 		req.setAttribute("post", review);
+		
+		Map map = new HashMap<>();
+		map.put("title", title);
+		map.put("postBody", postBody);
+		map.put("postNum", postNum);
 
-		int r = PostDAO.modifyReview(title, IMG, postBody, postNum);
+		int r = PostDAO.modifyReview(map);
 
 		if (r == 1) {
 			req.setAttribute("modifysuccess", true);

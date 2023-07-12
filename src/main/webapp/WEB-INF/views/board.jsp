@@ -34,11 +34,7 @@
 					<div class="post-contentmain">
 						<div class="post-content1">${param.p eq 1 ? num.count : (idx - 10) + num.count}</div>
 						<div class="post-content2">
-							<a href="/boardDetail?number=${li.postNum }">${li.title }</a>
-							<c:if test="${li.img !=null}">
-								&nbsp;&nbsp;<i class="fa-regular fa-image"></i>
-							</c:if>
-							
+							<a href="/boardDetail?number=${li.postNum }">${li.title }</a>				
 						</div>
 						<div class="post-content3">${li.writerName }</div>
 						<div class="post-content3">${li.writed }</div>
@@ -59,18 +55,14 @@
 			<%-- 페이징처리 --%>
 			<div style="padding: 1em; text-align: center;">
 				<c:set var="currentPage" value="${empty param.p ? 1: param.p }" />
+			
+				
 				<!-- prev 처리 -->
-				<a href="/board?p=1"><i class="fa-solid fa-chevrons-left"></i></a>
-				<c:choose>
-					<c:when test="${existPrev}">
-						<a href="/board?p=${start-1}"><i
-							class="fa-solid fa-chevron-left"></i></a>
-					</c:when>
-					<c:otherwise>
-						<a><i class="fa-solid fa-chevron-left"></i></a>
-					</c:otherwise>
-				</c:choose>
-
+				
+					<c:if test="${existPrev}">
+						<a href="/board?p=${start-1}">이전</a>
+					</c:if>	
+					
 				<!-- 페이지 넘버 처리 -->
 				<c:forEach begin="${start}" end="${last}" var="pg">
 					<c:choose>
@@ -84,17 +76,11 @@
 				</c:forEach>
 
 				<!-- next 처리 -->
-				<c:choose>
-					<c:when test="${existNext}">
-						<a href="/board?p=${last + 1}"><i
-							class="fa-solid fa-chevron-right"></i></a>
-					</c:when>
-					<c:otherwise>
-						<a><i class="fa-solid fa-chevron-right"></i></a>
-					</c:otherwise>
-				</c:choose>
-				<a href="/board?p=${totalPage}"><i
-					class="fa-solid fa-chevrons-right"></i></a>
+		
+					<c:if test="${existNext}">
+						<a href="/board?p=${last + 1}">다음</a>
+					</c:if>	
+					
 			</div>
 		</div>
 	</div>

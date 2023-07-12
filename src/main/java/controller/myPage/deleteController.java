@@ -40,7 +40,7 @@ public class deleteController extends HttpServlet {
 
 		session.invalidate();
 
-		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
+		resp.sendRedirect("/index");
 	}
 
 }

@@ -15,17 +15,18 @@
 	<!-- 게시글 N개 보기 -->
 	<select id="findByPostAtoB" resultType="data.Review"
 		parameterType="hashmap">
-		SELECT * FROM
-		(SELECT ROWNUM RN, t.* FROM
-		(SELECT * FROM
-		REVIEWS ORDER BY WRITED DESC) t
-		) WHERE RN BETWEEN #{a} AND
-		#{b}
+		SELECT *
+		FROM REVIEWS
+		ORDER BY WRITED DESC
+		LIMIT #{a}, #{b}
 	</select>
-	
+
+
+
 	<!-- 게시글 전체 갯수 가져오기 -->
 	<select id="findByPostAll" resultType="int">
-		SELECT COUNT(*) FROM reviews
+		SELECT COUNT(*) FROM
+		REVIEWS
 	</select>
 
 	<!-- 자기가 좋아요 처리한 캠핑장 불러오기 -->
@@ -37,7 +38,8 @@
 		LIKES
 		WHERE
 		LIKER = #{id}
-		ORDER BY CAMPNAME
+		ORDER BY
+		CAMPNAME
 	</select>
 
 	<!-- 캠핑장 좋아요 추가 -->
@@ -61,25 +63,25 @@
 
 	<!-- 좋아요 된 캠핑장 전부 삭제 -->
 	<delete id="DeleteLikeCamp" parameterType="String">
-		DELETE FROM LIKES WHERE
+		DELETE FROM LIKES
+		WHERE
 		LIKER = #{liker}
 	</delete>
 
 	<!-- 후기 쓰기 -->
-	<insert id="write" parameterType="Hashmap">
-		INSERT INTO REVIEWS(POSTNUM,
-		WRITERNAME, IMG, TITLE, POSTBODY, WRITERID)
-		VALUES(POSTNUM_SEQ.NEXTVAL, #{writerName},
-		#{IMG} , #{title},
+	<insert id="createReview" parameterType="Hashmap">
+		INSERT INTO REVIEWS(
+		WRITERNAME, TITLE, POSTBODY, WRITERID)
+		VALUES(#{writerName},
+		#{title},
 		#{postBody}, #{writerId})
 	</insert>
 
 	<!-- 후기 수정하기 -->
-	<update id="modify" parameterType="Hashmap">
+	<update id="modifyReview" parameterType="Hashmap">
 		UPDATE REVIEWS
 		SET TITLE =
 		#{title},
-		IMG = #{image},
 		POSTBODY=#{postBody}
 		WHERE POSTNUM=#{postNum}
 	</update>
@@ -100,11 +102,11 @@
 
 	<!-- 후기 불러오기 -->
 	<select id="allPosts" resultType="data.Review">
-		SELECT * FROM REVIEWS ORDER
-		BY
+		SELECT * FROM REVIEWS ORDER BY
 		WRITED DESC
 	</select>
-	
+
+
 	<!-- 특정 게시물 확인하기 -->
 	<select id="findBypostNum" resultType="data.Review"
 		parameterType="int">
@@ -115,9 +117,9 @@
 	<!-- 캠핑장에 대한 후기 쓰기 -->
 	<insert id="campReviewCreate" parameterType="Hashmap">
 		INSERT INTO
-		CAMPREVIEWS(CAMPID, WRITERID, BODY, WRITERNAME, REVIEWNUM)
-		VALUES(#{campId}, #{writerId}, #{body}, #{writerName},
-		REVIEWNUM_SEQ.NEXTVAL)
+		CAMPREVIEWS(CAMPID, WRITERID, BODY, WRITERNAME)
+		VALUES(#{campId},
+		#{writerId}, #{body}, #{writerName})
 	</insert>
 
 
@@ -137,9 +139,9 @@
 		WHERE
 		REVIEWNUM=#{reviewNum}
 	</delete>
-	
+
 	<!-- 캠핑장 후기 전체 삭제하기 -->
-	
+
 	<delete id="deleteAllCampReview" parameterType="String">
 		DELETE FROM
 		CAMPREVIEWS

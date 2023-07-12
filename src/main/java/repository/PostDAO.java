@@ -61,27 +61,27 @@ public class PostDAO extends DAO {
 		}
 	}
 
-	// 후기 작성
-	public static int createReview(String writerName, String IMG, String title, String postBody, String writerId) {
-		SqlSession session = factory.openSession(true);
-		Map<String, Object> obj = new HashMap<>();
-
-		if (IMG == null) {
-			obj.put("IMG", "");
-		} else {
-			obj.put("IMG", IMG);
+	// 게시판 작성
+		public static int createReview(Map map) {
+			SqlSession session = factory.openSession(true);
+			try {
+				return session.insert("posts.createReview", map);
+			} finally {
+				session.close();
+			}
 		}
-		obj.put("title", title);
-		obj.put("postBody", postBody);
-		obj.put("writerId", writerId);
-		obj.put("writerName", writerName);
-
-		int r = session.insert("posts.write", obj);
-
-		session.close();
-		return r;
-	}
-	//후기삭제하기
+		
+	 // 게시판 수정
+		public static int modifyReview(Map map) {
+			SqlSession session = factory.openSession(true);
+			try {
+				return session.update("posts.modifyReview", map);
+			} finally {
+				session.close();
+			}
+		}
+		
+	// 게시판 후기 삭제하기
 	public static int deleteReview(int postNum) {
 		SqlSession session = factory.openSession(true);
 		try {
@@ -219,23 +219,5 @@ public class PostDAO extends DAO {
 		}
 	}
 
-	// 후기 수정하기
-	public static int modifyReview(String title, String IMG, String postBody, int postNum) {
-		SqlSession session = factory.openSession(true);
-		Map<String, Object> obj = new HashMap<>();
-		try {
-			if (IMG == null) {
-				obj.put("IMG", "");
-			} else {
-				obj.put("IMG", IMG);
-			}
-			obj.put("title", title);
-			obj.put("postBody", postBody);
-			obj.put("postNum", postNum);
-			return session.update("posts.modify", obj);
-		} finally {
-			session.close();
-		}
-
-	}
+	
 }

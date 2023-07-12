@@ -10,7 +10,7 @@
 	</insert>
 		
 	<select id="findById" resultType="data.User" parameterType="String">
-		SELECT USERS.*
+		SELECT *
 		FROM USERS 
 		WHERE ID = #{id }
 
@@ -19,7 +19,7 @@
 	<!-- 유저 정보 수정 -->
 	<update id="updateUser" parameterType="hashmap">
 
-		UPDATE USERS SET PASS = #{pass}, NAME = #{name} , AREA = #{area} 
+		UPDATE USERS SET PASS = #{pass}, NAME = #{name}, AREA = #{area} 
 		WHERE ID = #{id}
 	</update>
 	

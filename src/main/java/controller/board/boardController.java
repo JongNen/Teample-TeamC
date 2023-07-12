@@ -27,15 +27,15 @@ public class boardController extends HttpServlet {
 
 		// page 파라미터값이 null 이면 1로 고정 그게아니면 파람값으로
 		int p;
-		if(req.getParameter("p") == null) {
+		if(page == null) {
 			p = 1;
 		}else {
-			p = Integer.parseInt(req.getParameter("p"));
+			p = Integer.parseInt(page);
 		}
 		
 		// 파라미터 a, b값을 설계
-		int a = (p-1)*10+1;
-		int b = 10*p;
+		int a = (p-1)*10;
+		int b = 10;
 		
 		Map<String, Integer> map = new HashMap<>();
 		map.put("a", a);
@@ -64,7 +64,7 @@ public class boardController extends HttpServlet {
 		req.setAttribute("start", startPage);
 		req.setAttribute("last", endPage);
 		req.setAttribute("totalPage", totalPage);
-		boolean existPrev = p >= 6;
+		boolean existPrev = startPage >= viewPage+1;
 		boolean existNext = true;
 		if(endPage >= totalPage)
 		{

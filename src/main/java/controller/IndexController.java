@@ -32,6 +32,7 @@ public class IndexController extends HttpServlet {
 		int count = 0;
 		boolean loggedIn = req.getSession().getAttribute("logonUser") != null && logonUser.getArea() != null;
 
+		
 		for (Item item : response) {
 			if (count >= 5) {
 				break;
@@ -51,7 +52,7 @@ public class IndexController extends HttpServlet {
 				recommends.add(item);
 				count++;
 
-			} else if (logonUser == null) {
+			} else {
 				Item random = response.get((int) (Math.random() * response.size()));
 				recommends.add(random);
 				count++;

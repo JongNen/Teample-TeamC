@@ -1,8 +1,8 @@
 package controller.board;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import data.User;
 import repository.PostDAO;
@@ -35,43 +32,24 @@ public class writeTaskController extends HttpServlet {
 			return;
 		}
 
-		String path = req.getServletContext().getRealPath("/upload");
-		System.out.println("path ==> " + path);
-		int fileSize = 1024 * 1024 * 10; // 5MB
-
-		File f = new File(path);
-		if (!f.exists()) {
-			f.mkdirs();
-		}
-
-		try {
-			MultipartRequest multi = new MultipartRequest(req, path, fileSize, "UTF-8", new DefaultFileRenamePolicy());
-
-			Enumeration e = multi.getFileNames();
-			System.out.println("file ==> " + e);
-
-			String IMG = null;
-			String orgfilename = null;
-
 			String writerName = logonUser.getName();
 			String writerId = logonUser.getId();
-			String title = multi.getParameter("title");
-			String postBody = multi.getParameter("postBody");
-
+			String title = req.getParameter("title");
+			String postBody = req.getParameter("postBody");
+			
 			if (title == null || title.matches("")) {
 				resp.sendRedirect("/write?cause=valid");
 				return;
 			}
+			
+			Map map = new HashMap<>();
+			map.put("writerName", writerName);
+			map.put("title", title);
+			map.put("postBody", postBody);
+			map.put("writerId", writerId);
+			
 
-			while (e.hasMoreElements()) {
-				String file = (String) e.nextElement();
-				IMG = multi.getFilesystemName(file);
-				System.out.println("IMG ==> " + IMG);
-				orgfilename = multi.getOriginalFileName(file);
-				System.out.println("orgfilename ==> " + orgfilename);
-			}
-
-			int r = PostDAO.createReview(writerName, IMG, title, postBody, writerId);
+			int r = PostDAO.createReview(map);
 
 			if (r == 1) {
 				req.setAttribute("writesuccess", true);
@@ -81,9 +59,6 @@ public class writeTaskController extends HttpServlet {
 
 			resp.sendRedirect("/board");
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 	}
 }

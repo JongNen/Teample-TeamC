@@ -37,7 +37,11 @@ public class SignUpTaskController extends HttpServlet {
 		String pass = req.getParameter("pass");
 		String name = req.getParameter("name");
 		String doNm = req.getParameter("doNm");
+		if(doNm == "") 
+			doNm = null;
 		String sigunguNm = req.getParameter("sigunguNm");
+		if(sigunguNm == "")
+			sigunguNm = null;
 		
 		if(UserDAO.findById(id) != null) {
 			resp.sendRedirect("/user/signUp?error=1");
@@ -50,7 +54,7 @@ public class SignUpTaskController extends HttpServlet {
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("pass", hashed);
-		map.put("name", name);
+		map.put("name", name);	
 		if (doNm != null && sigunguNm == null) {
 
 			map.put("area", doNm);
@@ -59,7 +63,7 @@ public class SignUpTaskController extends HttpServlet {
 		} else {
 			map.put("area", null);
 		}
-
+		
 		// 회원가입시 제약조건이 맞지 않으면 에러 팝업 / 그게 아니면 가입 성공으로 메인페이지로
 		if (UserService.volume(id, pass, name)) {
 			int r = UserDAO.create(map);

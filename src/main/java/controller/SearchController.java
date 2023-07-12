@@ -81,7 +81,7 @@ public class SearchController extends HttpServlet {
 			
 			int total = li.size(); // 데이터 전체 개수
 			int totalPage = total / 10 + (total % 10 > 0 ? 1 : 0); // 전체 페이지 수
-			int viewSize = 5; // 한 화면에 보여지는 페이지 수
+			int viewSize = 2; // 한 화면에 보여지는 페이지 수
 			int start = ((p - 1) / viewSize) * viewSize + 1; // 1
 			int last = (((p - 1) / viewSize) + 1) * viewSize; // 5
 

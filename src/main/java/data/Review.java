@@ -6,7 +6,7 @@ public class Review {
 	
 	int postNum;
 	String writerName;
-	String img;
+
 	Date writed;
 	String title;
 	String postBody;
@@ -23,12 +23,6 @@ public class Review {
 	}
 	public void setWriterName(String writerName) {
 		this.writerName = writerName;
-	}
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
 	}
 	public Date getWrited() {
 		return writed;

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title></title>
 <link rel="stylesheet" href="/resource/style.css">
 </head>
@@ -19,8 +19,7 @@
 					<input class="write-blank1" value="${post.postBody}"
 						name="postBody">
 					<div class="modify-button-position">
-					<div>현재 등록된 이미지:
-						<br> <img style="width: 30px;padding-top:2px; text-align: center;" src="/upload/${post.img}"> ${post.img }</div>
+					
 					<div><button class="sign-button" type="submit">수정하기</button></div>
 				</div>
 			</form>
