@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/commons/top.jsp"%>
 
+
 <%-- 후기 게시판 --%>
 <!DOCTYPE html>
 <html>
@@ -24,8 +25,7 @@
 		<div style="text-align: center; margin-left: 15em;">
 			<div class="post-title">
 				<div class="post-t1">번호</div>
-				<div class="post-t2">제목
-				</div>
+				<div class="post-t2">제목</div>
 				<div class="post-t3">작성자</div>
 				<div class="post-t3">작성일</div>
 			</div>
@@ -34,10 +34,12 @@
 					<div class="post-contentmain">
 						<div class="post-content1">${param.p eq 1 ? num.count : (idx - 10) + num.count}</div>
 						<div class="post-content2">
-							<a href="/boardDetail?number=${li.postNum }">${li.title }</a>				
+							<a href="/boardDetail?number=${li.postNum }">${li.title }</a>
 						</div>
 						<div class="post-content3">${li.writerName }</div>
-						<div class="post-content3">${li.writed }</div>
+						<div class="post-content3">
+							<fmt:formatDate value="${li.writed }" pattern="yyyy-MM-dd" />
+						</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -55,14 +57,14 @@
 			<%-- 페이징처리 --%>
 			<div style="padding: 1em; text-align: center;">
 				<c:set var="currentPage" value="${empty param.p ? 1: param.p }" />
-			
-				
+
+
 				<!-- prev 처리 -->
-				
-					<c:if test="${existPrev}">
-						<a href="/board?p=${start-1}">이전</a>
-					</c:if>	
-					
+
+				<c:if test="${existPrev}">
+					<a href="/board?p=${start-1}">이전</a>
+				</c:if>
+
 				<!-- 페이지 넘버 처리 -->
 				<c:forEach begin="${start}" end="${last}" var="pg">
 					<c:choose>
@@ -76,11 +78,11 @@
 				</c:forEach>
 
 				<!-- next 처리 -->
-		
-					<c:if test="${existNext}">
-						<a href="/board?p=${last + 1}">다음</a>
-					</c:if>	
-					
+
+				<c:if test="${existNext}">
+					<a href="/board?p=${last + 1}">다음</a>
+				</c:if>
+
 			</div>
 		</div>
 	</div>

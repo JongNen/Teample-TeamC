@@ -71,10 +71,10 @@
 	<!-- 후기 쓰기 -->
 	<insert id="createReview" parameterType="Hashmap">
 		INSERT INTO REVIEWS(
-		WRITERNAME, TITLE, POSTBODY, WRITERID)
+		WRITERNAME, TITLE, POSTBODY, WRITERID, WRITED)
 		VALUES(#{writerName},
 		#{title},
-		#{postBody}, #{writerId})
+		#{postBody}, #{writerId}, #{writed})
 	</insert>
 
 	<!-- 후기 수정하기 -->
@@ -100,11 +100,6 @@
 		WRITERID=#{writerId}
 	</delete>
 
-	<!-- 후기 불러오기 -->
-	<select id="allPosts" resultType="data.Review">
-		SELECT * FROM REVIEWS ORDER BY
-		WRITED DESC
-	</select>
 
 
 	<!-- 특정 게시물 확인하기 -->

@@ -1,8 +1,9 @@
 package controller.board;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import data.Review;
 import data.User;
 import repository.PostDAO;
 
@@ -42,20 +44,27 @@ public class writeTaskController extends HttpServlet {
 				return;
 			}
 			
-			Map map = new HashMap<>();
-			map.put("writerName", writerName);
-			map.put("title", title);
-			map.put("postBody", postBody);
-			map.put("writerId", writerId);
+			
+			Review review = new Review();
+
+			review.setWriterName(writerName);
+			review.setWriterId(writerId);
+			review.setTitle(title);
+			review.setPostBody(postBody);
+			review.setWrited(new Date());
+
 			
 
-			int r = PostDAO.createReview(map);
+			
+			
+
+			int r = PostDAO.createReview(review);
 
 			if (r == 1) {
 				req.setAttribute("writesuccess", true);
 			}
 
-			System.out.println("r====" + r);
+			
 
 			resp.sendRedirect("/board");
 

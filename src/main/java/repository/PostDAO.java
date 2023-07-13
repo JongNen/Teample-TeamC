@@ -1,6 +1,5 @@
 package repository;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,26 +51,18 @@ public class PostDAO extends DAO {
 		}
 	}
 
-	public static List<Review> allPosts(Map map) {
-		SqlSession session = factory.openSession(true);
-		try {
-			return session.selectList("posts.allPosts", map);
-		} finally {
-			session.close();
-		}
-	}
 
-	// 게시판 작성
-		public static int createReview(Map map) {
+	// 자유게시판 글 작성
+		public static int createReview(Review review) {
 			SqlSession session = factory.openSession(true);
 			try {
-				return session.insert("posts.createReview", map);
+				return session.insert("posts.createReview", review);
 			} finally {
 				session.close();
 			}
 		}
 		
-	 // 게시판 수정
+	 // 자유게시판 글 수정
 		public static int modifyReview(Map map) {
 			SqlSession session = factory.openSession(true);
 			try {
@@ -81,7 +72,7 @@ public class PostDAO extends DAO {
 			}
 		}
 		
-	// 게시판 후기 삭제하기
+	// 자유게시판 글 삭제하기
 	public static int deleteReview(int postNum) {
 		SqlSession session = factory.openSession(true);
 		try {
@@ -91,7 +82,7 @@ public class PostDAO extends DAO {
 		}
 	}
 
-	// 본인이 쓴 후기 전체 삭제
+	// 본인이 쓴 자유게시판 글 전체 삭제
 	public static int deleteAllReview(String id) {
 		SqlSession session = factory.openSession(true);
 		try {
