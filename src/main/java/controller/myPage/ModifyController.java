@@ -34,6 +34,10 @@ public class ModifyController extends HttpServlet {
 		String name = req.getParameter("name");
 		String doNm = req.getParameter("doNm");
 		String sigunguNm = req.getParameter("sigunguNm");
+		if(doNm == "") 
+			doNm = null;
+		if(sigunguNm == "") 
+			sigunguNm = null;
 		
 
 		if (!UserService.volume(id, pass, name)) {

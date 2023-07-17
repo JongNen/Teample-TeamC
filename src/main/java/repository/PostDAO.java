@@ -200,7 +200,7 @@ public class PostDAO extends DAO {
 		
 	
 	// 특정 게시글 볼때
-	public static Review findByPost(String postNum) {
+	public static Review findByPostNum(String postNum) {
 		SqlSession session = factory.openSession();
 		try {
 			return session.selectOne("posts.findBypostNum", Integer.parseInt(postNum));
