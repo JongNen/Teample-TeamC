@@ -23,7 +23,7 @@ public class boardDetailController extends HttpServlet {
 
 		String postNum = req.getParameter("number");
 
-		Review review = PostDAO.findByPost(postNum);
+		Review review = PostDAO.findByPostNum(postNum);
 		
 		req.setAttribute("post", review);
 

@@ -28,6 +28,7 @@
 
 				<div class="sign-up-main3">
 					<div>*관심 지역을 선택해주세요(필수 입력항목 아님!)</div>
+					<div>시/군/구 미설정시 값 반영 안됨(ex)강원도만 선택)</div>
 					<div class="sign-up-seelct">
 						<select name="doNm" id="do">
 							<option value="" ${param.doNm eq '' ? 'selected' :  ''}>전국</option>

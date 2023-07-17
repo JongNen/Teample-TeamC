@@ -34,12 +34,21 @@
 					<div class="post-contentmain">
 						<div class="post-content1">${param.p eq 1 ? num.count : (idx - 10) + num.count}</div>
 						<div class="post-content2">
-							<a href="/boardDetail?number=${li.postNum }">${li.title }</a>
+							<a href="/boardDetail?number=${li.postNum}">
+                   				<c:choose>
+                        			<c:when test="${not empty li.title.trim()}">
+                            			${li.title}
+                        			</c:when>
+                        			
+                        			<c:otherwise>
+                            			[제목 없음]
+                        			</c:otherwise>
+                    			</c:choose>
+                			</a>
 						</div>
 						<div class="post-content3">${li.writerName }</div>
-						<div class="post-content3">
-							<fmt:formatDate value="${li.writed }" pattern="yyyy-MM-dd" />
-						</div>
+						<fmt:formatDate value="${li.writed }" pattern="yyyy-MM-dd" />
+
 					</div>
 				</c:forEach>
 			</div>

@@ -31,7 +31,7 @@ public class writeModifyController extends HttpServlet {
 		}
 
 		String number = req.getParameter("number");
-		Review review = PostDAO.findByPost(number);
+		Review review = PostDAO.findByPostNum(number);
 
 		req.setAttribute("post", review);
 

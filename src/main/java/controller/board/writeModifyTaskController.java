@@ -42,7 +42,7 @@ public class writeModifyTaskController extends HttpServlet {
 			return;
 		}
 
-		Review review = PostDAO.findByPost(number);
+		Review review = PostDAO.findByPostNum(number);
 
 		req.setAttribute("post", review);
 		

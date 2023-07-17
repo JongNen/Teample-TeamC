@@ -34,9 +34,9 @@ public class ModifyController extends HttpServlet {
 		String name = req.getParameter("name");
 		String doNm = req.getParameter("doNm");
 		String sigunguNm = req.getParameter("sigunguNm");
-		if(doNm == "") 
+		if(doNm == "" || sigunguNm.matches("전체")) 
 			doNm = null;
-		if(sigunguNm == "") 
+		if(sigunguNm == "" || sigunguNm.matches("전체")) 
 			sigunguNm = null;
 		
 
